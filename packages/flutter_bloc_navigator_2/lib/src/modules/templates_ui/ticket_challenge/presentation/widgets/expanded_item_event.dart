@@ -82,17 +82,21 @@ class ExpandedItemEvent extends HookWidget {
       ),
     );
 
-    if (isVisible) {
-      fadeContentAnimation.forward();
-      slideAnimation.forward();
-      slideAnimationDate.forward();
-      fadeAnimation.forward();
-    } else {
-      fadeAnimation.reverse();
-      slideAnimation.reverse();
-      slideAnimationDate.reverse();
-      fadeContentAnimation.reverse();
-    }
+    useValueChanged<bool, bool>(isVisible, (_, __) {
+      if (isVisible) {
+        fadeContentAnimation.forward();
+        slideAnimation.forward();
+        slideAnimationDate.forward();
+        fadeAnimation.forward();
+      } else {
+        fadeAnimation.reverse();
+        slideAnimation.reverse();
+        slideAnimationDate.reverse();
+        fadeContentAnimation.reverse();
+      }
+      return null;
+    });
+
     return Positioned(
       height: imageSize,
       top: top,
@@ -132,54 +136,58 @@ class ExpandedItemEvent extends HookWidget {
                   color: Colors.white,
                 ),
                 child: FadeTransition(
-                  opacity: fadeOffset,
+                  opacity: fadeContentAnimation,
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        FadeTransition(
-                          opacity: CurvedAnimation(
-                            parent: fadeAnimation,
-                            curve: const Interval(0.5, 1),
-                          ),
-                          child: SlideTransition(
-                            position: offsetAnimationTitle,
-                            child: Text(
-                              event.title,
-                              maxLines: 2,
-                              style: const TextStyle(
-                                fontSize: 16,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: FadeTransition(
+                            opacity: fadeOffset,
+                            child: SlideTransition(
+                              position: offsetAnimationTitle,
+                              child: Text(
+                                event.title,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 8),
-                        FadeTransition(
-                          opacity: fadeOffsetDate,
-                          child: SlideTransition(
-                            position: offsetAnimationDate,
-                            child: Row(
-                              children: <Widget>[
-                                Text(
-                                  '$index ticket',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: FadeTransition(
+                            opacity: fadeOffsetDate,
+                            child: SlideTransition(
+                              position: offsetAnimationDate,
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    '$index ticket',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Colors.grey.shade600,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  event.date,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 12,
-                                    color: Colors.grey,
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    event.date,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -187,6 +195,7 @@ class ExpandedItemEvent extends HookWidget {
                         FadeTransition(
                           opacity: fadeOffset,
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Icon(
                                 Icons.place,
@@ -194,7 +203,7 @@ class ExpandedItemEvent extends HookWidget {
                                 size: 16,
                               ),
                               Text(
-                                'Science Park 10 25A',
+                                event.location,
                                 style: TextStyle(
                                   color: Colors.grey.shade400,
                                   fontSize: 13,

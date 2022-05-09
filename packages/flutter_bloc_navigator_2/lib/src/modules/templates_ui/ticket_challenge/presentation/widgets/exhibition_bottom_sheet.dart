@@ -15,7 +15,7 @@ const double paddingContainer = 32;
 const double iconStartSize = 44;
 const double iconEndSize = 120;
 const double iconStartMarginTop = 36;
-const double iconEndMarginTop = 80;
+const double iconEndMarginTop = 48;
 const double iconsVerticalSpacing = 24;
 const double iconsHorizontalSpacing = 16;
 
@@ -95,7 +95,7 @@ class ExhibitionBottomSheet extends HookWidget {
   Widget build(BuildContext context) {
     /// initial animation
     final controller = useAnimationController(duration: duration);
-    final maxHeight = MediaQuery.of(context).size.height;
+    final maxHeight = MediaQuery.of(context).size.height * 0.85;
     final paddingTop = MediaQuery.of(context).padding.top;
     final widthItem =
         MediaQuery.of(context).size.width - (paddingContainer * 2);
