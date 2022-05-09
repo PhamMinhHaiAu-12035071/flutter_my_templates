@@ -1,5 +1,4 @@
 name: flutter_my_templates
-repository: https://github.com/FirebaseExtended/flutterfire
 
 packages:
   - packages/**
@@ -13,6 +12,7 @@ command:
     # branch: master
     # Additionally build a changelog at the root of the workspace.
     workspaceChangelog: true
+    updateGitTagRefs: true # defaults to false
 scripts:
   lint:all:
     run: melos run analyze
