@@ -16,7 +16,7 @@ final settings = <Setting>[
 final templateSettings = <Setting>[
   const Setting(
     image:
-        'https://raw.githubusercontent.com/PhamMinhHaiAu-12035071/flutter_my_templates/master/packages/flutter_bloc_navigator_2/assets/images/moon1024.png',
+        'https://raw.githubusercontent.com/PhamMinhHaiAu-12035071/flutter_my_templates/master/packages/flutter_bloc_navigator_2/assets/images/language1024.png',
     name: 'UI Ticket Template',
   ),
 ];
