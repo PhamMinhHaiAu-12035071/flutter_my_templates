@@ -10,6 +10,10 @@ final getIt = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: false, // default
 )
-Future<GetIt> configureDependencies() async {
-  return $initGetIt(getIt);
+Future<GetIt> configureDependencies({required String environment}) async {
+  final regExpEnv = RegExp(
+    r'^dev|test|$',
+  );
+  assert(regExpEnv.hasMatch(environment), 'Environment is not valid');
+  return $initGetIt(getIt, environment: environment);
 }
