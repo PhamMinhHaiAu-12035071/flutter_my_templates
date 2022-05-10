@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/modules/templates_ui/ticket_challenge/presentation/widgets/exhibition_bottom_sheet.dart';
+import 'package:flutter_bloc_navigator_2/src/modules/templates_ui/ticket_challenge/presentation/atomics/organisms/exhibition_bottom_sheet.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
 
 class TicketChallengeScreen extends EPage {
@@ -21,7 +21,7 @@ class TicketChallengeView extends StatelessWidget {
       body: Stack(
         //<-- main stack
         children: const <Widget>[
-          ExhibitionBottomSheet(),
+          ExhibitionBottomSheetController(),
         ],
       ),
     );

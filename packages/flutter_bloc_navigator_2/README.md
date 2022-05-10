@@ -27,6 +27,8 @@ samples, guidance on mobile development, and a full API reference.
 ## 2. Feature
 
 - Support multiple language (device or manual)
+- Support multiple theme (include light and dark theme)
+- Split [atomics design](https://itnext.io/atomic-design-with-flutter-11f6fcb62017) 
 
 
 ## 3. Project structure
