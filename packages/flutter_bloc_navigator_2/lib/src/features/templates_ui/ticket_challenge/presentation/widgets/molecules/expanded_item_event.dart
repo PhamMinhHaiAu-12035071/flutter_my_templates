@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/models/event.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/atoms/date_ticket.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/atoms/image_rounded.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/atoms/location_ticket.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/atoms/title_ticket.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/date_ticket.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/image_rounded.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/location_ticket.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/title_ticket.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class ExpandedItemEventController extends HookWidget {

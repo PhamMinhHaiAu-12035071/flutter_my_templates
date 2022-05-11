@@ -2,7 +2,7 @@ import 'package:flutter_bloc_navigator_2/src/features/not_found/presentation/not
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/screens/language_screen.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/screens/setting_screen.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/screens/theme_screen.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/pages/ticket_challenge_page.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/pages/ticket_challenge_page.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/constants/root_path.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';

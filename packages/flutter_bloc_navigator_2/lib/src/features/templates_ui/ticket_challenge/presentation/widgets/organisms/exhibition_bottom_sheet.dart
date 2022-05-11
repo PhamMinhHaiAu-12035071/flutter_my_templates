@@ -6,9 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc_navigator_2/src/configs/dependency_injection/injection.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/constants/events.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/models/event.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/atoms/menu_icon.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/atoms/sheet_header.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/atomics/molecules/expanded_item_event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/menu_icon.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/sheet_header.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/molecules/expanded_item_event.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:logger/logger.dart';
 
