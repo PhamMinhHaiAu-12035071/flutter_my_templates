@@ -5,52 +5,50 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc_navigator_2/src/configs/env/env.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/data/apis/exceptions/unknown_exception.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/infrastructure/data_sources/middleware.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/infrastructure/interceptors/common_interceptor.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/fake/fake.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/infrastructure/data_sources/event_remote_data_provider.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/infrastructure/json_parsers/event_parser.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/infrastructure/models/event_model.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/infrastructure/transformers/fetch_events_transformer.dart';
 import 'package:injectable/injectable.dart';
 
 @Environment(Env.dev)
 @Environment(Env.test)
 @Singleton(as: EventRemoteDataProvider)
-class DevEventRemoteDataProvider implements EventRemoteDataProvider {
+class DevEventRemoteDataProvider
+    with Middleware, EventParser
+    implements EventRemoteDataProvider {
   DevEventRemoteDataProvider({
     required this.config,
     required this.dio,
-    required this.parser,
   });
 
   final FlavorConfig config;
   final Dio dio;
-  final EventParser parser;
 
-  static const _apiPath = '/events';
+  static const _apiPath = '/todos';
   static const _patchFetchEvents = '';
 
   @override
   Future<Either<Exception, List<EventModel>>> fetchEvents() async {
-    await fakeFetchEvents(dio);
-    return _getData<List<EventModel>>(
-      url: '${config.baseUrl}$_apiPath$_patchFetchEvents',
-      builder: parser.parseFetchAll,
-    );
-  }
+    final dioInstance = Dio(dio.options);
 
-  @override
-  Future<Either<Exception, EventModel>> getEvent(String id) {
-    throw UnimplementedError();
-  }
+    await fakeFetchEvents(dioInstance);
 
-  Future<Either<Exception, T>> _getData<T>({
-    required String url,
-    required Future<T> Function(dynamic data) builder,
-  }) async {
+    //////////////////////////////////////////////////////////
+    // middleware in here
+    //////////////////////////////////////////////////////////
+    middleware(dioInstance, [CommonInterceptor()], FetchEventsTransformer());
+
+    final url = '${config.baseUrl}$_apiPath$_patchFetchEvents';
+
     try {
-      final response = await dio.get<dynamic>(url);
+      final response = await dioInstance.get<dynamic>(url);
       switch (response.statusCode) {
         case HttpStatus.ok:
-          final data = await builder(response.data);
+          final data = await parseFetchAll(response.data);
           return Right(data);
         default:
           throw const UnknownException();
@@ -58,5 +56,10 @@ class DevEventRemoteDataProvider implements EventRemoteDataProvider {
     } on SocketException catch (_) {
       throw const UnknownException();
     }
+  }
+
+  @override
+  Future<Either<Exception, EventModel>> getEvent(String id) {
+    throw UnimplementedError();
   }
 }

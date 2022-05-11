@@ -7,5 +7,5 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: FlavorConfig)
 class DevFlavorConfig implements FlavorConfig {
   @override
-  String get baseUrl => 'https://fake-api.demo';
+  String get baseUrl => 'https://jsonplaceholder.typicode.com';
 }

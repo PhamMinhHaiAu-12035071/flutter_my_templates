@@ -33,7 +33,7 @@ final events = [
 Future<void> fakeFetchEvents(Dio dio) async {
   final dioAdapter = DioAdapter(dio: dio);
 
-  const path = 'https://fake-api.demo/events';
+  const path = 'https://jsonplaceholder.typicode.com/todos';
 
   final data = <String, dynamic>{
     'data': {
