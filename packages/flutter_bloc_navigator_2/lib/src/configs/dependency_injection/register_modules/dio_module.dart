@@ -5,11 +5,11 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class DioModule {
-  @lazySingleton
+  @injectable
   Dio get dio => Dio(
         BaseOptions(
-          connectTimeout: 5000,
-          receiveTimeout: 5000,
+          connectTimeout: 30000,
+          receiveTimeout: 30000,
           headers: <String, dynamic>{
             HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
             HttpHeaders.acceptHeader: '*/*',

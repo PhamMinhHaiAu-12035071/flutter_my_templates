@@ -7,5 +7,5 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: FlavorConfig)
 class DevFlavorConfig implements FlavorConfig {
   @override
-  String get baseUrl => 'reqres.in';
+  String get baseUrl => 'https://fake-api.demo';
 }

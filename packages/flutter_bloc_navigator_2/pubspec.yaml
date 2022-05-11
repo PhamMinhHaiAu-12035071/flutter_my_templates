@@ -76,6 +76,9 @@ dev_dependencies:
   hive_generator: ^1.1.2
 #  flutter_gen_runner: ^4.1.6
   mocktail: ^0.3.0
+  http_mock_adapter:
+    git:
+      url: https://github.com/lomsa-dev/http-mock-adapter.git
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
