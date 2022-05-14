@@ -12,7 +12,7 @@ class FetchEventsTransformer extends DefaultTransformer {
   ) async {
     final dynamic responseBody =
         await super.transformResponse(options, response);
-    final dynamic events = responseBody['data']['events'];
-    return events;
+    final dynamic data = responseBody['data'];
+    return data;
   }
 }
