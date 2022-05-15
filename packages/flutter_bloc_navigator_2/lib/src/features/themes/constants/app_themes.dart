@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/constants/enums.dart';
-import 'package:flutter_bloc_navigator_2/src/features/themes/models/theme.dart'
-    as theme_model;
+import 'package:flutter_bloc_navigator_2/src/features/themes/domain/entities/theme_entity.dart';
 
 class AppThemeConfig {
-  factory AppThemeConfig.getAppThemeConfig(theme_model.Theme theme) {
+  factory AppThemeConfig.getAppThemeConfig(ThemeEntity theme) {
     switch (theme.code) {
       case SelectAppTheme.normal:
         return AppThemeConfig.normal();

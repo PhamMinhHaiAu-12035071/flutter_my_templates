@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/constants/app_themes.dart';
-import 'package:flutter_bloc_navigator_2/src/features/themes/models/theme.dart';
+import 'package:flutter_bloc_navigator_2/src/features/themes/domain/entities/theme_entity.dart';
 
 part 'theme_event.dart';
 part 'theme_state.dart';
