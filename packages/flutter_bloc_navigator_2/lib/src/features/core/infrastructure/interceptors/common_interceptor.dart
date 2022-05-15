@@ -7,12 +7,10 @@ class CommonInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    const token = 'fake-token';
     final headers = {
       HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
       HttpHeaders.acceptHeader: '*/*',
       HttpHeaders.cacheControlHeader: 'no-cache',
-      HttpHeaders.authorizationHeader: 'Bearer $token',
     };
     final newOptions = options.copyWith(
       connectTimeout: 30000,

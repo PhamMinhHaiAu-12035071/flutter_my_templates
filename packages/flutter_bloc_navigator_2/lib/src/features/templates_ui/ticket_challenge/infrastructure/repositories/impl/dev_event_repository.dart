@@ -15,7 +15,7 @@ class DevEventRepository implements EventRepository {
 
   @override
   Future<Either<Exception, List<Event>>> fetchEvents() async {
-    return eventRemoteDataProvider.fetchEvents();
+    return eventRemoteDataProvider.fetchAll();
   }
 
   @override

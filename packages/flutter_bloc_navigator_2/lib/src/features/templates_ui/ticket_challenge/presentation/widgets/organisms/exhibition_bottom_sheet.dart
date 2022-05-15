@@ -2,15 +2,12 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc_navigator_2/src/configs/dependency_injection/injection.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/constants/events.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/models/event.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/menu_icon.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/sheet_header.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/molecules/expanded_item_event.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:logger/logger.dart';
 
 const double minHeight = 120;
 const double paddingContainer = 32;
@@ -32,38 +29,24 @@ const double maxRangeHeaderFontSize = 24;
 const double minRangeBorderRadius = 8;
 const double maxRangeBorderRadius = 24;
 
-class ExhibitionBottomSheetController extends HookWidget {
-  const ExhibitionBottomSheetController({Key? key}) : super(key: key);
+const double textNotFoundMarginTop = iconStartMarginTop + iconStartSize * 0.5;
 
-  @override
-  Widget build(BuildContext context) => _ExhibitionBottomSheetView(this);
-
-  //////////////////////////////////////////////////////////
-  // UI event handlers, init code, etc goes here
-  //////////////////////////////////////////////////////////
-
-  void _toggle() {
-    getIt<Logger>().d('put logic in here when have event toggle');
-  }
-
-  void _onVerticalDragUpdate() {
-    getIt<Logger>().d('put logic in here when have event onDragUpdate');
-  }
-
-  void _onVerticalDragEnd() {
-    getIt<Logger>().d('put logic in here when have event onDragEnd');
-  }
-}
-
-class _ExhibitionBottomSheetView extends HookWidget {
-  const _ExhibitionBottomSheetView(
-    this.state, {
+class ExhibitionBottomSheet extends HookWidget {
+  const ExhibitionBottomSheet({
     Key? key,
     this.duration = transitionBottomSheet,
+    this.events,
+    this.onToggle,
+    this.onVerticalDragUpdate,
+    this.onVerticalDragEnd,
   }) : super(key: key);
 
   final Duration duration;
-  final ExhibitionBottomSheetController state;
+  final List<Event>? events;
+
+  final VoidCallback? onToggle;
+  final VoidCallback? onVerticalDragUpdate;
+  final VoidCallback? onVerticalDragEnd;
 
   Widget _buildItem(
     Event event, {
@@ -79,7 +62,7 @@ class _ExhibitionBottomSheetView extends HookWidget {
     required double contentRightRadius,
     required int index,
   }) {
-    return ExpandedItemEventController(
+    return ExpandedItemEvent(
       imageSize: imageSize,
       top: top,
       left: left,
@@ -109,18 +92,18 @@ class _ExhibitionBottomSheetView extends HookWidget {
     // Handle event animation
     //////////////////////////////////////////////////////////
     void _toggle() {
-      state._toggle();
+      onToggle?.call();
       final isOpen = controller.status == AnimationStatus.completed;
       controller.fling(velocity: isOpen ? -2 : 2);
     }
 
     void _onVerticalDragUpdate(DragUpdateDetails details) {
-      state._onVerticalDragUpdate();
+      onVerticalDragUpdate?.call();
       controller.value -= details.primaryDelta! / maxHeight;
     }
 
     void _onVerticalDragEnd(DragEndDetails details) {
-      state._onVerticalDragEnd();
+      onVerticalDragEnd?.call();
       if (controller.isAnimating ||
           controller.status == AnimationStatus.completed) return;
 
@@ -203,25 +186,34 @@ class _ExhibitionBottomSheetView extends HookWidget {
                     fontSize: headerFontSize(),
                     topMargin: headerTopMargin(),
                   ),
-                  ...events
-                      .mapIndexed(
-                        (index, element) => _buildItem(
-                          element,
-                          imageSize: iconSize(),
-                          top: iconTopMargin(index),
-                          left: iconLeftMargin(index),
-                          imageLeftRadius: iconLeftBorderRadius(),
-                          imageRightRadius: iconRightBorderRadius(),
-                          alignment: Alignment(lerp(1, 0), 0),
-                          isVisible:
-                              controller.status == AnimationStatus.completed,
-                          widthContainer: widthItemContainer(),
-                          contentLeftRadius: contentLeftBorderRadius(),
-                          contentRightRadius: contentRightBorderRadius(),
-                          index: index,
-                        ),
-                      )
-                      .toList(),
+                  if (events != null)
+                    ...events!
+                        .mapIndexed(
+                          (index, element) => _buildItem(
+                            element,
+                            imageSize: iconSize(),
+                            top: iconTopMargin(index),
+                            left: iconLeftMargin(index),
+                            imageLeftRadius: iconLeftBorderRadius(),
+                            imageRightRadius: iconRightBorderRadius(),
+                            alignment: Alignment(lerp(1, 0), 0),
+                            isVisible:
+                                controller.status == AnimationStatus.completed,
+                            widthContainer: widthItemContainer(),
+                            contentLeftRadius: contentLeftBorderRadius(),
+                            contentRightRadius: contentRightBorderRadius(),
+                            index: index,
+                          ),
+                        )
+                        .toList(),
+                  if (events == null)
+                    const Padding(
+                      padding: EdgeInsets.only(top: textNotFoundMarginTop),
+                      child: Text(
+                        'Not found events',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                 ],
               ),
             ),

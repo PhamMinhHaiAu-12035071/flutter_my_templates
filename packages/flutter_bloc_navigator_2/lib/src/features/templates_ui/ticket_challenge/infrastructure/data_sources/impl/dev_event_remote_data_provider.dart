@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_bloc_navigator_2/src/configs/dependency_injection/injection.dart';
 import 'package:flutter_bloc_navigator_2/src/configs/env/env.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/data/apis/exceptions/unknown_exception.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challe
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/infrastructure/models/event_model.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/infrastructure/transformers/fetch_events_transformer.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 
 @Environment(Env.dev)
 @Environment(Env.test)
@@ -33,24 +31,16 @@ class DevEventRemoteDataProvider
   static const _patchFetchEvents = '';
 
   @override
-  Future<Dio> onMiddlewareFetchEvents() async {
-    final dioInstance = Dio(dio.options);
-
-    await fakeFetchEvents(dioInstance);
-
-    //////////////////////////////////////////////////////////
-    // middleware in here
-    //////////////////////////////////////////////////////////
-    middleware(dioInstance, [CommonInterceptor()], FetchEventsTransformer());
-    return dio;
+  Future<Either<Exception, EventModel>> getEvent(String id) {
+    throw UnimplementedError();
   }
 
   @override
-  Future<Either<Exception, List<EventModel>>> fetchEvents() async {
+  Future<Either<Exception, List<EventModel>>> fetchAll() async {
     //////////////////////////////////////////////////////////
     // put middleware in front of function
     //////////////////////////////////////////////////////////
-    final dio = await onMiddlewareFetchEvents();
+    final dio = await onMiddlewareFetchAll();
     final url = '${config.baseUrl}$_apiPath$_patchFetchEvents';
 
     try {
@@ -60,7 +50,7 @@ class DevEventRemoteDataProvider
           //////////////////////////////////////////////////////////
           // put parser in front of return data
           //////////////////////////////////////////////////////////
-          final data = await onParserFetchEvents(response.data);
+          final data = await onParserFetchAll(response.data);
           return Right(data);
         default:
           throw const UnknownException();
@@ -71,22 +61,30 @@ class DevEventRemoteDataProvider
   }
 
   @override
-  Future<Either<Exception, EventModel>> getEvent(String id) {
-    throw UnimplementedError();
+  Future<Dio> onMiddlewareFetchAll() async {
+    final dioInstance = Dio(dio.options);
+
+    await fakeFetchEvents(dioInstance);
+
+    //////////////////////////////////////////////////////////
+    // middleware in here
+    //////////////////////////////////////////////////////////
+    middleware(dioInstance, [CommonInterceptor()], FetchEventsTransformer());
+    return dioInstance;
   }
 
   @override
-  Future<List<EventModel>> onParserFetchEvents(dynamic json) async {
+  Future<List<EventModel>> onParserFetchAll(dynamic json) async {
     try {
       final arr = json['events'] as List<dynamic>;
+
       final result = arr
           .map(
             (dynamic item) => EventModel.fromJson(item as Map<String, dynamic>),
           )
           .toList();
       return result;
-    } on Exception catch (e) {
-      getIt<Logger>().d('show exception: $e');
+    } on Exception {
       throw const UnknownException();
     }
   }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/models/event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/date_ticket.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/image_rounded.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/location_ticket.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/title_ticket.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ExpandedItemEventController extends HookWidget {
-  const ExpandedItemEventController({
+class ExpandedItemEvent extends HookWidget {
+  const ExpandedItemEvent({
     Key? key,
     required this.imageSize,
     required this.top,
@@ -36,23 +36,9 @@ class ExpandedItemEventController extends HookWidget {
   final double contentRightRadius;
   final int index;
 
-  @override
-  Widget build(BuildContext context) {
-    return _ExpandedItemEventView(this);
-  }
-
   //////////////////////////////////////////////////////////
   // UI event handlers, init code, etc goes here
   //////////////////////////////////////////////////////////
-}
-
-class _ExpandedItemEventView extends HookWidget {
-  const _ExpandedItemEventView(
-    this.state, {
-    Key? key,
-  }) : super(key: key);
-
-  final ExpandedItemEventController state;
 
   @override
   Widget build(BuildContext context) {
@@ -127,8 +113,8 @@ class _ExpandedItemEventView extends HookWidget {
     //////////////////////////////////////////////////////////
     // Handle event animation
     //////////////////////////////////////////////////////////
-    useValueChanged<bool, bool>(state.isVisible, (_, __) {
-      if (state.isVisible) {
+    useValueChanged<bool, bool>(isVisible, (_, __) {
+      if (isVisible) {
         fadeContentAnimation.forward();
         slideAnimation.forward();
         slideAnimationDate.forward();
@@ -142,38 +128,38 @@ class _ExpandedItemEventView extends HookWidget {
       return null;
     });
 
-    double widthContainer() =>
-        state.isVisible ? state.widthContainer - state.imageSize : 0;
+    double widthContainerExpected() =>
+        isVisible ? widthContainer - imageSize : 0;
     Duration getDurationContainer() =>
-        state.isVisible ? containerDuration : zeroDuration;
+        isVisible ? containerDuration : zeroDuration;
 
     //////////////////////////////////////////////////////////
     // Widget tree goes here.
     //////////////////////////////////////////////////////////
     return Positioned(
-      height: state.imageSize,
-      top: state.top,
-      left: state.left,
+      height: imageSize,
+      top: top,
+      left: left,
       child: SizedBox(
-        width: state.widthContainer,
-        height: state.imageSize,
+        width: widthContainer,
+        height: imageSize,
         child: Row(
           children: <Widget>[
             ImageRounded(
-              size: state.imageSize,
-              leftRadius: state.imageLeftRadius,
-              rightRadius: state.imageRightRadius,
-              link: state.event.link,
-              alignment: state.alignment,
+              size: imageSize,
+              leftRadius: imageLeftRadius,
+              rightRadius: imageRightRadius,
+              link: event.link,
+              alignment: alignment,
             ),
             AnimatedContainer(
-              width: widthContainer(),
-              height: state.imageSize,
+              width: widthContainerExpected(),
+              height: imageSize,
               duration: getDurationContainer(),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.horizontal(
-                  left: Radius.circular(state.contentLeftRadius),
-                  right: Radius.circular(state.contentRightRadius),
+                  left: Radius.circular(contentLeftRadius),
+                  right: Radius.circular(contentRightRadius),
                 ),
                 color: Colors.white,
               ),
@@ -191,7 +177,7 @@ class _ExpandedItemEventView extends HookWidget {
                           opacity: fadeOffset,
                           child: SlideTransition(
                             position: offsetAnimationTitle,
-                            child: TitleTicket(title: state.event.title),
+                            child: TitleTicket(title: event.title),
                           ),
                         ),
                       ),
@@ -203,8 +189,8 @@ class _ExpandedItemEventView extends HookWidget {
                           child: SlideTransition(
                             position: offsetAnimationDate,
                             child: DateTicket(
-                              index: state.index,
-                              date: state.event.date,
+                              index: index,
+                              date: event.date,
                             ),
                           ),
                         ),
@@ -212,7 +198,7 @@ class _ExpandedItemEventView extends HookWidget {
                       const Spacer(),
                       FadeTransition(
                         opacity: fadeOffset,
-                        child: LocationTicket(location: state.event.location),
+                        child: LocationTicket(location: event.location),
                       ),
                     ],
                   ),
