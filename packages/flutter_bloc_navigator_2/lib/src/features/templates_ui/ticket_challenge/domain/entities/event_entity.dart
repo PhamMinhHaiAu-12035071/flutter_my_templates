@@ -1,11 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/domain/entities/entity.dart';
 
 /// The EventID is an important concept in our domain
 /// so it deserves a type of its own
 typedef EventID = String;
 
-class Event extends Equatable {
-  const Event({
+@immutable
+class EventEntity implements Entity {
+  const EventEntity({
     required this.id,
     required this.link,
     required this.title,
@@ -20,5 +22,11 @@ class Event extends Equatable {
   final String location;
 
   @override
-  List<Object?> get props => [id];
+  String get itemId => id;
+
+  @override
+  bool? get stringify => true;
+
+  @override
+  List<Object> get props => [id];
 }

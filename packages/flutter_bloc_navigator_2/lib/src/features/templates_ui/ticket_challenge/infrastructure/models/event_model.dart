@@ -1,10 +1,10 @@
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'event_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class EventModel extends Event {
+class EventModel extends EventEntity {
   const EventModel({
     required EventID id,
     required String link,

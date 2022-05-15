@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/menu_icon.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/sheet_header.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/molecules/expanded_item_event.dart';
@@ -42,14 +42,14 @@ class ExhibitionBottomSheet extends HookWidget {
   }) : super(key: key);
 
   final Duration duration;
-  final List<Event>? events;
+  final List<EventEntity>? events;
 
   final VoidCallback? onToggle;
   final VoidCallback? onVerticalDragUpdate;
   final VoidCallback? onVerticalDragEnd;
 
   Widget _buildItem(
-    Event event, {
+    EventEntity event, {
     required double imageSize,
     required double top,
     required double left,

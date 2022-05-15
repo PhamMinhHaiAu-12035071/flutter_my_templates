@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/application/event_facade_service.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 
 part 'event_event.dart';
 part 'event_state.dart';
@@ -23,7 +23,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     final result = await _eventFacadeService.fetchEvents();
     result.fold(
       (Exception e) => emit(EventLoadFailed(message: e.toString())),
-      (List<Event> events) => emit(EventLoadSuccessful(events: events)),
+      (List<EventEntity> events) => emit(EventLoadSuccessful(events: events)),
     );
   }
 }

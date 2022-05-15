@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/exhibition_bottom_sheet/exhibition_bottom_sheet_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/organisms/exhibition_bottom_sheet.dart';
 
@@ -10,7 +10,7 @@ class ExhibitionBottomSheetView extends StatelessWidget {
     this.events,
   }) : super(key: key);
 
-  final List<Event>? events;
+  final List<EventEntity>? events;
   final ExhibitionBottomSheetController state;
 
   @override

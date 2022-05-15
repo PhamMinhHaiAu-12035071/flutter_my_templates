@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/date_ticket.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/image_rounded.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/location_ticket.dart';
@@ -28,7 +28,7 @@ class ExpandedItemEvent extends HookWidget {
   final double left;
   final double imageLeftRadius;
   final double imageRightRadius;
-  final Event event;
+  final EventEntity event;
   final Alignment alignment;
   final bool isVisible;
   final double widthContainer;
