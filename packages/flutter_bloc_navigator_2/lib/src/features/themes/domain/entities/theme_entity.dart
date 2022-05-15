@@ -13,7 +13,7 @@ class ThemeEntity implements Entity {
   final SelectAppTheme code;
 
   @override
-  String get itemId => throw UnimplementedError();
+  String get itemId => id;
 
   @override
   List<Object> get props => [id];

@@ -2,19 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/utilities/extensions/string_extension.dart';
-import 'package:flutter_bloc_navigator_2/src/features/settings/constants/languages.dart';
-import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/list_languages/list_languages.dart';
+import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/list_languages/list_language_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/localization/app_localization.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
 
-class LanguageScreen extends EPage {
-  const LanguageScreen({required Map<String, dynamic> args})
-      : super(args: args);
+class LanguagePage extends EPage {
+  const LanguagePage({required Map<String, dynamic> args}) : super(args: args);
 
   @override
   Widget build(BuildContext context) {
-    return const LanguageView();
+    return const LanguageScreenController();
   }
 
   @override
@@ -23,23 +21,23 @@ class LanguageScreen extends EPage {
   }
 }
 
-class LanguageView extends StatelessWidget {
-  const LanguageView({Key? key}) : super(key: key);
+class LanguageScreenController extends StatelessWidget {
+  const LanguageScreenController({Key? key}) : super(key: key);
 
-  void _onBack(BuildContext context) {
+  void onBack(BuildContext context) {
     context.read<NavigationCubit>().pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _LanguageView(onBack: _onBack);
+    return LanguageScreenView(this);
   }
 }
 
-class _LanguageView extends StatelessWidget {
-  const _LanguageView({Key? key, this.onBack}) : super(key: key);
+class LanguageScreenView extends StatelessWidget {
+  const LanguageScreenView(this.state, {Key? key}) : super(key: key);
 
-  final void Function(BuildContext)? onBack;
+  final LanguageScreenController state;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,7 @@ class _LanguageView extends StatelessWidget {
               splashColor: CupertinoColors.link.withOpacity(0.2),
               highlightColor: CupertinoColors.link.withOpacity(0.1),
               hoverColor: CupertinoColors.link.withOpacity(0.1),
-              onTap: () => onBack?.call(context),
+              onTap: () => state.onBack(context),
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Row(
@@ -90,7 +88,7 @@ class _LanguageView extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           clipBehavior: Clip.antiAlias,
-          child: ListLanguages(languages: languages),
+          child: const ListLanguageController(),
         ),
       ),
     );

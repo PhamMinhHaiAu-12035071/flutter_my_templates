@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/themes/domain/entities/theme_entity.dart';
-import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/list_theme/list_theme_controller.dart';
-import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/widgets/atoms/item_theme/item_theme.dart';
+import 'package:flutter_bloc_navigator_2/src/features/languages/domain/entities/language_entity.dart';
+import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/list_languages/list_language_controller.dart';
+import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/widgets/atoms/item_language/item_language.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ListThemeView extends HookWidget {
-  const ListThemeView(this.state, {Key? key, required this.themes})
+class ListLanguageView extends HookWidget {
+  const ListLanguageView(this.state, {Key? key, required this.languages})
       : super(key: key);
 
-  final ListThemeController state;
-  final List<ThemeEntity> themes;
+  final ListLanguageController state;
+  final List<LanguageEntity> languages;
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +27,23 @@ class ListThemeView extends HookWidget {
       } else {
         index.value = newIndex;
       }
-      final item = themes.removeAt(oldIndex);
-      themes.insert(index.value, item);
-      state.onReorder(context, currentTheme: themes.first);
+      final item = languages.removeAt(oldIndex);
+      languages.insert(index.value, item);
+      state.onReorder(context, currentLanguage: languages.first);
     }
 
-    //////////////////////////////////////////////////////////
-    // Widget tree goes here.
-    //////////////////////////////////////////////////////////
     return ReorderableListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: themes.length,
+      itemCount: languages.length,
       itemBuilder: (BuildContext context, int index) {
         return Column(
-          key: ValueKey(themes[index].id),
+          key: ValueKey('language$index'),
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ItemTheme(name: themes[index].name, onPressed: () {}),
-            if (index != themes.length - 1)
+            ItemLanguage(name: languages[index].name, onPressed: () {}),
+            if (index != languages.length - 1)
               const Divider(
                 height: 1,
               ),

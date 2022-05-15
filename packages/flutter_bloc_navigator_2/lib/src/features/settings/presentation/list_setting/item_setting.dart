@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/settings/models/setting.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/domain/entities/setting_entity.dart';
 
 class ItemSetting extends StatelessWidget {
   const ItemSetting({Key? key, required this.setting, this.onPressed})
       : super(key: key);
 
-  final Setting setting;
+  final SettingEntity setting;
   final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {

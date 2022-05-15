@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/settings/models/setting.dart';
-import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/item_setting/item_setting.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/domain/entities/setting_entity.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/list_setting/item_setting.dart';
 
 class ListSettings extends StatelessWidget {
   const ListSettings({Key? key, required this.settings, this.onPressed})
       : super(key: key);
 
-  final List<Setting> settings;
+  final List<SettingEntity> settings;
   final void Function(BuildContext, {required int index})? onPressed;
 
   @override
@@ -22,7 +22,7 @@ class _ListSettingView extends StatefulWidget {
   const _ListSettingView({Key? key, required this.settings, this.onPressed})
       : super(key: key);
 
-  final List<Setting> settings;
+  final List<SettingEntity> settings;
   final void Function(BuildContext, {required int index})? onPressed;
 
   @override
@@ -30,7 +30,7 @@ class _ListSettingView extends StatefulWidget {
 }
 
 class _ListSettingViewState extends State<_ListSettingView> {
-  late List<Setting> _listSetting;
+  late List<SettingEntity> _listSetting;
   final GlobalKey<AnimatedListState> _listKey = GlobalKey();
 
   @override
@@ -40,7 +40,7 @@ class _ListSettingViewState extends State<_ListSettingView> {
   }
 
   void _initialListSetting() {
-    _listSetting = <Setting>[];
+    _listSetting = <SettingEntity>[];
     var future = Future(() {});
     for (var i = 0; i < widget.settings.length; i++) {
       future = future.then((_) {

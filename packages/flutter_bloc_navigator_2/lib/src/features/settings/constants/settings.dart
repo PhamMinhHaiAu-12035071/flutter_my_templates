@@ -1,20 +1,23 @@
-import 'package:flutter_bloc_navigator_2/src/features/settings/models/setting.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/domain/entities/setting_entity.dart';
 
-final settings = <Setting>[
-  const Setting(
+final settings = <SettingEntity>[
+  const SettingEntity(
+    id: 'A0',
     image:
         'https://raw.githubusercontent.com/PhamMinhHaiAu-12035071/flutter_my_templates/master/packages/flutter_bloc_navigator_2/assets/images/moon1024.png',
     name: 'Themes',
   ),
-  const Setting(
+  const SettingEntity(
+    id: 'A1',
     image:
         'https://raw.githubusercontent.com/PhamMinhHaiAu-12035071/flutter_my_templates/master/packages/flutter_bloc_navigator_2/assets/images/language1024.png',
     name: 'Languages',
   ),
 ];
 
-final templateSettings = <Setting>[
-  const Setting(
+final templateSettings = <SettingEntity>[
+  const SettingEntity(
+    id: 'B0',
     image:
         'https://raw.githubusercontent.com/PhamMinhHaiAu-12035071/flutter_my_templates/master/packages/flutter_bloc_navigator_2/assets/images/language1024.png',
     name: 'UI Ticket Template',

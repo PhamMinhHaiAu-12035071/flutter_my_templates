@@ -10,7 +10,7 @@ abstract class LanguageEvent extends Equatable {
 class LanguageChangedEvent extends LanguageEvent {
   const LanguageChangedEvent({required this.currentLanguage});
 
-  final Language currentLanguage;
+  final LanguageEntity currentLanguage;
 
   @override
   List<Object?> get props => [currentLanguage];

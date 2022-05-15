@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/date_ticket.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/image_rounded.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/location_ticket.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/title_ticket.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ExpandedItemEvent extends HookWidget {
-  const ExpandedItemEvent({
+abstract class ExpandedEvent extends HookWidget {
+  const ExpandedEvent({
     Key? key,
     required this.imageSize,
     required this.top,
     required this.left,
     required this.imageLeftRadius,
     required this.imageRightRadius,
-    required this.event,
     required this.alignment,
     required this.isVisible,
     required this.widthContainer,
     required this.contentLeftRadius,
     required this.contentRightRadius,
-    required this.index,
   }) : super(key: key);
 
   final double imageSize;
@@ -28,13 +25,51 @@ class ExpandedItemEvent extends HookWidget {
   final double left;
   final double imageLeftRadius;
   final double imageRightRadius;
-  final EventEntity event;
   final Alignment alignment;
   final bool isVisible;
   final double widthContainer;
   final double contentLeftRadius;
   final double contentRightRadius;
+}
+
+class ExpandedItemEvent extends ExpandedEvent {
+  const ExpandedItemEvent({
+    Key? key,
+    required this.index,
+    required this.link,
+    required this.title,
+    required this.date,
+    required this.location,
+    required double imageSize,
+    required double top,
+    required double left,
+    required double imageLeftRadius,
+    required double imageRightRadius,
+    required Alignment alignment,
+    required bool isVisible,
+    required double widthContainer,
+    required double contentLeftRadius,
+    required double contentRightRadius,
+  }) : super(
+          key: key,
+          imageSize: imageSize,
+          top: top,
+          left: left,
+          imageLeftRadius: imageLeftRadius,
+          imageRightRadius: imageRightRadius,
+          alignment: alignment,
+          isVisible: isVisible,
+          widthContainer: widthContainer,
+          contentLeftRadius: contentLeftRadius,
+          contentRightRadius: contentRightRadius,
+        );
+
   final int index;
+
+  final String link;
+  final String title;
+  final String date;
+  final String location;
 
   //////////////////////////////////////////////////////////
   // UI event handlers, init code, etc goes here
@@ -149,7 +184,7 @@ class ExpandedItemEvent extends HookWidget {
               size: imageSize,
               leftRadius: imageLeftRadius,
               rightRadius: imageRightRadius,
-              link: event.link,
+              link: link,
               alignment: alignment,
             ),
             AnimatedContainer(
@@ -177,7 +212,7 @@ class ExpandedItemEvent extends HookWidget {
                           opacity: fadeOffset,
                           child: SlideTransition(
                             position: offsetAnimationTitle,
-                            child: TitleTicket(title: event.title),
+                            child: TitleTicket(title: title),
                           ),
                         ),
                       ),
@@ -190,7 +225,7 @@ class ExpandedItemEvent extends HookWidget {
                             position: offsetAnimationDate,
                             child: DateTicket(
                               index: index,
-                              date: event.date,
+                              date: date,
                             ),
                           ),
                         ),
@@ -198,7 +233,7 @@ class ExpandedItemEvent extends HookWidget {
                       const Spacer(),
                       FadeTransition(
                         opacity: fadeOffset,
-                        child: LocationTicket(location: event.location),
+                        child: LocationTicket(location: location),
                       ),
                     ],
                   ),

@@ -1,0 +1,26 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/domain/entities/setting_entity.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/list_setting/list_settings.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/list_setting_common/list_setting_common_controller.dart';
+import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/molecules/group_list_settings.dart';
+
+class ListSettingCommonView extends StatelessWidget {
+  const ListSettingCommonView(
+    this.state, {
+    Key? key,
+    required this.settings,
+  }) : super(key: key);
+
+  final ListSettingCommonController state;
+  final List<SettingEntity> settings;
+  @override
+  Widget build(BuildContext context) {
+    return GroupListSettings(
+      title: 'Commons',
+      child: ListSettings(
+        settings: settings,
+        onPressed: state.onPress,
+      ),
+    );
+  }
+}

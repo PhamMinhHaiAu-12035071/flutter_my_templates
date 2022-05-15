@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/features/settings/models/language.dart';
 
 class ItemLanguage extends StatelessWidget {
   const ItemLanguage({
     Key? key,
-    required this.language,
+    required this.name,
     this.onPressed,
   }) : super(key: key);
 
-  final Language language;
+  final String name;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(language.name),
+      title: Text(name),
       dense: false,
+      trailing: const Icon(
+        Icons.menu,
+        size: 16,
+      ),
     );
   }
 }
