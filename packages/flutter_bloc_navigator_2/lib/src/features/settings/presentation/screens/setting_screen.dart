@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_navigator_2/src/common/utilities/extensions/string_extension.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/constants/settings.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/group_list_settings/group_list_settings.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/list_settings/list_settings.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_bloc_navigator_2/src/localization/app_localization.dart'
 import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/constants/root_path.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
-import 'package:flutter_bloc_navigator_2/src/shared/utilities/extensions/string_extension.dart';
 
 class SettingScreen extends EPage {
   const SettingScreen({required Map<String, dynamic> args}) : super(args: args);

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_navigator_2/src/common/utilities/extensions/string_extension.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/list_themes/list_themes.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/constants/themes.dart';
 import 'package:flutter_bloc_navigator_2/src/localization/app_localization.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
-import 'package:flutter_bloc_navigator_2/src/shared/utilities/extensions/string_extension.dart';
 
 class ThemeScreen extends EPage {
   const ThemeScreen({required Map<String, dynamic> args}) : super(args: args);

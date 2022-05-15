@@ -9,23 +9,24 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i8;
 
-import '../../app_bloc_observer.dart' as _i9;
-import '../../features/core/flavors/flavor_config.dart' as _i6;
-import '../../features/core/flavors/impl/dev_flavor_config.dart' as _i7;
-import '../../features/templates_ui/ticket_challenge/api/event_api.dart' as _i4;
-import '../../features/templates_ui/ticket_challenge/api/impl/dev_event_api.dart'
+import '../../../app_bloc_observer.dart' as _i9;
+import '../../../features/core/flavors/flavor_config.dart' as _i6;
+import '../../../features/core/flavors/impl/dev_flavor_config.dart' as _i7;
+import '../../../features/templates_ui/ticket_challenge/api/event_api.dart'
+    as _i4;
+import '../../../features/templates_ui/ticket_challenge/api/impl/dev_event_api.dart'
     as _i5;
-import '../../features/templates_ui/ticket_challenge/application/event_facade_service.dart'
+import '../../../features/templates_ui/ticket_challenge/application/event_facade_service.dart'
     as _i14;
-import '../../features/templates_ui/ticket_challenge/application/impl/dev_event_facade_service.dart'
+import '../../../features/templates_ui/ticket_challenge/application/impl/dev_event_facade_service.dart'
     as _i15;
-import '../../features/templates_ui/ticket_challenge/infrastructure/data_sources/event_remote_data_provider.dart'
+import '../../../features/templates_ui/ticket_challenge/infrastructure/data_sources/event_remote_data_provider.dart'
     as _i10;
-import '../../features/templates_ui/ticket_challenge/infrastructure/data_sources/impl/dev_event_remote_data_provider.dart'
+import '../../../features/templates_ui/ticket_challenge/infrastructure/data_sources/impl/dev_event_remote_data_provider.dart'
     as _i11;
-import '../../features/templates_ui/ticket_challenge/infrastructure/repositories/event_repository.dart'
+import '../../../features/templates_ui/ticket_challenge/infrastructure/repositories/event_repository.dart'
     as _i12;
-import '../../features/templates_ui/ticket_challenge/infrastructure/repositories/impl/dev_event_repository.dart'
+import '../../../features/templates_ui/ticket_challenge/infrastructure/repositories/impl/dev_event_repository.dart'
     as _i13;
 import 'register_modules/dio_module.dart' as _i16;
 import 'register_modules/logger_module.dart' as _i17;

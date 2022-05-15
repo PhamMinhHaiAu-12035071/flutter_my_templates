@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_bloc_navigator_2/src/configs/env/env.dart';
+import 'package:flutter_bloc_navigator_2/src/common/configs/env/env.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/data/apis/exceptions/unknown_exception.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/infrastructure/data_sources/middleware.dart';

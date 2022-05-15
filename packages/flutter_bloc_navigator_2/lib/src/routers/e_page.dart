@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_navigator_2/src/shared/routes/transitions/page_transition/page_transition.dart';
+import 'package:flutter_bloc_navigator_2/src/common/routes/transitions/page_transition/page_transition.dart';
 
 typedef TransitionAnimationBuilder = Widget Function(
   BuildContext,

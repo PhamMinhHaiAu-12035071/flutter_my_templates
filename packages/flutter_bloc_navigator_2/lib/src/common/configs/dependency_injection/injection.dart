@@ -1,4 +1,4 @@
-import 'package:flutter_bloc_navigator_2/src/configs/dependency_injection/injection.config.dart';
+import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 

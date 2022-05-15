@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_navigator_2/src/configs/dependency_injection/injection.dart';
+import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_stack.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/custom_route_observer.dart';

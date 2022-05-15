@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_navigator_2/src/common/utilities/extensions/map_extension.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/constants/routes.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
-import 'package:flutter_bloc_navigator_2/src/shared/utilities/extensions/map_extension.dart';
 
 class PageConfig extends Equatable {
   PageConfig({
