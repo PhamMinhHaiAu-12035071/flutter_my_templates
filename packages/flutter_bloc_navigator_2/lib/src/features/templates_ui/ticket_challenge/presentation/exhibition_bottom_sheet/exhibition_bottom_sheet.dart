@@ -186,9 +186,9 @@ class ExhibitionBottomSheet extends HookWidget {
                     fontSize: headerFontSize(),
                     topMargin: headerTopMargin(),
                   ),
-                  if (events != null)
-                    ...events!
-                        .mapIndexed(
+                  if (events != null && events!.isNotEmpty)
+                    ...events
+                        !.mapIndexed(
                           (index, element) => _buildItem(
                             element,
                             imageSize: iconSize(),
@@ -206,7 +206,7 @@ class ExhibitionBottomSheet extends HookWidget {
                           ),
                         )
                         .toList(),
-                  if (events == null)
+                  if (events != null && events!.isEmpty)
                     const Padding(
                       padding: EdgeInsets.only(top: textNotFoundMarginTop),
                       child: Text(
@@ -214,6 +214,8 @@ class ExhibitionBottomSheet extends HookWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
+                  if(events == null)
+                    const SizedBox.shrink(),
                 ],
               ),
             ),

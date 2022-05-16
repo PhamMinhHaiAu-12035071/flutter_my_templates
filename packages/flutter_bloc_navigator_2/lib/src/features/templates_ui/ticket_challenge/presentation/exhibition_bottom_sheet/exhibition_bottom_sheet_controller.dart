@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
+import 'package:flutter_bloc_navigator_2/src/common/widgets/modal_progress_hud/modal_progress_hud.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/exhibition_bottom_sheet/exhibition_bottom_sheet_view.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/pages/bloc/event_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,14 +16,23 @@ class ExhibitionBottomSheetController extends HookWidget {
     return BlocBuilder<EventBloc, EventState>(
       buildWhen: (previous, current) => previous != current,
       builder: (_, state) {
+        var _inAsyncCall = true;
+        List<EventEntity>? _events;
         if (state is EventInitial) {
-          return ExhibitionBottomSheetView(this);
+          _inAsyncCall = true;
+        } else if (state is EventLoading) {
+          _inAsyncCall = true;
         } else if (state is EventLoadSuccessful) {
-          return ExhibitionBottomSheetView(this, events: state.events);
+          _inAsyncCall = false;
+          _events = state.events;
         } else if (state is EventLoadFailed) {
-          return ExhibitionBottomSheetView(this);
+          _inAsyncCall = false;
+          _events = <EventEntity>[];
         }
-        return ExhibitionBottomSheetView(this);
+        return ModalProgressHUD(
+          inAsyncCall: _inAsyncCall,
+          child: ExhibitionBottomSheetView(this, events: _events),
+        );
       },
     );
   }

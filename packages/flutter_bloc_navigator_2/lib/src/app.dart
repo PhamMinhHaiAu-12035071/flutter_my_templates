@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/pages/bloc/language_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/pages/bloc/theme_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/localization/app_localization_setup.dart';
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
                 languageCode: state.currentLanguage.languageCode,
               );
               return MaterialApp.router(
-                title: 'Flutter Demo',
+                title: getIt<FlavorConfig>().title,
                 theme: appThemeConfig.light,
                 darkTheme: appThemeConfig.dark,
                 routeInformationParser: routeInformationParser,

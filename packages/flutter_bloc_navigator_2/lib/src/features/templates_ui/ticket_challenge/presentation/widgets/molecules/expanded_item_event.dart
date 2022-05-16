@@ -82,19 +82,20 @@ class ExpandedItemEvent extends ExpandedEvent {
     //////////////////////////////////////////////////////////
     const zeroDuration = Duration.zero;
     const containerDurationMilliseconds = 250;
-    const delayShowContentWhenContainerShow = 350;
-    const contentDurationMilliseconds =
+    final timeDelayBetweenItems = index * 150;
+    final delayShowContentWhenContainerShow = 350 + timeDelayBetweenItems;
+    final contentDurationMilliseconds =
         containerDurationMilliseconds + delayShowContentWhenContainerShow;
-    const dataDurationMilliseconds = contentDurationMilliseconds * 2;
-    const dataSlideDurationMilliseconds = dataDurationMilliseconds + 250;
-    const dateSlideDurationMilliseconds = dataSlideDurationMilliseconds + 250;
+    final dataDurationMilliseconds = contentDurationMilliseconds * 2;
+    final dataSlideDurationMilliseconds = dataDurationMilliseconds + 250;
+    final dateSlideDurationMilliseconds = dataSlideDurationMilliseconds + 250;
 
     const containerDuration =
         Duration(milliseconds: containerDurationMilliseconds);
-    const contentDuration = Duration(milliseconds: contentDurationMilliseconds);
-    const fadeDuration = Duration(milliseconds: dataDurationMilliseconds);
-    const slideDuration = Duration(milliseconds: dataSlideDurationMilliseconds);
-    const slideDurationDate = Duration(
+    final contentDuration = Duration(milliseconds: contentDurationMilliseconds);
+    final fadeDuration = Duration(milliseconds: dataDurationMilliseconds);
+    final slideDuration = Duration(milliseconds: dataSlideDurationMilliseconds);
+    final slideDurationDate = Duration(
       milliseconds: dateSlideDurationMilliseconds,
     );
     const curve = Curves.easeOutCirc;
