@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc_navigator_2/src/common/configs/env/env.dart';
-import 'package:flutter_bloc_navigator_2/src/features/core/data/apis/exceptions/unknown_exception.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/domain/exceptions/app_exception.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/domain/exceptions/unknown_exception.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/infrastructure/data_sources/middleware.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/infrastructure/interceptors/common_interceptor.dart';
@@ -31,12 +32,12 @@ class DevEventRemoteDataProvider
   static const _patchFetchEvents = '';
 
   @override
-  Future<Either<Exception, EventModel>> getEvent(String id) {
+  Future<Either<AppException, EventModel>> getEvent(String id) {
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Exception, List<EventModel>>> fetchAll() async {
+  Future<Either<AppException, List<EventModel>>> fetchAll() async {
     //////////////////////////////////////////////////////////
     // put middleware in front of function
     //////////////////////////////////////////////////////////
