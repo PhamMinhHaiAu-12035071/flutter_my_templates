@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_stack.dart';
+import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_stack.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
 
 class NavigationCubit extends Cubit<NavigationStack> {

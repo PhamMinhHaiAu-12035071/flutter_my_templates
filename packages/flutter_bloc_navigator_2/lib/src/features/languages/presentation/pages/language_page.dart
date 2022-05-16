@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/utilities/extensions/string_extension.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/list_languages/list_language_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/localization/app_localization.dart';
-import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_cubit.dart';
+import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
 
 class LanguagePage extends EPage {

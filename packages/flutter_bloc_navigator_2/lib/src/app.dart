@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/pages/bloc/language_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/pages/bloc/theme_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/localization/app_localization_setup.dart';
-import 'package:flutter_bloc_navigator_2/src/routers/business_logic/navigation_cubit.dart';
+import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/constants/root_path.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_route_information_parser.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_router_delegate.dart';
