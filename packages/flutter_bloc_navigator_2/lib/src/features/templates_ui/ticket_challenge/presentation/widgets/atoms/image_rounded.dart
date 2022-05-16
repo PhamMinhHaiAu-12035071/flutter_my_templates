@@ -16,21 +16,26 @@ class ImageRounded extends StatelessWidget {
   final String link;
   final Alignment alignment;
 
-
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      width: size,
-      height: size,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.horizontal(
+          left: Radius.circular(leftRadius),
+          right: Radius.circular(rightRadius),
+        ),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.horizontal(
           left: Radius.circular(leftRadius),
           right: Radius.circular(rightRadius),
         ),
         child: Image.network(
-       link,
+          link,
           fit: BoxFit.cover,
           alignment: alignment,
+          width: size,
+          height: size,
         ),
       ),
     );

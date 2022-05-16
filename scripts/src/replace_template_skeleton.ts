@@ -4,7 +4,7 @@ const shell = require("shelljs");
 
 const FOlDER_EXTRACT = "../bin";
 const FOLDER_FLUTTER = "../bin/flutter";
-const FLUTTER_ZIP = "../bin/flutter_macos_2.10.5-stable.zip";
+const FLUTTER_ZIP = "../bin/flutter_macos_3.0.0-stable.zip";
 const PATH_TEMPLATES = "../bin/flutter/packages/flutter_tools/templates";
 const PATH_SKELETON = "../bin/flutter/packages/flutter_tools/templates/skeleton";
 function replaceTemplateSkeleton(destinationFolder: string, nameProject: string): void {
