@@ -7,27 +7,27 @@
 import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:logger/logger.dart' as _i8;
+import 'package:logger/logger.dart' as _i6;
 
-import '../../../app_bloc_observer.dart' as _i9;
-import '../../../features/core/flavors/flavor_config.dart' as _i6;
-import '../../../features/core/flavors/impl/dev_flavor_config.dart' as _i7;
-import '../../../features/templates_ui/ticket_challenge/api/event_api.dart'
-    as _i4;
-import '../../../features/templates_ui/ticket_challenge/api/impl/dev_event_api.dart'
-    as _i5;
-import '../../../features/templates_ui/ticket_challenge/application/event_facade_service.dart'
+import '../../../app_bloc_observer.dart' as _i7;
+import '../../../features/core/flavors/flavor_config.dart' as _i4;
+import '../../../features/core/flavors/impl/dev_flavor_config.dart' as _i5;
+import '../../../features/templates_ui/ticket_challenge/domain/usecase/fetch_events_usecase.dart'
+    as _i12;
+import '../../../features/templates_ui/ticket_challenge/domain/usecase/get_event_by_id_usecase.dart'
     as _i14;
-import '../../../features/templates_ui/ticket_challenge/application/impl/dev_event_facade_service.dart'
+import '../../../features/templates_ui/ticket_challenge/domain/usecase/impl/dev_fetch_events_usecase.dart'
+    as _i13;
+import '../../../features/templates_ui/ticket_challenge/domain/usecase/impl/dev_get_event_by_id_usecase.dart'
     as _i15;
 import '../../../features/templates_ui/ticket_challenge/infrastructure/data_sources/event_remote_data_provider.dart'
-    as _i10;
+    as _i8;
 import '../../../features/templates_ui/ticket_challenge/infrastructure/data_sources/impl/dev_event_remote_data_provider.dart'
-    as _i11;
+    as _i9;
 import '../../../features/templates_ui/ticket_challenge/infrastructure/repositories/event_repository.dart'
-    as _i12;
+    as _i10;
 import '../../../features/templates_ui/ticket_challenge/infrastructure/repositories/impl/dev_event_repository.dart'
-    as _i13;
+    as _i11;
 import 'register_modules/dio_module.dart' as _i16;
 import 'register_modules/logger_module.dart' as _i17;
 
@@ -42,22 +42,24 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final dioModule = _$DioModule();
   final loggerModule = _$LoggerModule();
   gh.lazySingleton<_i3.Dio>(() => dioModule.dio);
-  gh.singleton<_i4.EventAPI>(_i5.DevEventAPI(), registerFor: {_dev, _test});
-  gh.singleton<_i6.FlavorConfig>(_i7.DevFlavorConfig(),
+  gh.singleton<_i4.FlavorConfig>(_i5.DevFlavorConfig(),
       registerFor: {_dev, _test});
-  gh.singleton<_i8.Logger>(loggerModule.logger);
-  gh.factory<_i9.AppBlocObserver>(
-      () => _i9.AppBlocObserver(logger: get<_i8.Logger>()));
-  gh.singleton<_i10.EventRemoteDataProvider>(
-      _i11.DevEventRemoteDataProvider(
-          config: get<_i6.FlavorConfig>(), dio: get<_i3.Dio>()),
+  gh.singleton<_i6.Logger>(loggerModule.logger);
+  gh.factory<_i7.AppBlocObserver>(
+      () => _i7.AppBlocObserver(logger: get<_i6.Logger>()));
+  gh.singleton<_i8.EventRemoteDataProvider>(
+      _i9.DevEventRemoteDataProvider(
+          config: get<_i4.FlavorConfig>(), dio: get<_i3.Dio>()),
       registerFor: {_dev, _test});
-  gh.singleton<_i12.EventRepository>(
-      _i13.DevEventRepository(
-          eventRemoteDataProvider: get<_i10.EventRemoteDataProvider>()),
+  gh.singleton<_i10.EventRepository>(
+      _i11.DevEventRepository(
+          eventRemoteDataProvider: get<_i8.EventRemoteDataProvider>()),
       registerFor: {_dev, _test});
-  gh.singleton<_i14.EventFacadeService>(
-      _i15.DevEventFacadeService(repository: get<_i12.EventRepository>()),
+  gh.singleton<_i12.FetchEventsUseCase>(
+      _i13.DevFetchEventsUseCase(repository: get<_i10.EventRepository>()),
+      registerFor: {_dev, _test});
+  gh.singleton<_i14.GetEventByIdUseCase>(
+      _i15.DevGetEventByIdUseCase(repository: get<_i10.EventRepository>()),
       registerFor: {_dev, _test});
   return get;
 }

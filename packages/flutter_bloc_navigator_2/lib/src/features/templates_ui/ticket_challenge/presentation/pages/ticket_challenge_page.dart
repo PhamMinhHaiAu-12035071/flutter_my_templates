@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/application/event_facade_service.dart';
+import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/usecase/fetch_events_usecase.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/pages/bloc/event_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/templates/ticket_challenge_template.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
@@ -23,7 +23,7 @@ class TicketChallengeScreenController extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<EventBloc>(
       create: (BuildContext context) => EventBloc(
-        eventFacadeService: getIt<EventFacadeService>(),
+        fetchUseCase: getIt<FetchEventsUseCase>(),
       )..add(
           const EventFetchedData(),
         ),

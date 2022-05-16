@@ -8,4 +8,7 @@ import 'package:injectable/injectable.dart';
 class DevFlavorConfig implements FlavorConfig {
   @override
   String get baseUrl => 'https://jsonplaceholder.typicode.com';
+
+  @override
+  String get title => 'Flutter Bloc Navigator 2 Template DDD';
 }
