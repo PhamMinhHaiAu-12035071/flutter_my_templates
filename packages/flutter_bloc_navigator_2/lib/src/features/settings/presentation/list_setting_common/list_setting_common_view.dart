@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/presentation/widget_functional_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/domain/entities/setting_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/list_setting/list_settings.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/list_setting_common/list_setting_common_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/settings/presentation/widgets/molecules/group_list_settings.dart';
 
-class ListSettingCommonView extends StatelessWidget {
+class ListSettingCommonView
+    extends WidgetFunctionalController<ListSettingCommonController> {
   const ListSettingCommonView(
-    this.state, {
+    ListSettingCommonController state, {
     Key? key,
     required this.settings,
-  }) : super(key: key);
+  }) : super(state, key: key);
 
-  final ListSettingCommonController state;
   final List<SettingEntity> settings;
+
   @override
   Widget build(BuildContext context) {
     return GroupListSettings(

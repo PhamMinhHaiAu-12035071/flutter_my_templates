@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/presentation/widget_functional_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/exhibition_bottom_sheet/exhibition_bottom_sheet.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/exhibition_bottom_sheet/exhibition_bottom_sheet_controller.dart';
 
-class ExhibitionBottomSheetView extends StatelessWidget {
+class ExhibitionBottomSheetView
+    extends WidgetFunctionalController<ExhibitionBottomSheetController> {
   const ExhibitionBottomSheetView(
-    this.state, {
-    Key? key,
+    ExhibitionBottomSheetController state, {
     this.events,
-  }) : super(key: key);
+    Key? key,
+  }) : super(state, key: key);
 
   final List<EventEntity>? events;
-  final ExhibitionBottomSheetController state;
 
   @override
   Widget build(BuildContext context) {

@@ -3,10 +3,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/domain/exceptions/app_exception.dart';
 
+// ignore_for_file: one_member_abstracts
 /// UseCase interface for use cases that takes a
 @immutable
 abstract class UseCase<Type, Params> {
-  // states that we can call an implementation of AppUseCase as a function, i.e. AppUseCase(t, params)
+  // states that we can call an implementation of AppUseCase as a function,
+  // i.e. AppUseCase(t, params)
   Future<Either<AppException, Type>> call(Params params);
 }
 

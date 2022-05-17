@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/presentation/widget_hook_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/domain/entities/theme_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/list_theme/list_theme_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/widgets/atoms/item_theme/item_theme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ListThemeView extends HookWidget {
-  const ListThemeView(this.state, {Key? key, required this.themes})
-      : super(key: key);
+class ListThemeView extends WidgetHookController<ListThemeController> {
+  const ListThemeView(ListThemeController state,
+      {Key? key, required this.themes,})
+      : super(state, key: key);
 
-  final ListThemeController state;
   final List<ThemeEntity> themes;
 
   @override

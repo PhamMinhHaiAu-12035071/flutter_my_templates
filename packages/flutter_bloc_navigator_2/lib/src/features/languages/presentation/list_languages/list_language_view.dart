@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/presentation/widget_hook_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/domain/entities/language_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/list_languages/list_language_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/widgets/atoms/item_language/item_language.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ListLanguageView extends HookWidget {
-  const ListLanguageView(this.state, {Key? key, required this.languages})
-      : super(key: key);
+class ListLanguageView extends WidgetHookController<ListLanguageController> {
+  const ListLanguageView(
+    ListLanguageController state, {
+    Key? key,
+    required this.languages,
+  }) : super(state, key: key);
 
-  final ListLanguageController state;
   final List<LanguageEntity> languages;
 
   @override
