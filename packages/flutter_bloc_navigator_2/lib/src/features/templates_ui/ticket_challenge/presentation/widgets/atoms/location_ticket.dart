@@ -9,19 +9,25 @@ class LocationTicket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(
-          Icons.place,
-          color: Colors.grey.shade400,
-          size: 16,
-        ),
-        Text(
-          location,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+        Flexible(
+          child: Icon(
+            Icons.place,
             color: Colors.grey.shade400,
-            fontSize: 13,
+            size: 16,
+          ),
+        ),
+        Flexible(
+          fit: FlexFit.tight,
+          child: Text(
+            location,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.grey.shade400,
+              fontSize: 13,
+            ),
           ),
         )
       ],

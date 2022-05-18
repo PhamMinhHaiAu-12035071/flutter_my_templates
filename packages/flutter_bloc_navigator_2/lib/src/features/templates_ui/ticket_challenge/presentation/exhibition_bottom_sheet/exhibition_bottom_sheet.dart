@@ -19,7 +19,7 @@ const double iconEndMarginTop = 48;
 const double iconsVerticalSpacing = 24;
 const double iconsHorizontalSpacing = 16;
 const Duration transitionBottomSheet = Duration(milliseconds: 600);
-const double percentMaxHeight = 0.85;
+const double percentMaxHeight = 1;
 
 const double minRangeHeaderTopMargin = 20;
 
