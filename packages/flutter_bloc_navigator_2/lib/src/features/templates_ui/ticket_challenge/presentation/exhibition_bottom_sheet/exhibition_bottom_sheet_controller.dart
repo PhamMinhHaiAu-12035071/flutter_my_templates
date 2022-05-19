@@ -28,6 +28,7 @@ class ExhibitionBottomSheetController extends StatelessWidget {
           _inAsyncCall = false;
           _events = <EventEntity>[];
         }
+
         return ModalProgressHUD(
           inAsyncCall: _inAsyncCall,
           child: ExhibitionBottomSheetView(this, events: _events),

@@ -145,15 +145,14 @@ class ExhibitionBottomSheet extends HookWidget {
 
     double iconSize() => lerp(iconStartSize, iconEndSize);
 
+    double iconLeftMargin(int index) =>
+        lerp(index * (iconsHorizontalSpacing + iconStartSize), 0);
     double iconTopMargin(int index) =>
         lerp(
           iconStartMarginTop,
           iconEndMarginTop + index * (iconsVerticalSpacing + iconEndSize),
         ) +
         headerTopMargin();
-
-    double iconLeftMargin(int index) =>
-        lerp(index * (iconsHorizontalSpacing + iconStartSize), 0);
 
     double widthItemContainer() => lerp(iconStartSize, widthItem);
 
