@@ -6,7 +6,9 @@ import 'package:flutter_bloc_navigator_2/src/localization/app_localization.dart'
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
 
 class SettingPage extends EPage {
-  const SettingPage({required Map<String, dynamic> args}) : super(args: args);
+  const SettingPage({
+    required Map<String, dynamic> args,
+  }) : super(args: args);
 
   @override
   Widget build(BuildContext context) {
