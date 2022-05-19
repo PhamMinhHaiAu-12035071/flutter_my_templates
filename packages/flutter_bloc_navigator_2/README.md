@@ -209,9 +209,9 @@ Start project on macOS with command
 
 ## 11. Deploy distribute app with AppCenter
 
-  - Step 1: For the Android project to be detected by AppCenter,
+  - **Step 1**: For the Android project to be detected by AppCenter,
 remove (or comment out) **gradle-wrapper.jar**, **gradlew** and **gradlew.bat** 
-from the .gitignore file created by flutter with the new project.
+from the **.gitignore** file in path **folder_project/android/.gitignore** created by flutter with the new project.
   
   ```diff
   - gradle-wrapper.jar
@@ -228,3 +228,107 @@ from the .gitignore file created by flutter with the new project.
   **/*.keystore
   **/*.jks
   ```
+
+  - **Step 2**: Copy file **appcenter-post-clone.sh** in path **folder_project/android/app/** with below command:
+
+  - **Step 3**: call function you want to build
+
+  ```diff
+  #!/usr/bin/env bash
+  #Place this script in project/android/app/
+  
+  cd ..
+  
+  # fail if any command fails
+  set -e
+  # debug log
+  set -x
+  
+  cd ..
+  git clone -b beta https://github.com/flutter/flutter.git
+  # shellcheck disable=SC2155
+  export PATH=$(pwd)/flutter/bin:$PATH
+  
+  flutter channel stable
+  flutter doctor
+  
+  echo "Installed flutter to $(pwd)/flutter"
+  
+  function build_mode_debug() {
+    flutter build apk --debug --build-number "$APPCENTER_BUILD_ID"
+  
+    # copy the APK where AppCenter will find it
+    mkdir -p android/app/build/outputs/apk/;
+    mv build/app/outputs/flutter-apk/app-debug.apk "$_"
+  }
+  
+  function build_mode_release() {
+    flutter build apk --release --build-number "$APPCENTER_BUILD_ID"
+  
+    # copy the APK where AppCenter will find it
+    mkdir -p android/app/build/outputs/apk/;
+    mv build/app/outputs/apk/release/app-release.apk "$_"
+  }
+  
+  + build_mode_debug
+  ```
+
+  - **Step 4**: Downgrade version gradle **4.1.3**
+
+  ```diff
+  // Copyright 2014 The Flutter Authors. All rights reserved.
+  // Use of this source code is governed by a BSD-style license that can be
+  // found in the LICENSE file.
+  
+  // This file is auto generated.
+  // To update all the build.gradle files in the Flutter repo,
+  // See dev/tools/bin/generate_gradle_lockfiles.dart.
+  
+  buildscript {
+      ext.kotlin_version = '1.5.31'
+      repositories {
+          google()
+          mavenCentral()
+      }
+  
+      dependencies {
+          + classpath 'com.android.tools.build:gradle:4.1.3'
+          classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+      }
+  
+      configurations.classpath {
+          resolutionStrategy.activateDependencyLocking()
+      }
+  }
+  
+  allprojects {
+      repositories {
+          google()
+          mavenCentral()
+      }
+  }
+  
+  rootProject.buildDir = '../build'
+  
+  subprojects {
+      project.buildDir = "${rootProject.buildDir}/${project.name}"
+  }
+  subprojects {
+      project.evaluationDependsOn(':app')
+      dependencyLocking {
+          ignoredDependencies.add('io.flutter:*')
+          lockFile = file("${rootProject.projectDir}/project-${project.name}.lockfile")
+          if (!project.hasProperty('local-engine-repo')) {
+            lockAllConfigurations()
+          }
+      }
+  }
+  
+  task clean(type: Delete) {
+      delete rootProject.buildDir
+  }
+  ```
+
+  - **Step 5**: Go to [AppCenter](https://appcenter.ms/) register account
+      - Create new app -> Choose OS **Android** -> Platform **Java / Kotlin**
+      - Choose **Build** -> Connect to repository -> build
