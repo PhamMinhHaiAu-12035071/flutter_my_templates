@@ -9,6 +9,15 @@ class GroupListSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //////////////////////////////////////////////////////////
+    // Define variable theme.
+    //////////////////////////////////////////////////////////
+    final colorCardTheme = Theme.of(context).cardTheme.color;
+    final styledTitle = Theme.of(context).textTheme.headline6;
+
+    //////////////////////////////////////////////////////////
+    // Widget tree goes here.
+    //////////////////////////////////////////////////////////
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -19,10 +28,11 @@ class GroupListSettings extends StatelessWidget {
           ),
           child: Text(
             title,
-            style: Theme.of(context).textTheme.headline6,
+            style: styledTitle,
           ),
         ),
         Card(
+          color: colorCardTheme,
           margin: const EdgeInsets.symmetric(horizontal: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

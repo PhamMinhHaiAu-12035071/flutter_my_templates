@@ -3,6 +3,7 @@ import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challe
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/image_rounded.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/location_ticket.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/title_ticket.dart';
+import 'package:flutter_bloc_navigator_2/src/features/themes/constants/custom_color_scheme.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 abstract class ExpandedEvent extends HookWidget {
@@ -80,6 +81,7 @@ class ExpandedItemEvent extends ExpandedEvent {
     //////////////////////////////////////////////////////////
     // Define variable
     //////////////////////////////////////////////////////////
+    final customColors = Theme.of(context).extension<CustomColors>()!;
     const zeroDuration = Duration.zero;
     const containerDurationMilliseconds = 250;
     final timeDelayBetweenItems = index * 150;
@@ -197,7 +199,7 @@ class ExpandedItemEvent extends ExpandedEvent {
                   left: Radius.circular(contentLeftRadius),
                   right: Radius.circular(contentRightRadius),
                 ),
-                color: Colors.white,
+                color: customColors.customCardColor,
               ),
               child: FadeTransition(
                 opacity: fadeContentAnimation,

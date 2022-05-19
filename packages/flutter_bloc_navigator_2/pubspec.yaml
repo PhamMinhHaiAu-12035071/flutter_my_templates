@@ -58,6 +58,7 @@ dependencies:
   animated_text_kit: ^4.2.1
   modal_bottom_sheet: ^2.0.1
   flutter_hooks: ^0.18.3
+  device_preview: ^1.0.0
 
 dev_dependencies:
   flutter_test:
