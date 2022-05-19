@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+
+const sizes = 10;
 
 final events = [
   {
@@ -29,15 +32,20 @@ final events = [
     'location': 'Science Park 12 25A',
   }
 ];
-
 Future<void> fakeFetchEvents(Dio dio) async {
   final dioAdapter = DioAdapter(dio: dio);
 
   const path = 'https://jsonplaceholder.typicode.com/todos';
 
+  final dataEvents = <dynamic>[];
+  for (var i = 0; i < sizes; i++) {
+    final _random = Random();
+    final dataRandom = events[_random.nextInt(events.length)];
+    dataEvents.add(dataRandom);
+  }
   final data = <String, dynamic>{
     'data': {
-      'events': events,
+      'events': dataEvents,
     }
   };
 

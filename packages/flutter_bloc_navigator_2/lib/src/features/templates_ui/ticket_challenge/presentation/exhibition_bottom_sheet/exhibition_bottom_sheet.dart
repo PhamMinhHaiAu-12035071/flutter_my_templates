@@ -5,7 +5,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/domain/entities/event_entity.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/exhibition_bottom_sheet/expanded_item_event_view.dart';
-import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/menu_icon.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/widgets/atoms/sheet_header.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -181,14 +180,13 @@ class ExhibitionBottomSheet extends HookWidget {
               ),
               child: Stack(
                 children: <Widget>[
-                  const MenuIcon(),
                   SheetHeader(
                     fontSize: headerFontSize(),
                     topMargin: headerTopMargin(),
                   ),
                   if (events != null && events!.isNotEmpty)
-                    ...events
-                        !.mapIndexed(
+                    ...events!
+                        .mapIndexed(
                           (index, element) => _buildItem(
                             element,
                             imageSize: iconSize(),
@@ -214,8 +212,7 @@ class ExhibitionBottomSheet extends HookWidget {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  if(events == null)
-                    const SizedBox.shrink(),
+                  if (events == null) const SizedBox.shrink(),
                 ],
               ),
             ),
