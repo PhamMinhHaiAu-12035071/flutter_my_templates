@@ -18,8 +18,21 @@ flutter doctor
 
 echo "Installed flutter to $(pwd)/flutter"
 
-./build_mode_debug.sh
+function build_mode_debug() {
+  flutter build apk --debug --build-number "$APPCENTER_BUILD_ID"
 
+  # copy the APK where AppCenter will find it
+  mkdir -p android/app/build/outputs/apk/;
+  mv build/app/outputs/flutter-apk/app-debug.apk "$_"
+}
+
+function build_mode_release() {
+  flutter build apk --release --build-number "$APPCENTER_BUILD_ID"
+
+  # copy the APK where AppCenter will find it
+  mkdir -p android/app/build/outputs/apk/;
+  mv build/app/outputs/apk/release/app-release.apk "$_"
+}
 # build APK
 # if you get "Execution failed for task ':app:lintVitalRelease'." error, uncomment next two lines
 # flutter build apk --debug

@@ -10,6 +10,7 @@
 * [8. Generate code](#8-generate-code)
 * [9. Help](#9-help)
 * [10. Run on macOS](#10-run-on-macos)
+* [11. Deploy distribute app with AppCenter](#11-deploy-distribute-app-with-appcenter)
 
 ## 1. Getting Started
 
@@ -206,3 +207,24 @@ Start project on macOS with command
   make macos
 ```
 
+## 11. Deploy distribute app with AppCenter
+
+  - Step 1: For the Android project to be detected by AppCenter,
+remove (or comment out) **gradle-wrapper.jar**, **gradlew** and **gradlew.bat** 
+from the .gitignore file created by flutter with the new project.
+  
+  ```diff
+  - gradle-wrapper.jar
+  /.gradle
+  /captures/
+  - /gradlew
+  - /gradlew.bat
+  /local.properties
+  GeneratedPluginRegistrant.java
+  
+  # Remember to never publicly share your keystore.
+  # See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
+  key.properties
+  **/*.keystore
+  **/*.jks
+  ```
