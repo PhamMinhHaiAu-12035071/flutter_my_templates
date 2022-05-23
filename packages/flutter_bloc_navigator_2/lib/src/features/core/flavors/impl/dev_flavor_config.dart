@@ -13,5 +13,5 @@ class DevFlavorConfig implements FlavorConfig {
   String get title => 'Flutter Bloc Navigator 2 Template DDD';
 
   @override
-  bool get enabledDevicePreview => true;
+  bool get enabledDevicePreview => false;
 }
