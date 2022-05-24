@@ -10,9 +10,12 @@ import 'package:flutter_bloc_navigator_2/src/routers/constants/root_path.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_route_information_parser.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_router_delegate.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
+import 'package:flutter_bloc_navigator_2/visibility_device_preview.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, this.devicePreview}) : super(key: key);
+
+  final VisibilityDevicePreview? devicePreview;
 
   ERouteInformationParser get routeInformationParser =>
       ERouteInformationParser();
@@ -52,6 +55,9 @@ class MyApp extends StatelessWidget {
                 localeResolutionCallback:
                     AppLocalizationSetup.localeResolutionCallback,
                 locale: locale,
+                useInheritedMediaQuery:
+                    devicePreview?.useInheritedMediaQuery ?? false,
+                builder: devicePreview?.builder,
               );
             },
           );

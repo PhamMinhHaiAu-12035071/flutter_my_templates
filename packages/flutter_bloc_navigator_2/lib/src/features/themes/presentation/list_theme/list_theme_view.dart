@@ -6,9 +6,11 @@ import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/widget
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class ListThemeView extends WidgetHookController<ListThemeController> {
-  const ListThemeView(ListThemeController state,
-      {Key? key, required this.themes,})
-      : super(state, key: key);
+  const ListThemeView(
+    ListThemeController state, {
+    Key? key,
+    required this.themes,
+  }) : super(state, key: key);
 
   final List<ThemeEntity> themes;
 
@@ -37,21 +39,25 @@ class ListThemeView extends WidgetHookController<ListThemeController> {
     // Widget tree goes here.
     //////////////////////////////////////////////////////////
     return ReorderableListView.builder(
+      buildDefaultDragHandles: false,
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: themes.length,
       itemBuilder: (BuildContext context, int index) {
-        return Column(
-          key: ValueKey(themes[index].id),
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ItemTheme(name: themes[index].name, onPressed: () {}),
-            if (index != themes.length - 1)
-              const Divider(
-                height: 1,
-              ),
-          ],
+        return ReorderableDragStartListener(
+          key: Key('$index'),
+          index: index,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ItemTheme(name: themes[index].name, onPressed: () {}),
+              if (index != themes.length - 1)
+                const Divider(
+                  height: 1,
+                ),
+            ],
+          ),
         );
       },
       onReorder: _onReorder,

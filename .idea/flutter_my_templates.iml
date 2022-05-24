@@ -1401,6 +1401,12 @@
       <excludeFolder url="file://$MODULE_DIR$/bin/flutter/.pub-cache/hosted/pub.dartlang.org/vm_snapshot_analysis-0.7.1/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/bin/flutter/.pub-cache/hosted/pub.dartlang.org/vm_snapshot_analysis-0.7.1/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/bin/flutter/.pub-cache/hosted/pub.dartlang.org/vm_snapshot_analysis-0.7.1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/flutter_bloc_navigator_2/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/flutter_bloc_navigator_2/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/flutter_bloc_navigator_2/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/flutter_bloc_navigator_2/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/flutter_bloc_navigator_2/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/flutter_bloc_navigator_2/windows/flutter/ephemeral/.plugin_symlinks/shared_preferences_windows/example/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

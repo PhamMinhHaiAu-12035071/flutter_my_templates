@@ -15,11 +15,14 @@ abstract class EPage extends Page<dynamic> {
     required this.args,
     this.transitionDuration = 400,
     this.reverseTransitionDuration = 400,
+    this.themeAnimationDuration = 200,
     this.animationBuilder,
   });
 
   final Map<String, dynamic> args;
-  final int transitionDuration, reverseTransitionDuration; //milliseconds
+  final int transitionDuration,
+      reverseTransitionDuration,
+      themeAnimationDuration; //milliseconds
 
   ///Give each individual screen the option to define a special entry animation
   final TransitionAnimationBuilder? animationBuilder;
@@ -37,6 +40,14 @@ abstract class EPage extends Page<dynamic> {
     return MaterialPageRoute<dynamic>(
       settings: this,
       builder: build,
+    );
+  }
+
+  AnimatedTheme animatedTheme(BuildContext context) {
+    return AnimatedTheme(
+      data: Theme.of(context),
+      duration: Duration(milliseconds: themeAnimationDuration),
+      child: build(context),
     );
   }
 
@@ -65,7 +76,7 @@ abstract class EPage extends Page<dynamic> {
         Animation<double> animation,
         Animation<double> animation2,
       ) =>
-          build(context),
+          animatedTheme(context),
     );
   }
 }
