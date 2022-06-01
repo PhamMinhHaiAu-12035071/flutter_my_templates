@@ -20,7 +20,6 @@ class AppLocalizationSetup {
     Locale? locale,
     Iterable<Locale> supportedLocales,
   ) {
-    print('show locale: $locale');
     for (final supportedLocale in supportedLocales) {
       if (supportedLocale.languageCode == locale!.languageCode &&
           supportedLocale.countryCode == locale.countryCode) {

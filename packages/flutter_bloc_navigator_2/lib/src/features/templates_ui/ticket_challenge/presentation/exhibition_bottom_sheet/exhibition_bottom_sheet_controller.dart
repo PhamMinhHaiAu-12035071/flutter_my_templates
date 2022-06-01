@@ -6,6 +6,7 @@ import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challe
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/exhibition_bottom_sheet/exhibition_bottom_sheet_view.dart';
 import 'package:flutter_bloc_navigator_2/src/features/templates_ui/ticket_challenge/presentation/pages/bloc/event_bloc.dart';
 import 'package:logger/logger.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ExhibitionBottomSheetController extends StatelessWidget {
   const ExhibitionBottomSheetController({Key? key}) : super(key: key);
@@ -28,10 +29,22 @@ class ExhibitionBottomSheetController extends StatelessWidget {
           _inAsyncCall = false;
           _events = <EventEntity>[];
         }
-
         return ModalProgressHUD(
           inAsyncCall: _inAsyncCall,
-          child: ExhibitionBottomSheetView(this, events: _events),
+          child: ExhibitionBottomSheetView(
+            this,
+            events: _events,
+            percentMaxHeight: ResponsiveValue<double>(
+              context,
+              defaultValue: 0.85,
+              valueWhen: const [
+                Condition.smallerThan(
+                  name: MOBILE,
+                  value: 0.9,
+                )
+              ],
+            ).value!,
+          ),
         );
       },
     );

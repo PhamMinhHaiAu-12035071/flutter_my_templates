@@ -9,11 +9,13 @@ class ExhibitionBottomSheetView
   const ExhibitionBottomSheetView(
     ExhibitionBottomSheetController state, {
     this.events,
+    required this.percentMaxHeight,
     Key? key,
   }) : super(state, key: key);
 
   final List<EventEntity>? events;
 
+  final double percentMaxHeight;
   @override
   Widget build(BuildContext context) {
     //////////////////////////////////////////////////////////
@@ -24,6 +26,7 @@ class ExhibitionBottomSheetView
       onToggle: state.toggle,
       onVerticalDragUpdate: state.onVerticalDragUpdate,
       onVerticalDragEnd: state.onVerticalDragEnd,
+      percentMaxHeight: percentMaxHeight,
     );
   }
 }

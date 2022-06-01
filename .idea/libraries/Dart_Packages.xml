@@ -681,6 +681,13 @@
             </list>
           </value>
         </entry>
+        <entry key="responsive_framework">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/responsive_framework-0.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="shared_preferences">
           <value>
             <list>
@@ -1043,6 +1050,7 @@
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/provider-6.0.2/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/pub_semver-2.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/pubspec_parse-1.2.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/responsive_framework-0.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.15/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.12/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_ios-2.1.1/lib" />

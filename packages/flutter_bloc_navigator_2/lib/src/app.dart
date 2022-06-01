@@ -11,6 +11,7 @@ import 'package:flutter_bloc_navigator_2/src/routers/e_route_information_parser.
 import 'package:flutter_bloc_navigator_2/src/routers/e_router_delegate.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
 import 'package:flutter_bloc_navigator_2/visibility_device_preview.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key, this.devicePreview}) : super(key: key);
@@ -57,7 +58,28 @@ class MyApp extends StatelessWidget {
                 locale: locale,
                 useInheritedMediaQuery:
                     devicePreview?.useInheritedMediaQuery ?? false,
-                builder: devicePreview?.builder,
+                builder: (context, widget) {
+                  final widgetDevicePreview = devicePreview != null
+                      ? devicePreview?.builder(context, widget)
+                      : widget;
+                  return ResponsiveWrapper.builder(
+                    BouncingScrollWrapper.builder(
+                      context,
+                      widgetDevicePreview!,
+                    ),
+                    defaultScale: true,
+                    breakpoints: [
+                      const ResponsiveBreakpoint.resize(
+                        380,
+                        name: MOBILE,
+                      ),
+                      const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                      const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+                      const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+                      const ResponsiveBreakpoint.autoScale(2460, name: '4K'),
+                    ],
+                  );
+                },
               );
             },
           );

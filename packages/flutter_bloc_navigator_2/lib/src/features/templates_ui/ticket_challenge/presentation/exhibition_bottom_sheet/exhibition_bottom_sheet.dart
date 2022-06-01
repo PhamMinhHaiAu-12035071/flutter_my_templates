@@ -18,7 +18,6 @@ const double iconEndMarginTop = 48;
 const double iconsVerticalSpacing = 24;
 const double iconsHorizontalSpacing = 16;
 const Duration transitionBottomSheet = Duration(milliseconds: 600);
-const double percentMaxHeight = 1;
 
 const double minRangeHeaderTopMargin = 20;
 
@@ -34,6 +33,7 @@ class ExhibitionBottomSheet extends HookWidget {
   const ExhibitionBottomSheet({
     Key? key,
     this.duration = transitionBottomSheet,
+    required this.percentMaxHeight,
     this.events,
     this.onToggle,
     this.onVerticalDragUpdate,
@@ -42,6 +42,8 @@ class ExhibitionBottomSheet extends HookWidget {
 
   final Duration duration;
   final List<EventEntity>? events;
+
+  final double percentMaxHeight;
 
   final VoidCallback? onToggle;
   final VoidCallback? onVerticalDragUpdate;
