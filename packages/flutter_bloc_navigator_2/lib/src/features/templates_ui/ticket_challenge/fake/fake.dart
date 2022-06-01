@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
-const sizes = 10;
+const sizes = 3;
 
 final events = [
   {

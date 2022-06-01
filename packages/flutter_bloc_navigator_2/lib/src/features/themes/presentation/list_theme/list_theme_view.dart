@@ -46,7 +46,7 @@ class ListThemeView extends WidgetHookController<ListThemeController> {
       itemCount: themes.length,
       itemBuilder: (BuildContext context, int index) {
         return ReorderableDragStartListener(
-          key: Key('$index'),
+          key: ValueKey('theme_$index'),
           index: index,
           child: Column(
             mainAxisSize: MainAxisSize.min,

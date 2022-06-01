@@ -36,21 +36,25 @@ class ListLanguageView extends WidgetHookController<ListLanguageController> {
     }
 
     return ReorderableListView.builder(
+      buildDefaultDragHandles: false,
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: languages.length,
       itemBuilder: (BuildContext context, int index) {
-        return Column(
-          key: ValueKey('language$index'),
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ItemLanguage(name: languages[index].name, onPressed: () {}),
-            if (index != languages.length - 1)
-              const Divider(
-                height: 1,
-              ),
-          ],
+        return ReorderableDragStartListener(
+          key: ValueKey('language_$index'),
+          index: index,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ItemLanguage(name: languages[index].name, onPressed: () {}),
+              if (index != languages.length - 1)
+                const Divider(
+                  height: 1,
+                ),
+            ],
+          ),
         );
       },
       onReorder: _onReorder,
