@@ -40,7 +40,7 @@ class ExhibitionBottomSheetController extends StatelessWidget {
               valueWhen: const [
                 Condition.smallerThan(
                   name: MOBILE,
-                  value: 0.9,
+                  value: 1,
                 )
               ],
             ).value!,

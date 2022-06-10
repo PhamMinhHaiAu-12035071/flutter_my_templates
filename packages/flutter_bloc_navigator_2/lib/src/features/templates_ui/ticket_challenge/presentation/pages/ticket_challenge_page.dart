@@ -14,6 +14,11 @@ class TicketChallengePage extends EPage {
   Widget build(BuildContext context) {
     return const TicketChallengeScreenController();
   }
+
+  @override
+  Route createRoute(BuildContext context) {
+    return super.transitionCupertino();
+  }
 }
 
 class TicketChallengeScreenController extends StatelessWidget {
