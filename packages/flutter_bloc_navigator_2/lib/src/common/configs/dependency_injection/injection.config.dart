@@ -10,7 +10,6 @@ import 'package:hive_flutter/hive_flutter.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i7;
 
-import '../../../app_bloc_observer.dart' as _i8;
 import '../../../features/core/flavors/flavor_config.dart' as _i4;
 import '../../../features/core/flavors/impl/dev_flavor_config.dart' as _i5;
 import '../../../features/templates_ui/ticket_challenge/domain/usecase/fetch_events_usecase.dart'
@@ -30,6 +29,7 @@ import '../../../features/templates_ui/ticket_challenge/infrastructure/repositor
 import '../../../features/templates_ui/ticket_challenge/infrastructure/repositories/impl/dev_event_repository.dart'
     as _i13;
 import '../../../routers/page_config.dart' as _i9;
+import '../../widgets/app_bloc_observer/app_bloc_observer.dart' as _i8;
 import 'register_modules/dio_module.dart' as _i18;
 import 'register_modules/hive_module.dart' as _i19;
 import 'register_modules/logger_module.dart' as _i20;

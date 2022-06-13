@@ -4,8 +4,11 @@ help: ## Show this help.
 
 .PHONY: install
 install: ## install all dependencies
-	npm install \
-	&& flutter pub get
+	flutter pub get
+
+.PHONY: clean
+clean: ## clean all dependencies
+	flutter clean
 
 .PHONY: rebuild
 rebuild: ## clean and generate file *.g.dart again

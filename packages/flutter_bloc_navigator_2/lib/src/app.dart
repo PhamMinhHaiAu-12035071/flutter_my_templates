@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
+import 'package:flutter_bloc_navigator_2/src/common/widgets/visibility_device_preview/visibility_device_preview.dart';
 import 'package:flutter_bloc_navigator_2/src/features/app_lifecycle/presentation/lifecycle_watcher/bloc/app_lifecycle_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/features/app_lifecycle/presentation/lifecycle_watcher/lifecycle_watcher_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_bloc_navigator_2/src/routers/constants/root_path.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_route_information_parser.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_router_delegate.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
-import 'package:flutter_bloc_navigator_2/src/visibility_device_preview.dart';
 import 'package:hive/hive.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 

@@ -28,6 +28,9 @@ samples, guidance on mobile development, and a full API reference.
 
 - Support multiple language (device or manual)
 - Support multiple theme (include light and dark theme)
+- Support device_preview
+- Support responsive layout
+- Support restore navigation when kill app
 - Split [atomics design](https://itnext.io/atomic-design-with-flutter-11f6fcb62017) 
 - [Domain Driven Design Flutter Architecture](https://github.com/mhadaily/flutter-architecture-ddd)
 
@@ -38,12 +41,24 @@ samples, guidance on mobile development, and a full API reference.
     .    
     ├── lib                                              # The directory project
     |   ├── src                                          # The directory project app
-    |   |   ├── configs                                  # The directory contains all common configs
-    |   |   |   ├── dependency_injection                 # The directory contains all configs DI
-    |   |   |   ├── flavors                              # The directory contains all setup flavor variables for all environments (dev, stg, prod)
+    |   |   ├── common                                   # The directory contains all common
+    |   |   |   ├── configs                              # The directory contains all configs
+    |   |   |   |   ├── dependency_injection             # The directory contains all configs dependencies injection
+    |   |   |   |   ├── device_preview                   # The directory contains options of device_preview library
+    |   |   |   |   ├── env                              # The directory contains all configs environment
+    |   |   |   |   ├── hive                             # The directory contains options of hive library
+    |   |   |   ├── utilities                            # The directory contains all useful functions
+    |   |   |   ├── widgets                              # The directory contains all common widgets
+    |   |   |   ├── routes                               # The directory contains all config routes in app
+    |   |   ├── features                                 # The directory main app
     |   |   ├── gen                                      # The directory generate file images, fonts, colors...
+    |   |   ├── localization                             # The directory container all languages
+    |   |   ├── routers                                  # The directory container all routers
+    |   |   ├── app.dart                                 # The file app
+    |   ├── main.dart                                    # The file main app
     ├── analysis_options.yaml                            # The file setting lint code
     ├── Makefile                                         # The file contains all commands useful
+    ├── pubspec.yaml                                     # The file contains all install package
     └── README.md                                        # Documents
 
 
@@ -63,11 +78,11 @@ samples, guidance on mobile development, and a full API reference.
     make generate-template-l10n
     ```
   
-- **Step 3**: Add new language in file **"lib/src/localization/locale_support.dart"** with variables **locales**
- 
-  - Please reference link [languageCode](http://www.lingoes.net/en/translator/langcode.htm)
+- **Step 3**: Add new language in file **"lib/src/localization/locale_support.dart"** 
 
-- **Step 3**: Create file languages mapping with variables **locales** in the folder "lib/src/localization/arb_files/"
+  - Notes: Name file follow format **intl_[languageCode].arb** with [languageCode](http://www.lingoes.net/en/translator/langcode.htm)
+
+- **Step 4**: Create file languages mapping with variables **locales** in the folder "lib/src/localization/arb_files/"
  
   - Example: locales = ["en", "vi"] -> create 2 file **intl_en.arb** and **intl_vi.arb**
   - Copy content file intl_messages.arb and pastes 2 files above
