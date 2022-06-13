@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
+import 'package:flutter_bloc_navigator_2/src/features/app_lifecycle/presentation/lifecycle_watcher/bloc/app_lifecycle_bloc.dart';
+import 'package:flutter_bloc_navigator_2/src/features/app_lifecycle/presentation/lifecycle_watcher/lifecycle_watcher_controller.dart';
 import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
 import 'package:flutter_bloc_navigator_2/src/features/languages/presentation/pages/bloc/language_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/features/themes/presentation/pages/bloc/theme_bloc.dart';
@@ -10,7 +12,8 @@ import 'package:flutter_bloc_navigator_2/src/routers/constants/root_path.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_route_information_parser.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_router_delegate.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
-import 'package:flutter_bloc_navigator_2/visibility_device_preview.dart';
+import 'package:flutter_bloc_navigator_2/src/visibility_device_preview.dart';
+import 'package:hive/hive.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class MyApp extends StatelessWidget {
@@ -21,8 +24,18 @@ class MyApp extends StatelessWidget {
   ERouteInformationParser get routeInformationParser =>
       ERouteInformationParser();
 
+  Box<PageConfig>? get pageConfig {
+    if (getIt<FlavorConfig>().enabledRestoreNavigation) {
+      return getIt<Box<PageConfig>>();
+    }
+    return null;
+  }
+
   ERouterDelegate get routerDelegate => ERouterDelegate(
-        cubit: NavigationCubit([PageConfig(location: RootPath.settings)]),
+        cubit: NavigationCubit(
+          [PageConfig(location: RootPath.settings)],
+          pageConfig,
+        ),
       );
 
   @override
@@ -31,6 +44,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<ThemeBloc>(create: (_) => ThemeBloc()),
         BlocProvider<LanguageBloc>(create: (_) => LanguageBloc()),
+        BlocProvider<AppLifecycleBloc>(create: (_) => AppLifecycleBloc()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         buildWhen: (previous, current) =>
@@ -44,42 +58,56 @@ class MyApp extends StatelessWidget {
               final locale = Locale.fromSubtags(
                 languageCode: state.currentLanguage.languageCode,
               );
-              return MaterialApp.router(
-                title: getIt<FlavorConfig>().title,
-                theme: appThemeConfig.light,
-                darkTheme: appThemeConfig.dark,
-                routeInformationParser: routeInformationParser,
-                routerDelegate: routerDelegate,
-                localizationsDelegates:
-                    AppLocalizationSetup.localizationsDelegates,
-                supportedLocales: AppLocalizationSetup.supportedLocales,
-                localeResolutionCallback:
-                    AppLocalizationSetup.localeResolutionCallback,
-                locale: locale,
-                useInheritedMediaQuery:
-                    devicePreview?.useInheritedMediaQuery ?? false,
-                builder: (context, widget) {
-                  final widgetDevicePreview = devicePreview != null
-                      ? devicePreview?.builder(context, widget)
-                      : widget;
-                  return ResponsiveWrapper.builder(
-                    BouncingScrollWrapper.builder(
-                      context,
-                      widgetDevicePreview!,
-                    ),
-                    defaultScale: true,
-                    breakpoints: [
-                      const ResponsiveBreakpoint.resize(
-                        380,
-                        name: MOBILE,
+              return LifecycleWatcherController(
+                child: MaterialApp.router(
+                  title: getIt<FlavorConfig>().title,
+                  theme: appThemeConfig.light,
+                  darkTheme: appThemeConfig.dark,
+                  routeInformationParser: routeInformationParser,
+                  routerDelegate: routerDelegate,
+                  localizationsDelegates:
+                      AppLocalizationSetup.localizationsDelegates,
+                  supportedLocales: AppLocalizationSetup.supportedLocales,
+                  localeResolutionCallback:
+                      AppLocalizationSetup.localeResolutionCallback,
+                  locale: locale,
+                  useInheritedMediaQuery:
+                      devicePreview?.useInheritedMediaQuery ?? false,
+                  builder: (context, widget) {
+                    final widgetDevicePreview = devicePreview != null
+                        ? devicePreview?.builder(context, widget)
+                        : widget;
+                    return ResponsiveWrapper.builder(
+                      BouncingScrollWrapper.builder(
+                        context,
+                        widgetDevicePreview!,
                       ),
-                      const ResponsiveBreakpoint.autoScale(800, name: TABLET),
-                      const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-                      const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-                      const ResponsiveBreakpoint.autoScale(2460, name: '4K'),
-                    ],
-                  );
-                },
+                      defaultScale: true,
+                      breakpoints: [
+                        const ResponsiveBreakpoint.resize(
+                          380,
+                          name: MOBILE,
+                        ),
+                        const ResponsiveBreakpoint.autoScale(
+                          800,
+                          name: TABLET,
+                        ),
+                        const ResponsiveBreakpoint.autoScale(
+                          1000,
+                          name: TABLET,
+                        ),
+                        const ResponsiveBreakpoint.resize(
+                          1200,
+                          name: DESKTOP,
+                        ),
+                        const ResponsiveBreakpoint.autoScale(
+                          2460,
+                          name: '4K',
+                        ),
+                      ],
+                    );
+                  },
+                ),
               );
             },
           );

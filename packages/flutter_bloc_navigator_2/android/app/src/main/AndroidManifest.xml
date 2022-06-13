@@ -30,5 +30,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       <service
+           android:name="dev.flutter_bloc_navigator_2.flutter_bloc_navigator_2.LifecycleService"
+           android:stopWithTask="false" />
     </application>
 </manifest>

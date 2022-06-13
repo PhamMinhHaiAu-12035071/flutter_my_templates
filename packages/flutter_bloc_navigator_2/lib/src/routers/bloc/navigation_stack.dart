@@ -1,20 +1,26 @@
+import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:logger/logger.dart';
 
 class NavigationStack {
-  NavigationStack(this._stack);
+  NavigationStack({required this.stack, this.boxPageConfig});
 
-  final List<PageConfig> _stack;
+  final List<PageConfig> stack;
+  final Box<PageConfig>? boxPageConfig;
 
-  List<EPage> get pages => List.unmodifiable(_stack.map<EPage>((e) => e.page));
+  List<EPage> get pages {
+    return List.unmodifiable(stack.map<EPage>((e) => e.page));
+  }
 
-  List<PageConfig> get configs => _stack;
+  List<PageConfig> get configs => stack;
 
-  int get length => _stack.length;
+  int get length => stack.length;
 
-  PageConfig get first => _stack.first;
+  PageConfig get first => stack.first;
 
-  PageConfig get last => _stack.last;
+  PageConfig get last => stack.last;
 
   ///the reason behind returning Navigation Stack instead of just being a void
   ///is to chain calls as we'll see in navigation_cubit.dart.tmpl
@@ -22,65 +28,90 @@ class NavigationStack {
   //I've just returned a new instance
 
   void clear() {
-    _stack.removeRange(0, _stack.length - 2);
+    stack.removeRange(0, stack.length - 2);
     //pages list in navigator can't be empty, remember
   }
 
   bool canPop() {
-    return _stack.length > 1;
+    return stack.length > 1;
   }
 
   bool isBackHistory(PageConfig config) {
-    if (_stack.length >= 2) {
-      return _stack.elementAt(_stack.length - 2).route == config.route;
+    if (stack.length >= 2) {
+      return stack.elementAt(stack.length - 2).route == config.route;
     }
 
     return false;
   }
 
-  NavigationStack pop() {
-    if (canPop()) _stack.remove(_stack.last);
-    return NavigationStack(_stack);
+  Future<NavigationStack> pop() async {
+    if (canPop()) {
+      stack.remove(stack.last);
+    }
+    await addLocal();
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
   }
 
-  NavigationStack pushBeneathCurrent(PageConfig config) {
-    _stack.insert(_stack.length - 1, config);
-    return NavigationStack(_stack);
+  Future<NavigationStack> pushBeneathCurrent(PageConfig config) async {
+    stack.insert(stack.length - 1, config);
+    await addLocal();
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
   }
 
-  NavigationStack push(PageConfig config) {
-    if (_stack.last != config) _stack.add(config);
-    return NavigationStack(_stack);
+  Future<void> addLocal() async {
+    if (boxPageConfig is Box<PageConfig>) {
+      await boxPageConfig!.clear();
+      await boxPageConfig!.addAll(stack);
+      getIt<Logger>().d('[boxPageConfig]: ${boxPageConfig!.values}');
+    }
+  }
+
+  Future<NavigationStack> restoreStack() async {
+    if (boxPageConfig is Box<PageConfig> && boxPageConfig!.values.isNotEmpty) {
+      stack
+        ..clear()
+        ..addAll(boxPageConfig!.values);
+    }
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
+  }
+
+  Future<NavigationStack> push(PageConfig config) async {
+    if (stack.last != config) {
+      stack.add(config);
+    }
+    await addLocal();
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
   }
 
   NavigationStack replace(PageConfig config) {
     if (canPop()) {
-      _stack.removeLast();
+      stack.removeLast();
       push(config);
     } else {
-      _stack
+      stack
         ..insert(0, config)
         ..removeLast();
     }
-    return NavigationStack(_stack);
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
   }
 
-  NavigationStack clearAndPush(PageConfig config) {
-    _stack
+  Future<NavigationStack> clearAndPush(PageConfig config) async {
+    stack
       ..clear()
       ..add(config);
-    return NavigationStack(_stack);
+    await addLocal();
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
   }
 
   NavigationStack clearAndPushAll(List<PageConfig> configs) {
-    _stack
+    stack
       ..clear()
       ..addAll(configs);
-    return NavigationStack(_stack);
+    return NavigationStack(stack: stack, boxPageConfig: boxPageConfig);
   }
 
   @override
   String toString() {
-    return _stack.toString();
+    return stack.toString();
   }
 }

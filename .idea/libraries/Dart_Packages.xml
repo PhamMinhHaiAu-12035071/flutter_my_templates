@@ -450,6 +450,13 @@
             </list>
           </value>
         </entry>
+        <entry key="is_first_run">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/is_first_run-1.0.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="js">
           <value>
             <list>
@@ -586,7 +593,7 @@
         <entry key="path_provider_android">
           <value>
             <list>
-              <option value="$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.14/lib" />
+              <option value="$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.11/lib" />
             </list>
           </value>
         </entry>
@@ -1017,6 +1024,7 @@
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/intl_generator-0.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/io-1.0.3/lib" />
+      <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/is_first_run-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.4/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/json_annotation-4.5.0/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/json_serializable-6.2.0/lib" />
@@ -1036,7 +1044,7 @@
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.10/lib" />
-      <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.14/lib" />
+      <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.11/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.9/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.6/lib" />
       <root url="file://$PROJECT_DIR$/../../scripts/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.6/lib" />

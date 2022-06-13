@@ -1,35 +1,47 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_stack.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
+import 'package:hive/hive.dart';
 
 class NavigationCubit extends Cubit<NavigationStack> {
-  NavigationCubit(List<PageConfig> initialPages)
-      : super(NavigationStack(initialPages));
+  NavigationCubit(
+    List<PageConfig> initialPages, [
+    Box<PageConfig>? boxPageConfig,
+  ]) : super(
+          NavigationStack(stack: initialPages, boxPageConfig: boxPageConfig),
+        );
 
-  void push(String path, [Map<String, dynamic>? args]) {
+  Future<void> push(String path, [Map<String, dynamic>? args]) async {
     final config = PageConfig(location: path, args: args);
-    emit(state.push(config));
+    emit(await state.push(config));
   }
 
-  void clearAndPush(String path, [Map<String, dynamic>? args]) {
+  Future<void> clearAndPush(String path, [Map<String, dynamic>? args]) async {
     final config = PageConfig(location: path, args: args);
-    emit(state.clearAndPush(config));
+    emit(await state.clearAndPush(config));
   }
 
-  void pop() {
-    emit(state.pop());
+  Future<void> pop() async {
+    emit(await state.pop());
   }
 
   bool canPop() {
     return state.canPop();
   }
 
-  void pushBeneathCurrent(String path, [Map<String, dynamic>? args]) {
+  Future<void> pushBeneathCurrent(
+    String path, [
+    Map<String, dynamic>? args,
+  ]) async {
     final config = PageConfig(location: path, args: args);
-    emit(state.pushBeneathCurrent(config));
+    emit(await state.pushBeneathCurrent(config));
   }
 
   bool isBackHistory(PageConfig config) {
     return state.isBackHistory(config);
+  }
+
+  Future<void> restoreState() async {
+    emit(await state.restoreStack());
   }
 }

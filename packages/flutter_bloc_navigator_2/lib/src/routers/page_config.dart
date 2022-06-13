@@ -1,11 +1,16 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_navigator_2/src/common/configs/hive/constants.dart';
 import 'package:flutter_bloc_navigator_2/src/common/utilities/extensions/map_extension.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/constants/routes.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/e_page.dart';
+import 'package:hive/hive.dart';
 
+part 'page_config.g.dart';
+
+@HiveType(typeId: typeIdPageConfig)
 class PageConfig extends Equatable {
   PageConfig({
-    required String location,
+    required this.location,
     Map<String, dynamic>? args,
     this.name,
   }) {
@@ -17,6 +22,9 @@ class PageConfig extends Equatable {
     page = getEPage(this);
   }
 
+  @HiveField(0)
+  final String location;
+
   ///full path to the page
   late final Uri path;
 
@@ -24,10 +32,12 @@ class PageConfig extends Equatable {
   late final String route;
 
   ///an identifier for the page (optional)
+  @HiveField(1)
   final String? name;
 
   ///page args: can be added in the path as a string literal, or manually when
   /// creating the route
+  @HiveField(2)
   final Map<String, dynamic> args = <String, dynamic>{};
 
   ///Our route description, this is where actual builds happen

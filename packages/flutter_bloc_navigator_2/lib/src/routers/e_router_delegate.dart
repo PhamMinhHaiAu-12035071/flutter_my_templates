@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_navigator_2/src/common/configs/dependency_injection/injection.dart';
+import 'package:flutter_bloc_navigator_2/src/features/app_lifecycle/presentation/lifecycle_watcher/bloc/app_lifecycle_bloc.dart';
+import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_stack.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/custom_route_observer.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
-import 'package:logger/logger.dart';
 
 class ERouterDelegate extends RouterDelegate<PageConfig>
     with
@@ -28,6 +29,7 @@ class ERouterDelegate extends RouterDelegate<PageConfig>
       child: MultiBlocListener(
         listeners: [
           _listenForNavigation(),
+          _listenAppLifecycle(),
           // _listenForAuth(),
         ],
         child: BlocBuilder<NavigationCubit, NavigationStack>(
@@ -66,6 +68,17 @@ class ERouterDelegate extends RouterDelegate<PageConfig>
     );
   }
 
+  BlocListener _listenAppLifecycle() {
+    return BlocListener<AppLifecycleBloc, AppLifecycleStateCustom>(
+      listener: (_, state) {
+        if (state is AppLifecyclePlayedOriginal &&
+            getIt<FlavorConfig>().enabledRestoreNavigation) {
+          _cubit.restoreState();
+        }
+        notifyListeners();
+      },
+    );
+  }
   // BlocListener _listenForAuth() {
   //   return BlocListener<AuthenticationBloc, AuthenticationState>(
   //     listener: (_, state) {
@@ -87,15 +100,14 @@ class ERouterDelegate extends RouterDelegate<PageConfig>
   @override
   Future<void> setNewRoutePath(PageConfig configuration) async {
     if (_cubit.isBackHistory(configuration) && _cubit.canPop()) {
-      _cubit.pop();
+      await _cubit.pop();
     }
 
     if (configuration.path == Uri.parse('/')) {
       // skip default
       return;
     }
-    getIt<Logger>().d('[setNewRoutePath]: $configuration');
-    _cubit.push(configuration.route, configuration.args);
+    await _cubit.push(configuration.route, configuration.args);
   }
 
   ///called by router when it detects it may have changed because of a rebuild
