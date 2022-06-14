@@ -12,7 +12,14 @@ class TicketChallengePage extends EPage {
 
   @override
   Widget build(BuildContext context) {
-    return const TicketChallengeScreenController();
+    return BlocProvider<EventBloc>(
+      create: (BuildContext context) => EventBloc(
+        fetchUseCase: getIt<FetchEventsUseCase>(),
+      )..add(
+          const EventFetchedData(),
+        ),
+      child: const TicketChallengeScreenController(),
+    );
   }
 
   @override
@@ -26,14 +33,7 @@ class TicketChallengeScreenController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<EventBloc>(
-      create: (BuildContext context) => EventBloc(
-        fetchUseCase: getIt<FetchEventsUseCase>(),
-      )..add(
-          const EventFetchedData(),
-        ),
-      child: const TicketChallengeScreenView(),
-    );
+    return const TicketChallengeScreenView();
   }
 }
 
@@ -42,12 +42,24 @@ class TicketChallengeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: const <Widget>[
-          ExhibitionBottomSheetController(),
-        ],
-      ),
+    return BlocBuilder<EventBloc, EventState>(
+      buildWhen: (previous, current) => previous != current,
+      builder: (_, state) {
+        return WillPopScope(
+          onWillPop: state is EventLoading
+              ? () async {
+                  return Future.value(true);
+                }
+              : null,
+          child: Scaffold(
+            body: Stack(
+              children: const <Widget>[
+                ExhibitionBottomSheetController(),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
