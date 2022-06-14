@@ -1,6 +1,6 @@
 # Table of Contents
 * [1. Guide used](#1-guide-used)
-
+* [2. Create template with feature](#2-create-template-with-feature)
 
 ## 1. Guide used
 
@@ -13,3 +13,17 @@
     ```shell
     cd scripts && npm run install && npm run start
     ```
+- **Step 7**: Create template with command line
+    ```shell
+    <rootPath>/bin/flutter/bin/flutter create -t skeleton flutter_demo -i swift -a java
+    ```
+
+## 2. Create template with feature
+
+- Support multiple language (device or manual)
+- Support multiple theme (include light and dark theme)
+- Support device_preview
+- Support responsive layout
+- Support restore navigation when kill app
+- Split [atomics design](https://itnext.io/atomic-design-with-flutter-11f6fcb62017)
+- [Domain Driven Design Flutter Architecture](https://github.com/mhadaily/flutter-architecture-ddd)
