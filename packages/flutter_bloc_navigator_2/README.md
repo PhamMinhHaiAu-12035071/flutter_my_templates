@@ -244,7 +244,7 @@ from the **.gitignore** file in path **folder_project/android/.gitignore** creat
   **/*.jks
   ```
 
-  - **Step 2**: Copy file **appcenter-post-clone.sh** in path **folder_project/android/app/** with below command:
+  - **Step 2**: Copy file **./packages/flutter_bloc_navigator_2/lib/scripts/appcenter-post-clone.sh** in path **folder_project/android/app/** with below command:
 
   - **Step 3**: call function you want to build
 
