@@ -17,4 +17,7 @@ class DevFlavorConfig implements FlavorConfig {
 
   @override
   bool get enabledRestoreNavigation => true;
+
+  @override
+  bool get enabledSettingLanguage => true;
 }

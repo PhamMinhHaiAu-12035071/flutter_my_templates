@@ -5,7 +5,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 class AppLocalizationSetup {
   static const Iterable<Locale> supportedLocales = [
     Locale.fromSubtags(languageCode: 'en'),
+    Locale.fromSubtags(languageCode: 'en_US'),
     Locale.fromSubtags(languageCode: 'vi'),
+    Locale.fromSubtags(languageCode: 'vi_VN'),
   ];
 
   static const Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates =

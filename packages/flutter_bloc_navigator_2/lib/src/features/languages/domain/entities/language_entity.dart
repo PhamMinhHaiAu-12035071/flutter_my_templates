@@ -13,7 +13,7 @@ class LanguageEntity implements Entity {
 
   final LanguageID id;
   final String name;
-  final String languageCode;
+  final List<String> languageCode;
 
   @override
   String get itemId => id;

@@ -2,8 +2,11 @@ part of 'language_bloc.dart';
 
 class LanguageState extends Equatable {
   const LanguageState({
-    this.currentLanguage =
-        const LanguageEntity(id: '0', name: 'English', languageCode: 'en'),
+    this.currentLanguage = const LanguageEntity(
+      id: '0',
+      name: 'English',
+      languageCode: ['en', 'en_US'],
+    ),
   });
 
   final LanguageEntity currentLanguage;

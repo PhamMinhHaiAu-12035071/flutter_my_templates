@@ -6,6 +6,7 @@ import 'package:flutter_bloc_navigator_2/src/features/core/flavors/flavor_config
 import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_cubit.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/bloc/navigation_stack.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/custom_route_observer.dart';
+import 'package:flutter_bloc_navigator_2/src/routers/navigation_service.dart';
 import 'package:flutter_bloc_navigator_2/src/routers/page_config.dart';
 
 class ERouterDelegate extends RouterDelegate<PageConfig>
@@ -116,5 +117,5 @@ class ERouterDelegate extends RouterDelegate<PageConfig>
   PageConfig? get currentConfiguration => _cubit.state.last;
 
   @override
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey = NavigationService.navigatorKey;
 }

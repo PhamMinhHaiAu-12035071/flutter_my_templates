@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                 previous.currentLanguage != current.currentLanguage,
             builder: (_, state) {
               final locale = Locale.fromSubtags(
-                languageCode: state.currentLanguage.languageCode,
+                languageCode: state.currentLanguage.languageCode.first,
               );
               return LifecycleWatcherController(
                 child: MaterialApp.router(
