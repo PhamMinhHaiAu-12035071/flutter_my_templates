@@ -11,8 +11,13 @@
 - **Step 5**: Change name variable **FLUTTER_ZIP** with new path from file zip in path "./scripts/src/replace_template_skeleton.ts"
 - **Step 6**: Open terminal and run command
     ```shell
-    cd scripts && npm run install && npm run start
+    cd scripts && npm install && npm run start
     ```
+    or
+    ```shell
+    cd scripts && yarn && yarn start
+    ```
+  
 - **Step 7**: Create template with command line
     ```shell
     <rootPath>/bin/flutter/bin/flutter create -t skeleton flutter_demo -i swift -a java
