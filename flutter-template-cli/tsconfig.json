@@ -1,0 +1,12 @@
+{
+	"extends": "@sindresorhus/tsconfig",
+	"compilerOptions": {
+		"module": "commonjs",
+		"jsx": "react",
+		"esModuleInterop": true,
+		"outDir": "dist",
+	  	"typeRoots": ["./global.d.ts", "node_modules/@cw-types",
+		  "node_modules/@types"]
+	},
+	"include": ["source"]
+}

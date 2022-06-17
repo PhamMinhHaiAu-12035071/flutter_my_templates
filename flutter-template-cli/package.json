@@ -1,0 +1,74 @@
+{
+	"name": "flutter-template-cli",
+	"version": "0.0.0",
+	"license": "MIT",
+	"bin": "dist/cli.js",
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"preinstall": "chmod u+x scripts/check_file_exists.sh && exit 0",
+		"build": "tsc && chmod +x dist/cli.js",
+		"start": "npm run build && dist/cli.js",
+		"pretest": "npm run build",
+		"test": "xo && ava",
+		"link": "npm link"
+	},
+	"files": [
+		"dist/cli.js"
+	],
+	"dependencies": {
+		"@reduxjs/toolkit": "^1.8.2",
+		"@types/redux-logger": "^3.0.9",
+		"cli-spinners": "^2.6.1",
+		"dotenv": "^16.0.1",
+		"fastest-validator": "^1.12.0",
+		"ink": "^3.2.0",
+		"ink-spinner": "^4.0.3",
+		"ink-task-list": "^2.0.0",
+		"ink-text-input": "^4.0.3",
+		"lodash": "^4.17.21",
+		"meow": "^9.0.0",
+		"ora": "^5.4.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-redux": "^8.0.2",
+		"redux-logger": "^3.0.6",
+		"shelljs": "^0.8.5"
+	},
+	"ava": {
+		"typescript": {
+			"extensions": [
+				"tsx"
+			],
+			"rewritePaths": {
+				"source/": "dist/"
+			}
+		}
+	},
+	"xo": {
+		"extends": "xo-react",
+		"rules": {
+			"react/prop-types": "off"
+		}
+	},
+	"devDependencies": {
+		"@ava/typescript": "^3.0.1",
+		"@sindresorhus/tsconfig": "^3.0.1",
+		"@types/lodash": "^4.14.182",
+		"@types/react": "^18.0.12",
+		"@types/react-dom": "^18.0.5",
+		"@typescript-eslint/eslint-plugin": "^5.28.0",
+		"@typescript-eslint/parser": "^5.28.0",
+		"ava": "^4.3.0",
+		"chalk": "^4.1.2",
+		"eslint": "^8.17.0",
+		"eslint-config-xo-react": "^0.27.0",
+		"eslint-plugin-react": "^7.30.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"ink-testing-library": "^2.1.0",
+		"prettier": "^2.7.0",
+		"typescript": "^4.7.3",
+		"xo": "^0.39.1"
+	}
+}
