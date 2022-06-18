@@ -34,6 +34,10 @@ dotenv_1.default.config({ path: path.join(__dirname, '../../config/config.env') 
 const getConfig = () => {
     return {
         NODE_ENV: process.env['NODE_ENV'],
+        PATH_FOLDER_BIN: process.env['PATH_FOLDER_BIN'],
+        PATH_FOLDER_FLUTTER_TEMPLATE: process.env['PATH_FOLDER_FLUTTER_TEMPLATE'],
+        LIST_PATH_ALLOWED_COPY: process.env['LIST_PATH_ALLOWED_COPY'],
+        PATH_FOLDER_TEMPLATE: process.env['PATH_FOLDER_TEMPLATE'],
     };
 };
 // Throwing an Error if any field was undefined we don't

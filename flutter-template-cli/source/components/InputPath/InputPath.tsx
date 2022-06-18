@@ -3,12 +3,12 @@ import TextInput from 'ink-text-input';
 import { ValidationError } from 'fastest-validator';
 import React from 'react';
 import { Styles } from 'ink/build/styles';
-import { checkedSpinner, Colors, Status } from '../../constants';
+import { checkedSpinner, Colors, SPACE_CHARACTER, Status } from '../../constants';
 import _ from 'lodash';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { selectPathErrors, StatusPathCombine } from '../../stores/reducers/pathSlice';
+import { StatusPathCombine } from '../../stores/reducers/pathSlice';
 import { CustomSpinner } from '../CustomSpinner/CustomSpinner';
 import Spinner from 'ink-spinner';
+import { BoxRow } from '../BoxRow/BoxRow';
 
 /**
  * Define styles
@@ -26,13 +26,14 @@ interface InputPathProps {
   onSubmit: (value: string) => void;
   onChange: (value: string) => void;
   status: StatusPathCombine;
+  errors: Array<ValidationError> | undefined;
+  time: string;
 }
 
 const title = 'Enter your path zip of flutter:';
 
 export const InputPath = (props: InputPathProps) => {
-  const errors = useAppSelector<Array<ValidationError> | undefined>(selectPathErrors);
-
+  // console.log(`render input path ${JSON.stringify(props)}`);
   return (
     <>
       <Box borderStyle="classic">
@@ -45,17 +46,20 @@ export const InputPath = (props: InputPathProps) => {
           placeholder={'Enter your path zip of flutter'}
           onSubmit={props.onSubmit}
           onChange={props.onChange}
+          showCursor={props.status === Status.INITIAL || props.status === Status.ERROR}
         />
       </Box>
       {/* Handle loading and success */}
-      <RenderSpinner status={props.status} />
+      <RenderSpinner status={props.status} time={props.time} />
       {/* Handle error */}
-      {!_.isEmpty(errors) &&
-        errors?.map((error: ValidationError, index: number) => {
+      {!_.isEmpty(props.errors) &&
+        props.status === Status.ERROR &&
+        props.path.length === 0 &&
+        props.errors?.map((error: ValidationError, index: number) => {
           return (
-            <Box key={index.toString()}>
+            <BoxRow key={index.toString()}>
               <Text {...styledTextError}>{error.message}</Text>
-            </Box>
+            </BoxRow>
           );
         })}
     </>
@@ -64,28 +68,37 @@ export const InputPath = (props: InputPathProps) => {
 
 interface RenderSpinnerProps {
   status: StatusPathCombine;
+  time: string;
 }
 
 const RenderSpinner = (props: RenderSpinnerProps) => {
-  const spaceCharacter = ' ';
-
   if (props.status === Status.LOADING) {
     return (
-      <Text>
-        <Text color={Colors.SYSTEM_YELLOW}>
-          <Spinner type="dots" />
+      <BoxRow>
+        <Text>
+          <Text color={Colors.SYSTEM_YELLOW}>
+            <Spinner type="dots" />
+          </Text>
+          <Text color={Colors.SYSTEM_YELLOW}>
+            {_.repeat(SPACE_CHARACTER, 2) + 'Recognize flutter path...'}
+          </Text>
         </Text>
-        <Text color={Colors.SYSTEM_YELLOW}>{spaceCharacter + 'Loading...'}</Text>
-      </Text>
+      </BoxRow>
     );
-  } else if (props.status === Status.SUCCESS) {
+  } else if (props.status === Status.SUCCESS && props.time !== '') {
     return (
-      <CustomSpinner
-        spinner={checkedSpinner}
-        colorSpinner={Colors.SYSTEM_GREEN}
-        colorText={Colors.SYSTEM_GREEN}
-        text={`${spaceCharacter + 'Recognize flutter path success!'}`}
-      />
+      <BoxRow>
+        <CustomSpinner
+          spinner={checkedSpinner}
+          colorSpinner={Colors.SYSTEM_GREEN}
+          arrText={[
+            <Text color={Colors.SYSTEM_GREEN}>
+              {SPACE_CHARACTER + 'Recognize flutter path success!' + _.repeat(SPACE_CHARACTER, 2)}
+            </Text>,
+            <Text color={Colors.SYSTEM_GRAY}>({props.time})</Text>,
+          ]}
+        />
+      </BoxRow>
     );
   }
   return null;

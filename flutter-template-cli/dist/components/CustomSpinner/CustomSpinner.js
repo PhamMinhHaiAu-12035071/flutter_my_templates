@@ -32,7 +32,7 @@ const ink_1 = require("ink");
 const chalk_1 = __importDefault(require("chalk"));
 const constants_1 = require("../../constants");
 const lodash_1 = __importDefault(require("lodash"));
-const CustomSpinner = ({ spinner, colorSpinner = constants_1.Colors.WHITE, text = '', colorText = constants_1.Colors.WHITE, }) => {
+const CustomSpinner = ({ spinner, colorSpinner = constants_1.Colors.WHITE, arrText = [], }) => {
     const [frameIndex, setFrameIndex] = (0, react_1.useState)(0);
     (0, react_1.useEffect)(() => {
         const timer = setInterval(() => {
@@ -48,6 +48,9 @@ const CustomSpinner = ({ spinner, colorSpinner = constants_1.Colors.WHITE, text 
     return (react_1.default.createElement(ink_1.Text, null,
         react_1.default.createElement(react_1.default.Fragment, null,
             chalk_1.default.hex(colorSpinner).visible(spinner.frames[frameIndex]),
-            lodash_1.default.isString(text) ? react_1.default.createElement(ink_1.Text, { color: colorText }, text) : text)));
+            !lodash_1.default.isEmpty(arrText) &&
+                arrText.map((item, index) => {
+                    return react_1.default.createElement(react_1.default.Fragment, { key: index.toString() }, item);
+                }))));
 };
 exports.CustomSpinner = CustomSpinner;

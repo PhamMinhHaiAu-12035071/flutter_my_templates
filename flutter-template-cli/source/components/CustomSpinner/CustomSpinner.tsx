@@ -12,14 +12,12 @@ export type Spinner = {
 export interface CustomSpinnerProps {
   spinner: Spinner;
   colorSpinner?: string;
-  text?: React.ReactElement | string;
-  colorText?: string;
+  arrText?: Array<React.ReactElement>;
 }
 export const CustomSpinner = ({
   spinner,
   colorSpinner = Colors.WHITE,
-  text = '',
-  colorText = Colors.WHITE,
+  arrText = [],
 }: CustomSpinnerProps) => {
   const [frameIndex, setFrameIndex] = useState(0);
 
@@ -40,7 +38,10 @@ export const CustomSpinner = ({
     <Text>
       <>
         {chalk.hex(colorSpinner).visible(spinner.frames[frameIndex])}
-        {_.isString(text) ? <Text color={colorText}>{text}</Text> : text}
+        {!_.isEmpty(arrText) &&
+          arrText.map((item, index: number) => {
+            return <React.Fragment key={index.toString()}>{item}</React.Fragment>;
+          })}
       </>
     </Text>
   );

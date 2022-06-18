@@ -1,23 +1,22 @@
 import React from 'react';
-import { checkPathFileExtension, v } from '../../utilities/validator';
+import { checkPathFileExtension, v } from '../../utilities';
 import { PATH_ZIP_EXTENSION, SCRIPT_CHECK_FILE_EXISTS, Status } from '../../constants';
 import { ValidationError } from 'fastest-validator';
 import { InputPath } from './InputPath';
 import { useDispatch } from 'react-redux';
 import {
+  selectPathErrors,
+  selectPathExecuteTimeSuccess,
   selectPathStatus,
-  setEmptyError,
   setPathFailed,
   setPathLoading,
   setPathSuccess,
   StatusPathCombine,
 } from '../../stores/reducers/pathSlice';
-import _ from 'lodash';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { setCreateFolderLoading } from '../../stores/reducers/createFolderSlice';
 
 const shell = require('shelljs');
-
-const DELAY = 3000;
 
 /**
  * Define validator
@@ -53,17 +52,13 @@ export const InputPathContainer = () => {
   const [path, setPath] = React.useState<string>('');
   const dispatch = useDispatch();
   const status = useAppSelector<StatusPathCombine>(selectPathStatus);
+  const errors = useAppSelector<Array<ValidationError> | undefined>(selectPathErrors);
+  const time = useAppSelector<string>(selectPathExecuteTimeSuccess);
   React.useMemo(() => {
     if (status === Status.ERROR) {
       setPath('');
     }
   }, [status]);
-  React.useEffect(() => {
-    if (path.length > 0 && status === Status.ERROR) {
-      const action = setEmptyError();
-      dispatch(action);
-    }
-  }, [path, status]);
   const _handleClearText = (): void => {
     setPath('');
   };
@@ -71,6 +66,8 @@ export const InputPathContainer = () => {
   const _handlePathValid = (value: string) => {
     const action = setPathSuccess(value);
     dispatch(action);
+    const actionLoading = setCreateFolderLoading();
+    dispatch(actionLoading);
   };
   const _handlePathInvalid = (result: Array<ValidationError>) => {
     _handleClearText();
@@ -84,14 +81,26 @@ export const InputPathContainer = () => {
     };
     const result = await check(obj, schema);
     if (result === true) {
-      _.delay(_handlePathValid, DELAY, value);
+      _handlePathValid(value);
     } else {
-      _.delay(_handlePathInvalid, DELAY, result);
+      _handlePathInvalid(result);
     }
   };
 
   const _onChange = (value: string): void => {
-    setPath(value);
+    if (status === Status.INITIAL || status === Status.ERROR) {
+      setPath(value);
+    }
+    return;
   };
-  return <InputPath path={path} onChange={_onChange} onSubmit={_onSubmit} status={status} />;
+  return (
+    <InputPath
+      path={path}
+      onChange={_onChange}
+      onSubmit={_onSubmit}
+      status={status}
+      errors={errors}
+      time={time}
+    />
+  );
 };

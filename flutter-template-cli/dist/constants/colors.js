@@ -29,6 +29,12 @@ Object.defineProperty(Colors, "SYSTEM_GREEN", {
     writable: true,
     value: '#32D74B'
 });
+Object.defineProperty(Colors, "SYSTEM_GRAY", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: '#8E8E93'
+});
 Object.defineProperty(Colors, "WHITE", {
     enumerable: true,
     configurable: true,

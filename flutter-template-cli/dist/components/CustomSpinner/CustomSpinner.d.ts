@@ -6,7 +6,6 @@ export declare type Spinner = {
 export interface CustomSpinnerProps {
     spinner: Spinner;
     colorSpinner?: string;
-    text?: React.ReactElement | string;
-    colorText?: string;
+    arrText?: Array<React.ReactElement>;
 }
-export declare const CustomSpinner: ({ spinner, colorSpinner, text, colorText, }: CustomSpinnerProps) => JSX.Element;
+export declare const CustomSpinner: ({ spinner, colorSpinner, arrText, }: CustomSpinnerProps) => JSX.Element;

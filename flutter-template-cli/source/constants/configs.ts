@@ -10,10 +10,18 @@ dotenv.config({ path: path.join(__dirname, '../../config/config.env') });
 
 interface ENV {
   NODE_ENV: string | undefined;
+  PATH_FOLDER_BIN: string | undefined;
+  PATH_FOLDER_FLUTTER_TEMPLATE: string | undefined;
+  LIST_PATH_ALLOWED_COPY: string | undefined;
+  PATH_FOLDER_TEMPLATE: string | undefined;
 }
 
 interface Configs {
   NODE_ENV: string;
+  PATH_FOLDER_BIN: string;
+  PATH_FOLDER_FLUTTER_TEMPLATE: string;
+  LIST_PATH_ALLOWED_COPY: string;
+  PATH_FOLDER_TEMPLATE: string;
 }
 
 // Loading process.env as ENV interface
@@ -21,6 +29,10 @@ interface Configs {
 const getConfig = (): ENV => {
   return {
     NODE_ENV: process.env['NODE_ENV'],
+    PATH_FOLDER_BIN: process.env['PATH_FOLDER_BIN'],
+    PATH_FOLDER_FLUTTER_TEMPLATE: process.env['PATH_FOLDER_FLUTTER_TEMPLATE'],
+    LIST_PATH_ALLOWED_COPY: process.env['LIST_PATH_ALLOWED_COPY'],
+    PATH_FOLDER_TEMPLATE: process.env['PATH_FOLDER_TEMPLATE'],
   };
 };
 

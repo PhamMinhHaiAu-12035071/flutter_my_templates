@@ -1,13 +1,21 @@
 import path from 'path';
+import sanitizedConfig from './configs';
 
 export const SCRIPT_CHECK_FILE_EXISTS = path.join(__dirname, '../../scripts/check_file_exists.sh');
+export const SCRIPT_SHOW_ABSOLUTE_PATH = path.join(
+  __dirname,
+  '../../scripts/show_absolute_path.sh'
+);
 export const PATH_ZIP_EXTENSION = '.zip';
 export * from './colors';
 export * from './spinners';
+export * from './status';
+export const SPACE_CHARACTER = ' ';
 
-export enum Status {
-  INITIAL = 'INITIAL',
-  SUCCESS = 'SUCCESS',
-  ERROR = 'ERROR',
-  LOADING = 'LOADING',
-}
+export const ZERO_DELAY = 0;
+
+export const ABSOLUTE_PATH_FOLDER_BIN = path.join(__dirname, sanitizedConfig.PATH_FOLDER_BIN);
+export const ABSOLUTE_PATH_FOLDER_FLUTTER_TEMPLATE = path.join(
+  __dirname,
+  sanitizedConfig.PATH_FOLDER_FLUTTER_TEMPLATE
+);

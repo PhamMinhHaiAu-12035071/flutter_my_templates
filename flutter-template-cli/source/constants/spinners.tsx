@@ -3,4 +3,9 @@ const checkedSpinner = {
   frames: ['✅'],
 };
 
-export { checkedSpinner };
+const warningSpinner = {
+  interval: 100,
+  frames: ['⚠️'],
+};
+
+export { checkedSpinner, warningSpinner };

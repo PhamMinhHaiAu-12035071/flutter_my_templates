@@ -1,31 +1,38 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
-import { BaseState } from '../baseState';
+import { BaseState, PerformanceState } from '../baseState';
 import { Status } from '../../constants';
 import { ValidationError } from 'fastest-validator';
 
 const KEY = 'path';
 
-enum StatusPath {
-  KEY_PRESS = 'KEY_PRESS',
-}
-export type StatusPathCombine = Status | StatusPath;
-export interface PathState extends BaseState {
-  data: string;
+export type StatusPathCombine = Status;
+
+export interface PathState extends BaseState, PerformanceState {
+  relativePath: string;
   errors: Array<ValidationError> | undefined;
   status: StatusPathCombine;
 }
 
-const initialState = { data: '', status: Status.INITIAL, errors: undefined } as PathState;
+const initialState = {
+  relativePath: '',
+  status: Status.INITIAL,
+  errors: undefined,
+  datedInitial: Date.now(),
+  datedSuccess: undefined,
+  datedError: undefined,
+  datedLoading: undefined,
+} as PathState;
 
 const slice = createSlice({
   name: KEY,
   initialState: initialState,
   reducers: {
     setPathSuccess(state, action: PayloadAction<string>) {
-      state.data = action.payload;
+      state.relativePath = action.payload;
       state.errors = undefined;
       state.status = Status.SUCCESS;
+      state.datedSuccess = Date.now();
     },
     setPathFailed(state, action: PayloadAction<Array<ValidationError>>) {
       state.data = '';
@@ -36,17 +43,25 @@ const slice = createSlice({
       state.data = '';
       state.errors = undefined;
       state.status = Status.LOADING;
-    },
-    setEmptyError(state) {
-      state.data = '';
-      state.errors = undefined;
-      state.status = StatusPath.KEY_PRESS;
+      state.datedLoading = Date.now();
     },
   },
 });
 
-export const { setPathSuccess, setPathFailed, setPathLoading, setEmptyError } = slice.actions;
+export const { setPathSuccess, setPathFailed, setPathLoading } = slice.actions;
 export default slice.reducer;
 
-export const selectPathStatus = (state: RootState) => state.path.status;
-export const selectPathErrors = (state: RootState) => state.path.errors;
+export const selectPathStatus = (state: RootState): StatusPathCombine => state.path.status;
+export const selectPathErrors = (state: RootState): Array<ValidationError> | undefined =>
+  state.path.errors;
+export const selectPathExecuteTimeSuccess = (state: RootState): string => {
+  if (state.path.datedSuccess !== undefined && state.path.datedLoading !== undefined) {
+    const time = (state.path.datedSuccess - state.path.datedLoading) / 1000;
+    return `${time}s`;
+  }
+  return '';
+};
+
+export const selectRelativePath = (state: RootState): string => {
+  return state.path.relativePath;
+};
