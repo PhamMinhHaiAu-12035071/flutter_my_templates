@@ -8,3 +8,4 @@ var Status;
     Status["ERROR"] = "ERROR";
     Status["LOADING"] = "LOADING";
 })(Status = exports.Status || (exports.Status = {}));
+//# sourceMappingURL=status.js.map

@@ -22,3 +22,4 @@ exports.store = (0, toolkit_1.configureStore)({
     },
     middleware: middlewares,
 });
+//# sourceMappingURL=index.js.map

@@ -3,7 +3,7 @@ import _ from 'lodash';
 const Rsync = require('rsync');
 
 export interface RsyncCallback {
-  onDone?: (error: never, code: never, cmd: never) => void;
+  onDone?: (error: never, code: never, cmd: never, extra?: ExtraInformation) => void;
   onProgress?: (data: RsyncProgressData | undefined) => void;
   onError?: (data: never) => void;
 }
@@ -13,6 +13,11 @@ export interface RsyncProgressData {
   Progress: string;
   'Speed Up': string;
   'Estimate Time': string;
+}
+
+export interface ExtraInformation {
+  source: string;
+  destination: string;
 }
 
 export class RsyncService {
@@ -86,7 +91,7 @@ export class RsyncService {
     rsync.execute(
       function (error: never, code: never, cmd: never) {
         if (rsyncCallback?.onDone !== undefined) {
-          rsyncCallback.onDone(error, code, cmd);
+          rsyncCallback.onDone(error, code, cmd, { source: source, destination: destination });
         }
       },
 

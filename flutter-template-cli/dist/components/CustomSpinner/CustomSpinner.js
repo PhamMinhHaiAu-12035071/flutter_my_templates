@@ -54,3 +54,4 @@ const CustomSpinner = ({ spinner, colorSpinner = constants_1.Colors.WHITE, arrTe
                 }))));
 };
 exports.CustomSpinner = CustomSpinner;
+//# sourceMappingURL=CustomSpinner.js.map

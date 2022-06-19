@@ -19,3 +19,4 @@ const checkPathFileExtension = (pathFile, extension) => {
     return lastExtensionCharacter === extension;
 };
 exports.checkPathFileExtension = checkPathFileExtension;
+//# sourceMappingURL=index.js.map

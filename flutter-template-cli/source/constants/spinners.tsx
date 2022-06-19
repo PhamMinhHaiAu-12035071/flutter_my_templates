@@ -7,5 +7,8 @@ const warningSpinner = {
   interval: 100,
   frames: ['⚠️'],
 };
-
-export { checkedSpinner, warningSpinner };
+const errorSpinner = {
+  interval: 100,
+  frames: ['❗️'],
+};
+export { checkedSpinner, warningSpinner, errorSpinner };

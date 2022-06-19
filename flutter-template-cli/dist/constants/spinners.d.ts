@@ -6,4 +6,8 @@ declare const warningSpinner: {
     interval: number;
     frames: string[];
 };
-export { checkedSpinner, warningSpinner };
+declare const errorSpinner: {
+    interval: number;
+    frames: string[];
+};
+export { checkedSpinner, warningSpinner, errorSpinner };

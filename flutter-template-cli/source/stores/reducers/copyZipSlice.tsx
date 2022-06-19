@@ -38,7 +38,12 @@ const slice = createSlice({
       state.errors = undefined;
       state.data = action.payload;
       state.datedSuccess = Date.now();
-      state.progress = [];
+    },
+    setCopyZipFlutterError(state, action: PayloadAction<string>) {
+      state.status = Status.ERROR;
+      state.errors = [action.payload];
+      state.data = '';
+      state.datedError = Date.now();
     },
     setProgress(state, action: PayloadAction<RsyncProgressData>) {
       state.errors = undefined;
@@ -47,7 +52,12 @@ const slice = createSlice({
   },
 });
 
-export const { setCopyZipFlutterLoading, setCopyZipFlutterSuccess, setProgress } = slice.actions;
+export const {
+  setCopyZipFlutterLoading,
+  setCopyZipFlutterSuccess,
+  setProgress,
+  setCopyZipFlutterError,
+} = slice.actions;
 
 export default slice.reducer;
 
@@ -58,6 +68,16 @@ export const selectCopyZipFlutterExecuteTimeSuccess = (state: RootState): string
     state.copyZipFlutter.datedLoading !== undefined
   ) {
     const time = (state.copyZipFlutter.datedSuccess - state.copyZipFlutter.datedLoading) / 1000;
+    return `${time}s`;
+  }
+  return '';
+};
+export const selectCopyZipFlutterExecuteTimeError = (state: RootState): string => {
+  if (
+    state.copyZipFlutter.datedError !== undefined &&
+    state.copyZipFlutter.datedLoading !== undefined
+  ) {
+    const time = (state.copyZipFlutter.datedError - state.copyZipFlutter.datedLoading) / 1000;
     return `${time}s`;
   }
   return '';

@@ -12,10 +12,19 @@ const lodash_1 = __importDefault(require("lodash"));
 const CustomSpinner_1 = require("../CustomSpinner/CustomSpinner");
 const ink_spinner_1 = __importDefault(require("ink-spinner"));
 const BoxRow_1 = require("../BoxRow/BoxRow");
+const ShowSuggest_1 = require("./ShowSuggest");
 /**
  * Define styles
  */
 const styledContainer = {
+    borderStyle: 'round',
+    borderColor: constants_1.Colors.SYSTEM_TEAL,
+    paddingLeft: 1,
+    paddingRight: 1,
+    paddingTop: 1,
+    paddingBottom: 1,
+};
+const styledTitle = {
     marginRight: 1,
 };
 const styledTextError = {
@@ -25,10 +34,11 @@ const title = 'Enter your path zip of flutter:';
 const InputPath = (props) => {
     // console.log(`render input path ${JSON.stringify(props)}`);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(ink_1.Box, { borderStyle: "classic" },
-            react_1.default.createElement(ink_1.Box, { ...styledContainer },
+        react_1.default.createElement(ink_1.Box, { ...styledContainer },
+            react_1.default.createElement(ink_1.Box, { ...styledTitle },
                 react_1.default.createElement(ink_1.Text, null, title)),
             react_1.default.createElement(ink_text_input_1.default, { highlightPastedText: true, value: props.path, placeholder: 'Enter your path zip of flutter', onSubmit: props.onSubmit, onChange: props.onChange, showCursor: props.status === constants_1.Status.INITIAL || props.status === constants_1.Status.ERROR })),
+        react_1.default.createElement(ShowSuggest_1.ShowSuggest, { path: props.path }),
         react_1.default.createElement(RenderSpinner, { status: props.status, time: props.time }),
         !lodash_1.default.isEmpty(props.errors) &&
             props.status === constants_1.Status.ERROR &&
@@ -59,3 +69,4 @@ const RenderSpinner = (props) => {
     }
     return null;
 };
+//# sourceMappingURL=InputPath.js.map

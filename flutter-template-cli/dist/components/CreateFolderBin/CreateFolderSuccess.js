@@ -22,3 +22,4 @@ const CreateFolderSuccess = () => {
         ] }));
 };
 exports.CreateFolderSuccess = CreateFolderSuccess;
+//# sourceMappingURL=CreateFolderSuccess.js.map

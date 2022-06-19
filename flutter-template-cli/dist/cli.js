@@ -24,3 +24,4 @@ const cli = (0, meow_1.default)(`
     flags: {},
 });
 (0, ink_1.render)(react_1.default.createElement(ui_1.default, { ...cli.flags }));
+//# sourceMappingURL=cli.js.map

@@ -1,5 +1,5 @@
 export interface RsyncCallback {
-    onDone?: (error: never, code: never, cmd: never) => void;
+    onDone?: (error: never, code: never, cmd: never, extra?: ExtraInformation) => void;
     onProgress?: (data: RsyncProgressData | undefined) => void;
     onError?: (data: never) => void;
 }
@@ -8,6 +8,10 @@ export interface RsyncProgressData {
     Progress: string;
     'Speed Up': string;
     'Estimate Time': string;
+}
+export interface ExtraInformation {
+    source: string;
+    destination: string;
 }
 export declare class RsyncService {
     private static instance;

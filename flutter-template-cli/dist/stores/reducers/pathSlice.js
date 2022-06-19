@@ -1,11 +1,12 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selectRelativePath = exports.selectPathExecuteTimeSuccess = exports.selectPathErrors = exports.selectPathStatus = exports.setPathLoading = exports.setPathFailed = exports.setPathSuccess = void 0;
+exports.selectPathData = exports.selectRelativePath = exports.selectPathExecuteTimeSuccess = exports.selectPathErrors = exports.selectPathStatus = exports.setPath = exports.setPathLoading = exports.setPathFailed = exports.setPathSuccess = void 0;
 const toolkit_1 = require("@reduxjs/toolkit");
 const constants_1 = require("../../constants");
 const KEY = 'path';
 const initialState = {
+    data: '',
     relativePath: '',
     status: constants_1.Status.INITIAL,
     errors: undefined,
@@ -20,6 +21,7 @@ const slice = (0, toolkit_1.createSlice)({
     reducers: {
         setPathSuccess(state, action) {
             state.relativePath = action.payload;
+            state.data = action.payload;
             state.errors = undefined;
             state.status = constants_1.Status.SUCCESS;
             state.datedSuccess = Date.now();
@@ -35,9 +37,14 @@ const slice = (0, toolkit_1.createSlice)({
             state.status = constants_1.Status.LOADING;
             state.datedLoading = Date.now();
         },
+        setPath(state, action) {
+            if (state.status === constants_1.Status.INITIAL || state.status === constants_1.Status.ERROR) {
+                state.data = action.payload;
+            }
+        },
     },
 });
-_a = slice.actions, exports.setPathSuccess = _a.setPathSuccess, exports.setPathFailed = _a.setPathFailed, exports.setPathLoading = _a.setPathLoading;
+_a = slice.actions, exports.setPathSuccess = _a.setPathSuccess, exports.setPathFailed = _a.setPathFailed, exports.setPathLoading = _a.setPathLoading, exports.setPath = _a.setPath;
 exports.default = slice.reducer;
 const selectPathStatus = (state) => state.path.status;
 exports.selectPathStatus = selectPathStatus;
@@ -55,3 +62,6 @@ const selectRelativePath = (state) => {
     return state.path.relativePath;
 };
 exports.selectRelativePath = selectRelativePath;
+const selectPathData = (state) => state.path.data;
+exports.selectPathData = selectPathData;
+//# sourceMappingURL=pathSlice.js.map

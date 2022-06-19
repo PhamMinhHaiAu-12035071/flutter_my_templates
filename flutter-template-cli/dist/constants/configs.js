@@ -56,3 +56,4 @@ const getSanitzedConfig = (config) => {
 const config = getConfig();
 const sanitizedConfig = getSanitzedConfig(config);
 exports.default = sanitizedConfig;
+//# sourceMappingURL=configs.js.map

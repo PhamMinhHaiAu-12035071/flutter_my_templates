@@ -53,3 +53,4 @@ const CreateFolderBinContainer = () => {
     return null;
 };
 exports.CreateFolderBinContainer = CreateFolderBinContainer;
+//# sourceMappingURL=CreateFolderBinContainer.js.map

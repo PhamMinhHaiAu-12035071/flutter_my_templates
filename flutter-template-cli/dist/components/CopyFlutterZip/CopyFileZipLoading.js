@@ -16,3 +16,4 @@ const CopyFileZipLoading = () => {
         react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_YELLOW }, lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2) + 'Copy file flutter zip')));
 };
 exports.CopyFileZipLoading = CopyFileZipLoading;
+//# sourceMappingURL=CopyFileZipLoading.js.map

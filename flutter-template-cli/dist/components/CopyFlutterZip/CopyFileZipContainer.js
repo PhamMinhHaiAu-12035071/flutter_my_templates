@@ -14,6 +14,8 @@ const pathSlice_1 = require("../../stores/reducers/pathSlice");
 const uuid_1 = require("uuid");
 const services_1 = require("../../services");
 const react_redux_1 = require("react-redux");
+const CopyFileZipSuccess_1 = require("./CopyFileZipSuccess");
+const CopyFileZipError_1 = require("./CopyFileZipError");
 const execSync = require('child_process').execSync;
 const CopyFileZipContainer = () => {
     const status = (0, useAppSelector_1.useAppSelector)(copyZipSlice_1.selectCopyZipFlutterStatus);
@@ -28,8 +30,15 @@ const CopyFileZipContainer = () => {
             onError: _onError,
         });
     };
-    const _onDone = (error, code, cmd) => {
-        console.log(`[_onDone] ${error} ${code} ${cmd}`);
+    const _onDone = (error, code, cmd, extra) => {
+        if (error === null && code === 0 && cmd !== '' && extra?.destination !== '') {
+            const action = (0, copyZipSlice_1.setCopyZipFlutterSuccess)(extra?.destination);
+            dispatch(action);
+        }
+        else {
+            const action = (0, copyZipSlice_1.setCopyZipFlutterError)(error);
+            dispatch(action);
+        }
     };
     const _onProgress = (data) => {
         if (data !== undefined) {
@@ -38,7 +47,8 @@ const CopyFileZipContainer = () => {
         }
     };
     const _onError = (data) => {
-        console.log(`[_onError]: ${data}`);
+        const action = (0, copyZipSlice_1.setCopyZipFlutterError)(data);
+        dispatch(action);
     };
     react_1.default.useMemo(() => {
         if (status === constants_1.Status.LOADING) {
@@ -49,6 +59,15 @@ const CopyFileZipContainer = () => {
         return (react_1.default.createElement(BoxRow_1.BoxRow, null,
             react_1.default.createElement(CopyFileZipLoading_1.CopyFileZipLoading, null)));
     }
+    else if (status === constants_1.Status.SUCCESS) {
+        return (react_1.default.createElement(BoxRow_1.BoxRow, null,
+            react_1.default.createElement(CopyFileZipSuccess_1.CopyFileZipSuccess, null)));
+    }
+    else if (status === constants_1.Status.ERROR) {
+        return (react_1.default.createElement(BoxRow_1.BoxRow, null,
+            react_1.default.createElement(CopyFileZipError_1.CopyFileZipError, null)));
+    }
     return null;
 };
 exports.CopyFileZipContainer = CopyFileZipContainer;
+//# sourceMappingURL=CopyFileZipContainer.js.map

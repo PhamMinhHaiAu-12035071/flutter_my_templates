@@ -1,13 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.chalkWarning = exports.Colors = void 0;
 /**
  * Define color system
  */
-const chalk_1 = __importDefault(require("chalk"));
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Colors = void 0;
 class Colors {
 }
 exports.Colors = Colors;
@@ -35,11 +31,22 @@ Object.defineProperty(Colors, "SYSTEM_GRAY", {
     writable: true,
     value: '#8E8E93'
 });
+Object.defineProperty(Colors, "SYSTEM_GRAY_2", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: '#636366'
+});
+Object.defineProperty(Colors, "SYSTEM_TEAL", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: '#64D2FF'
+});
 Object.defineProperty(Colors, "WHITE", {
     enumerable: true,
     configurable: true,
     writable: true,
     value: '#FFFFFF'
 });
-const chalkWarning = (text) => chalk_1.default.hex(Colors.SYSTEM_YELLOW).visible(text);
-exports.chalkWarning = chalkWarning;
+//# sourceMappingURL=colors.js.map

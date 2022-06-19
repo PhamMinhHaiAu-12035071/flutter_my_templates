@@ -9,11 +9,20 @@ import { StatusPathCombine } from '../../stores/reducers/pathSlice';
 import { CustomSpinner } from '../CustomSpinner/CustomSpinner';
 import Spinner from 'ink-spinner';
 import { BoxRow } from '../BoxRow/BoxRow';
+import { ShowSuggest } from './ShowSuggest';
 
 /**
  * Define styles
  */
 const styledContainer: Styles = {
+  borderStyle: 'round',
+  borderColor: Colors.SYSTEM_TEAL,
+  paddingLeft: 1,
+  paddingRight: 1,
+  paddingTop: 1,
+  paddingBottom: 1,
+};
+const styledTitle: Styles = {
   marginRight: 1,
 };
 
@@ -36,8 +45,8 @@ export const InputPath = (props: InputPathProps) => {
   // console.log(`render input path ${JSON.stringify(props)}`);
   return (
     <>
-      <Box borderStyle="classic">
-        <Box {...styledContainer}>
+      <Box {...styledContainer}>
+        <Box {...styledTitle}>
           <Text>{title}</Text>
         </Box>
         <TextInput
@@ -49,6 +58,7 @@ export const InputPath = (props: InputPathProps) => {
           showCursor={props.status === Status.INITIAL || props.status === Status.ERROR}
         />
       </Box>
+      <ShowSuggest path={props.path} />
       {/* Handle loading and success */}
       <RenderSpinner status={props.status} time={props.time} />
       {/* Handle error */}

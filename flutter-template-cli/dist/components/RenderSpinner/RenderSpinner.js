@@ -42,3 +42,4 @@ const RenderSpinner = ({ spinner }) => {
     return react_1.default.createElement(ink_1.Text, null, spinner.frames[frameIndex]);
 };
 exports.default = RenderSpinner;
+//# sourceMappingURL=RenderSpinner.js.map

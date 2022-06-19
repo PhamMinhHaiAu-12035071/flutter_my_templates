@@ -42,19 +42,12 @@ const schema = {
 };
 const check = utilities_1.v.compile(schema);
 const InputPathContainer = () => {
-    const [path, setPath] = react_1.default.useState('');
+    // const [path, setPath] = React.useState<string>('');
     const dispatch = (0, react_redux_1.useDispatch)();
     const status = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathStatus);
     const errors = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathErrors);
     const time = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathExecuteTimeSuccess);
-    react_1.default.useMemo(() => {
-        if (status === constants_1.Status.ERROR) {
-            setPath('');
-        }
-    }, [status]);
-    const _handleClearText = () => {
-        setPath('');
-    };
+    const path = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathData);
     const _handlePathValid = (value) => {
         const action = (0, pathSlice_1.setPathSuccess)(value);
         dispatch(action);
@@ -62,7 +55,6 @@ const InputPathContainer = () => {
         dispatch(actionLoading);
     };
     const _handlePathInvalid = (result) => {
-        _handleClearText();
         const action = (0, pathSlice_1.setPathFailed)(result);
         dispatch(action);
     };
@@ -80,11 +72,10 @@ const InputPathContainer = () => {
         }
     };
     const _onChange = (value) => {
-        if (status === constants_1.Status.INITIAL || status === constants_1.Status.ERROR) {
-            setPath(value);
-        }
-        return;
+        const action = (0, pathSlice_1.setPath)(value);
+        dispatch(action);
     };
     return (react_1.default.createElement(InputPath_1.InputPath, { path: path, onChange: _onChange, onSubmit: _onSubmit, status: status, errors: errors, time: time }));
 };
 exports.InputPathContainer = InputPathContainer;
+//# sourceMappingURL=InputPathContainer.js.map

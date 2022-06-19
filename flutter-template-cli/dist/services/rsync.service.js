@@ -58,7 +58,7 @@ class RsyncService {
         // Execute the command
         rsync.execute(function (error, code, cmd) {
             if (rsyncCallback?.onDone !== undefined) {
-                rsyncCallback.onDone(error, code, cmd);
+                rsyncCallback.onDone(error, code, cmd, { source: source, destination: destination });
             }
         }, function (data) {
             if (rsyncCallback?.onProgress !== undefined) {
@@ -74,3 +74,4 @@ class RsyncService {
     }
 }
 exports.RsyncService = RsyncService;
+//# sourceMappingURL=rsync.service.js.map

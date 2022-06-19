@@ -17,3 +17,4 @@ const App = () => (react_1.default.createElement(react_redux_1.Provider, { store
     react_1.default.createElement(CopyFileZipContainer_1.CopyFileZipContainer, null)));
 module.exports = App;
 exports.default = App;
+//# sourceMappingURL=ui.js.map

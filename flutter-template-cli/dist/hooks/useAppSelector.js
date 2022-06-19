@@ -21,3 +21,4 @@ function useAppSelector(funcSelector) {
     return selector;
 }
 exports.useAppSelector = useAppSelector;
+//# sourceMappingURL=useAppSelector.js.map

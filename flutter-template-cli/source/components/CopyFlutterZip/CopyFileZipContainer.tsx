@@ -3,12 +3,19 @@ import React from 'react';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { BoxRow } from '../BoxRow/BoxRow';
 import { CopyFileZipLoading } from './CopyFileZipLoading';
-import { selectCopyZipFlutterStatus, setProgress } from '../../stores/reducers/copyZipSlice';
+import {
+  selectCopyZipFlutterStatus,
+  setCopyZipFlutterError,
+  setCopyZipFlutterSuccess,
+  setProgress,
+} from '../../stores/reducers/copyZipSlice';
 import { selectRelativePath } from '../../stores/reducers/pathSlice';
 import { v4 as uuidv4 } from 'uuid';
-import { RsyncProgressData, RsyncService } from '../../services';
+import { ExtraInformation, RsyncProgressData, RsyncService } from '../../services';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores';
+import { CopyFileZipSuccess } from './CopyFileZipSuccess';
+import { CopyFileZipError } from './CopyFileZipError';
 
 const execSync = require('child_process').execSync;
 
@@ -26,8 +33,14 @@ export const CopyFileZipContainer = () => {
       onError: _onError,
     });
   };
-  const _onDone = (error: never, code: never, cmd: never): void => {
-    console.log(`[_onDone] ${error} ${code} ${cmd}`);
+  const _onDone = (error: never, code: never, cmd: never, extra?: ExtraInformation): void => {
+    if (error === null && code === 0 && cmd !== '' && extra?.destination !== '') {
+      const action = setCopyZipFlutterSuccess(extra?.destination as string);
+      dispatch(action);
+    } else {
+      const action = setCopyZipFlutterError(error as string);
+      dispatch(action);
+    }
   };
   const _onProgress = (data: RsyncProgressData | undefined): void => {
     if (data !== undefined) {
@@ -36,7 +49,8 @@ export const CopyFileZipContainer = () => {
     }
   };
   const _onError = (data: never): void => {
-    console.log(`[_onError]: ${data}`);
+    const action = setCopyZipFlutterError(data as string);
+    dispatch(action);
   };
 
   React.useMemo(() => {
@@ -48,6 +62,18 @@ export const CopyFileZipContainer = () => {
     return (
       <BoxRow>
         <CopyFileZipLoading />
+      </BoxRow>
+    );
+  } else if (status === Status.SUCCESS) {
+    return (
+      <BoxRow>
+        <CopyFileZipSuccess />
+      </BoxRow>
+    );
+  } else if (status === Status.ERROR) {
+    return (
+      <BoxRow>
+        <CopyFileZipError />
       </BoxRow>
     );
   }

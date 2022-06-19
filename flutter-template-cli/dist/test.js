@@ -12,3 +12,4 @@ const ui_1 = __importDefault(require("./ui"));
     const { lastFrame } = (0, ink_testing_library_1.render)(react_1.default.createElement(ui_1.default, null));
     t.is(lastFrame(), (0, chalk_1.default) `Hello, {green Stranger}`);
 });
+//# sourceMappingURL=test.js.map

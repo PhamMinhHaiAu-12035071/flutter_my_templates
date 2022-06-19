@@ -1,13 +1,15 @@
 import React from 'react';
 import { checkPathFileExtension, v } from '../../utilities';
-import { PATH_ZIP_EXTENSION, SCRIPT_CHECK_FILE_EXISTS, Status } from '../../constants';
+import { PATH_ZIP_EXTENSION, SCRIPT_CHECK_FILE_EXISTS } from '../../constants';
 import { ValidationError } from 'fastest-validator';
 import { InputPath } from './InputPath';
 import { useDispatch } from 'react-redux';
 import {
+  selectPathData,
   selectPathErrors,
   selectPathExecuteTimeSuccess,
   selectPathStatus,
+  setPath,
   setPathFailed,
   setPathLoading,
   setPathSuccess,
@@ -49,28 +51,20 @@ const schema: object = {
 const check = v.compile(schema);
 
 export const InputPathContainer = () => {
-  const [path, setPath] = React.useState<string>('');
+  // const [path, setPath] = React.useState<string>('');
   const dispatch = useDispatch();
   const status = useAppSelector<StatusPathCombine>(selectPathStatus);
   const errors = useAppSelector<Array<ValidationError> | undefined>(selectPathErrors);
   const time = useAppSelector<string>(selectPathExecuteTimeSuccess);
-  React.useMemo(() => {
-    if (status === Status.ERROR) {
-      setPath('');
-    }
-  }, [status]);
-  const _handleClearText = (): void => {
-    setPath('');
-  };
+  const path = useAppSelector<string>(selectPathData);
 
-  const _handlePathValid = (value: string) => {
+  const _handlePathValid = (value: string): void => {
     const action = setPathSuccess(value);
     dispatch(action);
     const actionLoading = setCreateFolderLoading();
     dispatch(actionLoading);
   };
-  const _handlePathInvalid = (result: Array<ValidationError>) => {
-    _handleClearText();
+  const _handlePathInvalid = (result: Array<ValidationError>): void => {
     const action = setPathFailed(result);
     dispatch(action);
   };
@@ -86,12 +80,9 @@ export const InputPathContainer = () => {
       _handlePathInvalid(result);
     }
   };
-
   const _onChange = (value: string): void => {
-    if (status === Status.INITIAL || status === Status.ERROR) {
-      setPath(value);
-    }
-    return;
+    const action = setPath(value);
+    dispatch(action);
   };
   return (
     <InputPath
