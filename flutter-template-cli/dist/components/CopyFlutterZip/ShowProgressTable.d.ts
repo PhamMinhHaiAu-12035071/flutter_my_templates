@@ -1,1 +1,2 @@
-export declare const ShowProgressTable: () => JSX.Element | null;
+import React from 'react';
+export declare const ShowProgressTable: () => React.ReactElement | null;

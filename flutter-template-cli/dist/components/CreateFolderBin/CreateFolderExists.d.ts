@@ -1,1 +1,2 @@
-export declare const CreateFolderExists: () => JSX.Element;
+import React from 'react';
+export declare const CreateFolderExists: () => React.ReactElement;

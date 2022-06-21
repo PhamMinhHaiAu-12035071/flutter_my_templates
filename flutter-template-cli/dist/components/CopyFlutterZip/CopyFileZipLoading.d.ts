@@ -1,1 +1,2 @@
-export declare const CopyFileZipLoading: () => JSX.Element;
+import React from 'react';
+export declare const CopyFileZipLoading: () => React.ReactElement;

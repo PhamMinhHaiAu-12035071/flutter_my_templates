@@ -10,3 +10,7 @@ export declare const ZERO_DELAY = 0;
 export declare const DELAY_QUIT_APP = 150;
 export declare const ABSOLUTE_PATH_FOLDER_BIN: string;
 export declare const ABSOLUTE_PATH_FOLDER_FLUTTER_TEMPLATE: string;
+export declare enum TYPE_FILE {
+    FILE = "FILE",
+    FOLDER = "FOLDER"
+}

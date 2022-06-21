@@ -19,7 +19,7 @@ import { CopyFileZipError } from './CopyFileZipError';
 
 const execSync = require('child_process').execSync;
 
-export const CopyFileZipContainer = () => {
+export const CopyFileZipContainer = (): React.ReactElement | null => {
   const status = useAppSelector<Status>(selectCopyZipFlutterStatus);
   const pathSource = useAppSelector<string>(selectRelativePath);
   const dispatch = useDispatch<AppDispatch>();

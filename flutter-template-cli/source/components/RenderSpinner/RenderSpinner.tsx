@@ -9,9 +9,9 @@ export type Spinner = {
   frames: string[];
 };
 
-const RenderSpinner: FC<{
+export const RenderSpinner: FC<{
   spinner: Spinner;
-}> = ({ spinner }) => {
+}> = ({ spinner }): React.ReactElement => {
   const [frameIndex, setFrameIndex] = useState(0);
 
   useEffect(() => {
@@ -29,5 +29,3 @@ const RenderSpinner: FC<{
 
   return <Text>{spinner.frames[frameIndex]}</Text>;
 };
-
-export default RenderSpinner;

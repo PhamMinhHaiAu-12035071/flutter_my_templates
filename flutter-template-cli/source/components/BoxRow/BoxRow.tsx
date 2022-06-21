@@ -8,6 +8,6 @@ const styledContainer: Styles = {
 interface BoxRowProps {
   children: React.ReactElement;
 }
-export const BoxRow = (props: BoxRowProps) => {
+export const BoxRow = (props: BoxRowProps): React.ReactElement => {
   return <Box {...styledContainer}>{props.children}</Box>;
 };

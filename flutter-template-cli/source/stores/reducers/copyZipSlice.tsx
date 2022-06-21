@@ -10,6 +10,7 @@ export interface CopyFileState extends BaseState, PerformanceState {
   status: Status;
   errors: Array<string> | undefined;
   data: string;
+  messages: string;
   progress: Array<RsyncProgressData>;
 }
 
@@ -21,7 +22,9 @@ const initialState = {
   datedError: undefined,
   datedLoading: undefined,
   progress: [],
-} as unknown as CopyFileState;
+  messages: '',
+  data: '',
+} as CopyFileState;
 
 const slice = createSlice({
   name: KEY,

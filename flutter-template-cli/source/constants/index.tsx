@@ -23,3 +23,8 @@ export const ABSOLUTE_PATH_FOLDER_FLUTTER_TEMPLATE = path.join(
   __dirname,
   sanitizedConfig.PATH_FOLDER_FLUTTER_TEMPLATE
 );
+
+export enum TYPE_FILE {
+  FILE = 'FILE',
+  FOLDER = 'FOLDER',
+}

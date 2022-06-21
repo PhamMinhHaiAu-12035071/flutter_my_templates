@@ -1,1 +1,2 @@
-export declare const CopyFileZipError: () => JSX.Element;
+import React from 'react';
+export declare const CopyFileZipError: () => React.ReactElement;

@@ -6,7 +6,7 @@ import React from 'react';
 import { BoxRow } from '../BoxRow/BoxRow';
 import _ from 'lodash';
 
-export const ShowProgressTable = () => {
+export const ShowProgressTable = (): React.ReactElement | null => {
   const progress = useAppSelector<Array<RsyncProgressData>>(
     selectProgressCopyZipFlutter
   ) as never[];

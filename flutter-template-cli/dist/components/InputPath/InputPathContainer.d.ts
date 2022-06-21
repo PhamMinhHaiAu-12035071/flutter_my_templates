@@ -1,1 +1,2 @@
-export declare const InputPathContainer: () => JSX.Element;
+import React from 'react';
+export declare const InputPathContainer: () => React.ReactElement;

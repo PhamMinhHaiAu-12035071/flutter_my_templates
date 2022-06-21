@@ -6,6 +6,7 @@ export interface CopyFileState extends BaseState, PerformanceState {
     status: Status;
     errors: Array<string> | undefined;
     data: string;
+    messages: string;
     progress: Array<RsyncProgressData>;
 }
 export declare const setCopyZipFlutterLoading: import("@reduxjs/toolkit").ActionCreatorWithoutPayload<string>, setCopyZipFlutterSuccess: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setProgress: import("@reduxjs/toolkit").ActionCreatorWithPayload<RsyncProgressData, string>, setCopyZipFlutterError: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>;

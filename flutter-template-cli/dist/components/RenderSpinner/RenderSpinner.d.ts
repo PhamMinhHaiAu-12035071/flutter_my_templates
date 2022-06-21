@@ -3,7 +3,6 @@ export declare type Spinner = {
     interval: number;
     frames: string[];
 };
-declare const RenderSpinner: FC<{
+export declare const RenderSpinner: FC<{
     spinner: Spinner;
 }>;
-export default RenderSpinner;

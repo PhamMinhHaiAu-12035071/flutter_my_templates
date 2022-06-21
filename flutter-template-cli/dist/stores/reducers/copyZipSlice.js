@@ -13,6 +13,8 @@ const initialState = {
     datedError: undefined,
     datedLoading: undefined,
     progress: [],
+    messages: '',
+    data: '',
 };
 const slice = (0, toolkit_1.createSlice)({
     name: KEY,

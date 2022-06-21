@@ -9,7 +9,8 @@ import { StatusPathCombine } from '../../stores/reducers/pathSlice';
 import { CustomSpinner } from '../CustomSpinner/CustomSpinner';
 import Spinner from 'ink-spinner';
 import { BoxRow } from '../BoxRow/BoxRow';
-import { ShowSuggest } from './ShowSuggest';
+import { ShowSuggest } from '../ShowSuggest/ShowSuggest';
+import { Props } from 'ink/build/components/Text';
 
 /**
  * Define styles
@@ -41,8 +42,7 @@ interface InputPathProps {
 
 const title = 'Enter your path zip of flutter:';
 
-export const InputPath = (props: InputPathProps) => {
-  // console.log(`render input path ${JSON.stringify(props)}`);
+export const InputPath = (props: InputPathProps): React.ReactElement => {
   return (
     <>
       <Box {...styledContainer}>
@@ -81,15 +81,24 @@ interface RenderSpinnerProps {
   time: string;
 }
 
-const RenderSpinner = (props: RenderSpinnerProps) => {
+const styledTextWarning: Props = {
+  color: Colors.SYSTEM_YELLOW,
+};
+const styledTextSuccess: Props = {
+  color: Colors.SYSTEM_GREEN,
+};
+const styledTime: Props = {
+  color: Colors.SYSTEM_GRAY,
+};
+const RenderSpinner = (props: RenderSpinnerProps): React.ReactElement | null => {
   if (props.status === Status.LOADING) {
     return (
       <BoxRow>
         <Text>
-          <Text color={Colors.SYSTEM_YELLOW}>
+          <Text {...styledTextWarning}>
             <Spinner type="dots" />
           </Text>
-          <Text color={Colors.SYSTEM_YELLOW}>
+          <Text {...styledTextWarning}>
             {_.repeat(SPACE_CHARACTER, 2) + 'Recognize flutter path...'}
           </Text>
         </Text>
@@ -102,10 +111,10 @@ const RenderSpinner = (props: RenderSpinnerProps) => {
           spinner={checkedSpinner}
           colorSpinner={Colors.SYSTEM_GREEN}
           arrText={[
-            <Text color={Colors.SYSTEM_GREEN}>
+            <Text {...styledTextSuccess}>
               {SPACE_CHARACTER + 'Recognize flutter path success!' + _.repeat(SPACE_CHARACTER, 2)}
             </Text>,
-            <Text color={Colors.SYSTEM_GRAY}>({props.time})</Text>,
+            <Text {...styledTime}>({props.time})</Text>,
           ]}
         />
       </BoxRow>

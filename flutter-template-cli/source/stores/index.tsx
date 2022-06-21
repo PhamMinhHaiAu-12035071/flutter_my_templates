@@ -3,7 +3,7 @@ import pathReducer from './reducers/pathSlice';
 import sanitizedConfig from '../constants/configs';
 import createFolderReducer from './reducers/createFolderSlice';
 import copyZipFlutterReducer from './reducers/copyZipSlice';
-
+import suggestKeywordReducer from './reducers/suggestKeywordSlice';
 const middlewares = [];
 
 if (sanitizedConfig.NODE_ENV === `development`) {
@@ -16,6 +16,7 @@ export const store = configureStore({
     path: pathReducer,
     createFolder: createFolderReducer,
     copyZipFlutter: copyZipFlutterReducer,
+    suggestKeyword: suggestKeywordReducer,
   },
   middleware: middlewares,
 });

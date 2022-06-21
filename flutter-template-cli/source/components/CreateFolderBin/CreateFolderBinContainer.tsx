@@ -18,10 +18,10 @@ import { setCopyZipFlutterLoading } from '../../stores/reducers/copyZipSlice';
 
 const fs = require('fs');
 
-export const CreateFolderBinContainer = () => {
+export const CreateFolderBinContainer = (): React.ReactElement | null => {
   const status = useAppSelector<StatusFolderCombine>(selectCreateFolderStatus);
   const dispatch = useDispatch<AppDispatch>();
-  const _executeCreateFolder = () => {
+  const _executeCreateFolder = (): void => {
     setTimeout(() => {
       if (fs.existsSync(ABSOLUTE_PATH_FOLDER_BIN)) {
         const action = setCreateFolderExists();

@@ -42,7 +42,6 @@ const schema = {
 };
 const check = utilities_1.v.compile(schema);
 const InputPathContainer = () => {
-    // const [path, setPath] = React.useState<string>('');
     const dispatch = (0, react_redux_1.useDispatch)();
     const status = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathStatus);
     const errors = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathErrors);

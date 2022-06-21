@@ -12,7 +12,7 @@ const lodash_1 = __importDefault(require("lodash"));
 const CustomSpinner_1 = require("../CustomSpinner/CustomSpinner");
 const ink_spinner_1 = __importDefault(require("ink-spinner"));
 const BoxRow_1 = require("../BoxRow/BoxRow");
-const ShowSuggest_1 = require("./ShowSuggest");
+const ShowSuggest_1 = require("../ShowSuggest/ShowSuggest");
 /**
  * Define styles
  */
@@ -32,7 +32,6 @@ const styledTextError = {
 };
 const title = 'Enter your path zip of flutter:';
 const InputPath = (props) => {
-    // console.log(`render input path ${JSON.stringify(props)}`);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(ink_1.Box, { ...styledContainer },
             react_1.default.createElement(ink_1.Box, { ...styledTitle },
@@ -49,19 +48,28 @@ const InputPath = (props) => {
             })));
 };
 exports.InputPath = InputPath;
+const styledTextWarning = {
+    color: constants_1.Colors.SYSTEM_YELLOW,
+};
+const styledTextSuccess = {
+    color: constants_1.Colors.SYSTEM_GREEN,
+};
+const styledTime = {
+    color: constants_1.Colors.SYSTEM_GRAY,
+};
 const RenderSpinner = (props) => {
     if (props.status === constants_1.Status.LOADING) {
         return (react_1.default.createElement(BoxRow_1.BoxRow, null,
             react_1.default.createElement(ink_1.Text, null,
-                react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_YELLOW },
+                react_1.default.createElement(ink_1.Text, { ...styledTextWarning },
                     react_1.default.createElement(ink_spinner_1.default, { type: "dots" })),
-                react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_YELLOW }, lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2) + 'Recognize flutter path...'))));
+                react_1.default.createElement(ink_1.Text, { ...styledTextWarning }, lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2) + 'Recognize flutter path...'))));
     }
     else if (props.status === constants_1.Status.SUCCESS && props.time !== '') {
         return (react_1.default.createElement(BoxRow_1.BoxRow, null,
             react_1.default.createElement(CustomSpinner_1.CustomSpinner, { spinner: constants_1.checkedSpinner, colorSpinner: constants_1.Colors.SYSTEM_GREEN, arrText: [
-                    react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_GREEN }, constants_1.SPACE_CHARACTER + 'Recognize flutter path success!' + lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2)),
-                    react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_GRAY },
+                    react_1.default.createElement(ink_1.Text, { ...styledTextSuccess }, constants_1.SPACE_CHARACTER + 'Recognize flutter path success!' + lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2)),
+                    react_1.default.createElement(ink_1.Text, { ...styledTime },
                         "(",
                         props.time,
                         ")"),

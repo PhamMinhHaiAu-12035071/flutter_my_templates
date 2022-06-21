@@ -24,6 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RenderSpinner = void 0;
 const react_1 = __importStar(require("react"));
 const ink_1 = require("ink");
 const RenderSpinner = ({ spinner }) => {
@@ -41,5 +42,5 @@ const RenderSpinner = ({ spinner }) => {
     }, [spinner]);
     return react_1.default.createElement(ink_1.Text, null, spinner.frames[frameIndex]);
 };
-exports.default = RenderSpinner;
+exports.RenderSpinner = RenderSpinner;
 //# sourceMappingURL=RenderSpinner.js.map

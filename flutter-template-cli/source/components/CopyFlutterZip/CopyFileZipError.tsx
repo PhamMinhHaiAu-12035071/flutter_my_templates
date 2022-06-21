@@ -5,8 +5,15 @@ import _ from 'lodash';
 import React from 'react';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { selectCopyZipFlutterExecuteTimeError } from '../../stores/reducers/copyZipSlice';
+import { Props } from 'ink/build/components/Text';
 
-export const CopyFileZipError = () => {
+const styledText: Props = {
+  color: Colors.SYSTEM_RED,
+};
+const styledTime: Props = {
+  color: Colors.SYSTEM_GRAY,
+};
+export const CopyFileZipError = (): React.ReactElement => {
   const time = useAppSelector<string>(selectCopyZipFlutterExecuteTimeError);
   const { exit } = useApp();
   // Exit the app after 5 seconds
@@ -20,12 +27,12 @@ export const CopyFileZipError = () => {
       spinner={errorSpinner}
       colorSpinner={Colors.SYSTEM_RED}
       arrText={[
-        <Text color={Colors.SYSTEM_RED}>
+        <Text {...styledText}>
           {_.repeat(SPACE_CHARACTER, 1) +
             'Error copy file flutter zip!' +
             _.repeat(SPACE_CHARACTER, 2)}
         </Text>,
-        <Text color={Colors.SYSTEM_GRAY}>({time})</Text>,
+        <Text {...styledTime}>({time})</Text>,
       ]}
     />
   );

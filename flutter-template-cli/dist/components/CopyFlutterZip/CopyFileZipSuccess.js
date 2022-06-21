@@ -11,11 +11,17 @@ const ink_1 = require("ink");
 const lodash_1 = __importDefault(require("lodash"));
 const react_1 = __importDefault(require("react"));
 const copyZipSlice_1 = require("../../stores/reducers/copyZipSlice");
+const styledText = {
+    color: constants_1.Colors.SYSTEM_GREEN,
+};
+const styledTime = {
+    color: constants_1.Colors.SYSTEM_GRAY,
+};
 const CopyFileZipSuccess = () => {
     const time = (0, useAppSelector_1.useAppSelector)(copyZipSlice_1.selectCopyZipFlutterExecuteTimeSuccess);
     return (react_1.default.createElement(CustomSpinner_1.CustomSpinner, { spinner: constants_1.checkedSpinner, colorSpinner: constants_1.Colors.SYSTEM_GREEN, arrText: [
-            react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_GREEN }, constants_1.SPACE_CHARACTER + 'Copy file flutter zip success!' + lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2)),
-            react_1.default.createElement(ink_1.Text, { color: constants_1.Colors.SYSTEM_GRAY },
+            react_1.default.createElement(ink_1.Text, { ...styledText }, constants_1.SPACE_CHARACTER + 'Copy file flutter zip success!' + lodash_1.default.repeat(constants_1.SPACE_CHARACTER, 2)),
+            react_1.default.createElement(ink_1.Text, { ...styledTime },
                 "(",
                 time,
                 ")"),

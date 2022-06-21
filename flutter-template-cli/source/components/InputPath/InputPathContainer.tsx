@@ -17,6 +17,7 @@ import {
 } from '../../stores/reducers/pathSlice';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { setCreateFolderLoading } from '../../stores/reducers/createFolderSlice';
+import { AppDispatch } from '../../stores';
 
 const shell = require('shelljs');
 
@@ -50,9 +51,8 @@ const schema: object = {
 };
 const check = v.compile(schema);
 
-export const InputPathContainer = () => {
-  // const [path, setPath] = React.useState<string>('');
-  const dispatch = useDispatch();
+export const InputPathContainer = (): React.ReactElement => {
+  const dispatch = useDispatch<AppDispatch>();
   const status = useAppSelector<StatusPathCombine>(selectPathStatus);
   const errors = useAppSelector<Array<ValidationError> | undefined>(selectPathErrors);
   const time = useAppSelector<string>(selectPathExecuteTimeSuccess);

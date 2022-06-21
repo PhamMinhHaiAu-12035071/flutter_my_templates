@@ -18,7 +18,7 @@ export const CustomSpinner = ({
   spinner,
   colorSpinner = Colors.WHITE,
   arrText = [],
-}: CustomSpinnerProps) => {
+}: CustomSpinnerProps): React.ReactElement => {
   const [frameIndex, setFrameIndex] = useState(0);
 
   useEffect(() => {

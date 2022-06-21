@@ -9,6 +9,7 @@ const pathSlice_1 = __importDefault(require("./reducers/pathSlice"));
 const configs_1 = __importDefault(require("../constants/configs"));
 const createFolderSlice_1 = __importDefault(require("./reducers/createFolderSlice"));
 const copyZipSlice_1 = __importDefault(require("./reducers/copyZipSlice"));
+const suggestKeywordSlice_1 = __importDefault(require("./reducers/suggestKeywordSlice"));
 const middlewares = [];
 if (configs_1.default.NODE_ENV === `development`) {
     const { logger } = require(`redux-logger`);
@@ -19,6 +20,7 @@ exports.store = (0, toolkit_1.configureStore)({
         path: pathSlice_1.default,
         createFolder: createFolderSlice_1.default,
         copyZipFlutter: copyZipSlice_1.default,
+        suggestKeyword: suggestKeywordSlice_1.default,
     },
     middleware: middlewares,
 });

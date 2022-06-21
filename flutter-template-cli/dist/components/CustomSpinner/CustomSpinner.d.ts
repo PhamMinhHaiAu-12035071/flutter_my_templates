@@ -8,4 +8,4 @@ export interface CustomSpinnerProps {
     colorSpinner?: string;
     arrText?: Array<React.ReactElement>;
 }
-export declare const CustomSpinner: ({ spinner, colorSpinner, arrText, }: CustomSpinnerProps) => JSX.Element;
+export declare const CustomSpinner: ({ spinner, colorSpinner, arrText, }: CustomSpinnerProps) => React.ReactElement;
