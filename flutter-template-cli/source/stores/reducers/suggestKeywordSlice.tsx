@@ -10,6 +10,8 @@ export interface SuggestKeywordData {
   type: TYPE_FILE;
   name: string;
   isActive: boolean;
+  absolutePath: string;
+  relativePath: string;
 }
 export enum SuggestKeywordStatus {
   CHOOSE_TAB = 'CHOOSE_TAB',
@@ -43,6 +45,9 @@ const slice = createSlice({
   name: KEY,
   initialState: initialState,
   reducers: {
+    setCurrentPath(state, action: PayloadAction<string>) {
+      state.currentPath = action.payload;
+    },
     setSuggestKeywordLoading(state, action: PayloadAction<string>) {
       state.status = StatusSuggestKeywordCombine.LOADING;
       state.errors = undefined;
@@ -73,8 +78,12 @@ const slice = createSlice({
   },
 });
 
-export const { setSuggestKeywordLoading, setSuggestKeywordSuccess, setSuggestKeywordChooseTab } =
-  slice.actions;
+export const {
+  setSuggestKeywordLoading,
+  setSuggestKeywordSuccess,
+  setSuggestKeywordChooseTab,
+  setCurrentPath,
+} = slice.actions;
 export default slice.reducer;
 
 export const selectSuggestKeywordStatus = (state: RootState): StatusSuggestKeywordCombine => {

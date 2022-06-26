@@ -57,16 +57,7 @@ export const InputPathContainer = (): React.ReactElement => {
   const errors = useAppSelector<Array<ValidationError> | undefined>(selectPathErrors);
   const time = useAppSelector<string>(selectPathExecuteTimeSuccess);
   const path = useAppSelector<string>(selectPathData);
-  // const dataActive = useAppSelector<SuggestKeywordData | undefined>(selectSuggestKeywordActiveData);
 
-  // React.useMemo(() => {
-  //   console.log(`show data active: ${dataActive}`);
-  //   if (dataActive?.name !== '') {
-  //     const value = `${path}${dataActive?.name}`;
-  //     const action = setPath(value);
-  //     dispatch(action);
-  //   }
-  // }, [dataActive]);
   const _handlePathValid = (value: string): void => {
     const action = setPathSuccess(value);
     dispatch(action);

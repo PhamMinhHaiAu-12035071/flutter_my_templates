@@ -43,20 +43,24 @@ interface InputPathProps {
 const title = 'Enter your path zip of flutter:';
 
 export const InputPath = (props: InputPathProps): React.ReactElement => {
+  console.log(`InputPath: ${props.path}`);
   return (
     <>
       <Box {...styledContainer}>
         <Box {...styledTitle}>
           <Text>{title}</Text>
         </Box>
-        <TextInput
-          highlightPastedText={true}
-          value={props.path}
-          placeholder={'Enter your path zip of flutter'}
-          onSubmit={props.onSubmit}
-          onChange={props.onChange}
-          showCursor={props.status !== StatusPathCombine.SUCCESS}
-        />
+        {props.status !== StatusPathCombine.AUTOCOMPLETE && (
+          <TextInput
+            highlightPastedText={true}
+            value={props.path}
+            placeholder={'Enter your path zip of flutter'}
+            onSubmit={props.onSubmit}
+            onChange={props.onChange}
+            showCursor={props.status !== StatusPathCombine.SUCCESS}
+          />
+        )}
+        {props.status === StatusPathCombine.AUTOCOMPLETE && <Text>{props.path}</Text>}
       </Box>
       <ShowSuggestContainer path={props.path} status={props.status} />
       {/* Handle loading and success */}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useInput } from 'ink';
 import {
-  DELAY_SUGGEST_KEYWORD,
   SCRIPT_SHOW_ABSOLUTE_PATH,
   SCRIPT_SHOW_FOLDER_AND_FILE_ZIP,
   TYPE_FILE,
@@ -10,9 +9,11 @@ import { execSync } from 'child_process';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import {
+  selectSuggestKeywordActiveData,
   selectSuggestKeywordCurrentPath,
   selectSuggestKeywordData,
   selectSuggestKeywordStatus,
+  setCurrentPath,
   setSuggestKeywordChooseTab,
   setSuggestKeywordLoading,
   setSuggestKeywordSuccess,
@@ -23,7 +24,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ShowSuggest } from './ShowSuggest';
-import { StatusPathCombine } from '../../stores/reducers/pathSlice';
+import { setPathAutocomplete, StatusPathCombine } from '../../stores/reducers/pathSlice';
 
 const childProcess = require('child_process');
 
@@ -36,6 +37,21 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
   const status = useAppSelector<StatusSuggestKeywordCombine>(selectSuggestKeywordStatus);
   const data = useAppSelector<Array<SuggestKeywordData>>(selectSuggestKeywordData);
   const currentPath = useAppSelector<string | undefined>(selectSuggestKeywordCurrentPath);
+  const dataActive = useAppSelector<SuggestKeywordData | undefined>(selectSuggestKeywordActiveData);
+
+  React.useMemo(() => {
+    console.log(`dataActive: ${dataActive}`);
+    if (dataActive !== undefined) {
+      const backslashCharacter = dataActive.type === TYPE_FILE.FOLDER ? '/' : '';
+      const value = `${dataActive.relativePath}${dataActive.name}${backslashCharacter}`;
+      const action = setPathAutocomplete(value);
+      setTimeout(() => {
+        dispatch(action);
+        const actionSuggestCurrentPath = setCurrentPath(value);
+        dispatch(actionSuggestCurrentPath);
+      }, 0);
+    }
+  }, [dataActive]);
   useInput((_input, key) => {
     if (
       key.tab &&
@@ -43,6 +59,7 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
       props.status !== StatusPathCombine.ERROR &&
       props.status !== StatusPathCombine.ERROR_KEYDOWN
     ) {
+      console.log(`show props path: ${props.path} and currentPath: ${currentPath}`);
       if (props.path !== currentPath) {
         _showSuggest();
       } else {
@@ -54,13 +71,13 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
 
   const _showSuggest = (): void => {
     const action = setSuggestKeywordLoading(props.path);
-    setTimeout(() => {
-      dispatch(action);
-    }, 0);
+    dispatch(action);
     const arrPath = _.chain(props.path).padEnd(2, '/').split('/').value();
+
     const size = arrPath.length;
     const name = arrPath[size - 1];
     const relativePath = `${arrPath.slice(0, -1).join('/')}/`;
+
     const absolutePath = execSync(`${SCRIPT_SHOW_ABSOLUTE_PATH} ${relativePath}`).toString();
     const regexAbsolutePath = new RegExp('(:?\\/.|\\/)$', 'gm');
     const formatAbsolutePath = absolutePath.replace(regexAbsolutePath, '');
@@ -68,9 +85,11 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
     const subProcess = childProcess.exec(
       `${SCRIPT_SHOW_FOLDER_AND_FILE_ZIP} NAME="${name}" ABSOLUTE_PATH="${formatAbsolutePath}" UUID=${generateUid}`
     );
-    subProcess.stdout.on('data', (data: unknown) => _onData(data, generateUid));
+    subProcess.stdout.on('data', (data: unknown) =>
+      _onData(data, generateUid, relativePath, formatAbsolutePath)
+    );
   };
-  const _onData = (data: unknown, id: string): void => {
+  const _onData = (data: unknown, id: string, relativePath: string, absolutePath: string): void => {
     if (typeof data === 'string') {
       const [directories, files] = data.split(id);
       let arrNameFolder: (string | undefined)[] = [];
@@ -99,6 +118,8 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
           type: TYPE_FILE.FOLDER,
           name: item ?? '',
           isActive: false,
+          relativePath: relativePath,
+          absolutePath: absolutePath,
         }));
       }
       if (arrNameFiles.length > 0) {
@@ -107,12 +128,12 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
           type: TYPE_FILE.FILE,
           name: item ?? '',
           isActive: false,
+          relativePath: relativePath,
+          absolutePath: absolutePath,
         }));
       }
       const action = setSuggestKeywordSuccess([...arrMappingFolders, ...arrMappingFiles]);
-      setTimeout(() => {
-        dispatch(action);
-      }, DELAY_SUGGEST_KEYWORD);
+      dispatch(action);
     }
   };
 

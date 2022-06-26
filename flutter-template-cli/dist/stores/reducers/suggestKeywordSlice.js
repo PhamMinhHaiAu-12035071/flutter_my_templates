@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selectSuggestKeywordActiveData = exports.selectSuggestKeywordCurrentPath = exports.selectSuggestKeywordData = exports.selectSuggestKeywordStatus = exports.setSuggestKeywordChooseTab = exports.setSuggestKeywordSuccess = exports.setSuggestKeywordLoading = exports.StatusSuggestKeywordCombine = exports.SuggestKeywordStatus = void 0;
+exports.selectSuggestKeywordActiveData = exports.selectSuggestKeywordCurrentPath = exports.selectSuggestKeywordData = exports.selectSuggestKeywordStatus = exports.setCurrentPath = exports.setSuggestKeywordChooseTab = exports.setSuggestKeywordSuccess = exports.setSuggestKeywordLoading = exports.StatusSuggestKeywordCombine = exports.SuggestKeywordStatus = void 0;
 const constants_1 = require("../../constants");
 const toolkit_1 = require("@reduxjs/toolkit");
 const KEY = 'suggestKeywordSlice';
@@ -26,6 +26,9 @@ const slice = (0, toolkit_1.createSlice)({
     name: KEY,
     initialState: initialState,
     reducers: {
+        setCurrentPath(state, action) {
+            state.currentPath = action.payload;
+        },
         setSuggestKeywordLoading(state, action) {
             state.status = exports.StatusSuggestKeywordCombine.LOADING;
             state.errors = undefined;
@@ -54,7 +57,7 @@ const slice = (0, toolkit_1.createSlice)({
         },
     },
 });
-_a = slice.actions, exports.setSuggestKeywordLoading = _a.setSuggestKeywordLoading, exports.setSuggestKeywordSuccess = _a.setSuggestKeywordSuccess, exports.setSuggestKeywordChooseTab = _a.setSuggestKeywordChooseTab;
+_a = slice.actions, exports.setSuggestKeywordLoading = _a.setSuggestKeywordLoading, exports.setSuggestKeywordSuccess = _a.setSuggestKeywordSuccess, exports.setSuggestKeywordChooseTab = _a.setSuggestKeywordChooseTab, exports.setCurrentPath = _a.setCurrentPath;
 exports.default = slice.reducer;
 const selectSuggestKeywordStatus = (state) => {
     return state.suggestKeyword.status;

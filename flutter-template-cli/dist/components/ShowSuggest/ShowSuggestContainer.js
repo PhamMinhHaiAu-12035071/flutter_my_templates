@@ -21,11 +21,26 @@ const ShowSuggestContainer = (props) => {
     const status = (0, useAppSelector_1.useAppSelector)(suggestKeywordSlice_1.selectSuggestKeywordStatus);
     const data = (0, useAppSelector_1.useAppSelector)(suggestKeywordSlice_1.selectSuggestKeywordData);
     const currentPath = (0, useAppSelector_1.useAppSelector)(suggestKeywordSlice_1.selectSuggestKeywordCurrentPath);
+    const dataActive = (0, useAppSelector_1.useAppSelector)(suggestKeywordSlice_1.selectSuggestKeywordActiveData);
+    react_1.default.useMemo(() => {
+        console.log(`dataActive: ${dataActive}`);
+        if (dataActive !== undefined) {
+            const backslashCharacter = dataActive.type === constants_1.TYPE_FILE.FOLDER ? '/' : '';
+            const value = `${dataActive.relativePath}${dataActive.name}${backslashCharacter}`;
+            const action = (0, pathSlice_1.setPathAutocomplete)(value);
+            setTimeout(() => {
+                dispatch(action);
+                const actionSuggestCurrentPath = (0, suggestKeywordSlice_1.setCurrentPath)(value);
+                dispatch(actionSuggestCurrentPath);
+            }, 0);
+        }
+    }, [dataActive]);
     (0, ink_1.useInput)((_input, key) => {
         if (key.tab &&
             props.path.length >= 1 &&
             props.status !== pathSlice_1.StatusPathCombine.ERROR &&
             props.status !== pathSlice_1.StatusPathCombine.ERROR_KEYDOWN) {
+            console.log(`show props path: ${props.path} and currentPath: ${currentPath}`);
             if (props.path !== currentPath) {
                 _showSuggest();
             }
@@ -37,9 +52,7 @@ const ShowSuggestContainer = (props) => {
     });
     const _showSuggest = () => {
         const action = (0, suggestKeywordSlice_1.setSuggestKeywordLoading)(props.path);
-        setTimeout(() => {
-            dispatch(action);
-        }, 0);
+        dispatch(action);
         const arrPath = lodash_1.default.chain(props.path).padEnd(2, '/').split('/').value();
         const size = arrPath.length;
         const name = arrPath[size - 1];
@@ -49,9 +62,9 @@ const ShowSuggestContainer = (props) => {
         const formatAbsolutePath = absolutePath.replace(regexAbsolutePath, '');
         const generateUid = (0, uuid_1.v4)();
         const subProcess = childProcess.exec(`${constants_1.SCRIPT_SHOW_FOLDER_AND_FILE_ZIP} NAME="${name}" ABSOLUTE_PATH="${formatAbsolutePath}" UUID=${generateUid}`);
-        subProcess.stdout.on('data', (data) => _onData(data, generateUid));
+        subProcess.stdout.on('data', (data) => _onData(data, generateUid, relativePath, formatAbsolutePath));
     };
-    const _onData = (data, id) => {
+    const _onData = (data, id, relativePath, absolutePath) => {
         if (typeof data === 'string') {
             const [directories, files] = data.split(id);
             let arrNameFolder = [];
@@ -76,6 +89,8 @@ const ShowSuggestContainer = (props) => {
                     type: constants_1.TYPE_FILE.FOLDER,
                     name: item ?? '',
                     isActive: false,
+                    relativePath: relativePath,
+                    absolutePath: absolutePath,
                 }));
             }
             if (arrNameFiles.length > 0) {
@@ -84,12 +99,12 @@ const ShowSuggestContainer = (props) => {
                     type: constants_1.TYPE_FILE.FILE,
                     name: item ?? '',
                     isActive: false,
+                    relativePath: relativePath,
+                    absolutePath: absolutePath,
                 }));
             }
             const action = (0, suggestKeywordSlice_1.setSuggestKeywordSuccess)([...arrMappingFolders, ...arrMappingFiles]);
-            setTimeout(() => {
-                dispatch(action);
-            }, constants_1.DELAY_SUGGEST_KEYWORD);
+            dispatch(action);
         }
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,

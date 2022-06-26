@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selectPathData = exports.selectRelativePath = exports.selectPathExecuteTimeSuccess = exports.selectPathErrors = exports.selectPathStatus = exports.setPath = exports.setPathLoading = exports.setPathFailed = exports.setPathSuccess = exports.StatusPathCombine = exports.PathStatusError = void 0;
+exports.selectPathData = exports.selectRelativePath = exports.selectPathExecuteTimeSuccess = exports.selectPathErrors = exports.selectPathStatus = exports.setPathAutocomplete = exports.setPath = exports.setPathLoading = exports.setPathFailed = exports.setPathSuccess = exports.StatusPathCombine = exports.PathStatusError = void 0;
 const toolkit_1 = require("@reduxjs/toolkit");
 const constants_1 = require("../../constants");
 const KEY = 'path';
@@ -9,6 +9,7 @@ var PathStatusError;
 (function (PathStatusError) {
     PathStatusError["ERROR_KEYDOWN"] = "ERROR_KEYDOWN";
     PathStatusError["KEY_DOWN"] = "KEY_DOWN";
+    PathStatusError["AUTOCOMPLETE"] = "AUTOCOMPLETE";
 })(PathStatusError = exports.PathStatusError || (exports.PathStatusError = {}));
 exports.StatusPathCombine = { ...constants_1.Status, ...PathStatusError };
 const initialState = {
@@ -74,9 +75,14 @@ const slice = (0, toolkit_1.createSlice)({
                 state.status = exports.StatusPathCombine.KEY_DOWN;
             }
         },
+        setPathAutocomplete(state, action) {
+            state.errors = undefined;
+            state.data = action.payload;
+            state.status = exports.StatusPathCombine.AUTOCOMPLETE;
+        },
     },
 });
-_a = slice.actions, exports.setPathSuccess = _a.setPathSuccess, exports.setPathFailed = _a.setPathFailed, exports.setPathLoading = _a.setPathLoading, exports.setPath = _a.setPath;
+_a = slice.actions, exports.setPathSuccess = _a.setPathSuccess, exports.setPathFailed = _a.setPathFailed, exports.setPathLoading = _a.setPathLoading, exports.setPath = _a.setPath, exports.setPathAutocomplete = _a.setPathAutocomplete;
 exports.default = slice.reducer;
 const selectPathStatus = (state) => state.path.status;
 exports.selectPathStatus = selectPathStatus;

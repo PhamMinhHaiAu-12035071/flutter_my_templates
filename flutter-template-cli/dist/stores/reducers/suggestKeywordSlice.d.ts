@@ -6,6 +6,8 @@ export interface SuggestKeywordData {
     type: TYPE_FILE;
     name: string;
     isActive: boolean;
+    absolutePath: string;
+    relativePath: string;
 }
 export declare enum SuggestKeywordStatus {
     CHOOSE_TAB = "CHOOSE_TAB"
@@ -26,7 +28,7 @@ export interface SuggestKeywordState extends BaseState, PerformanceState {
     currentPath: string | undefined;
     indexTab: number;
 }
-export declare const setSuggestKeywordLoading: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setSuggestKeywordSuccess: import("@reduxjs/toolkit").ActionCreatorWithPayload<SuggestKeywordData[], string>, setSuggestKeywordChooseTab: import("@reduxjs/toolkit").ActionCreatorWithoutPayload<string>;
+export declare const setSuggestKeywordLoading: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setSuggestKeywordSuccess: import("@reduxjs/toolkit").ActionCreatorWithPayload<SuggestKeywordData[], string>, setSuggestKeywordChooseTab: import("@reduxjs/toolkit").ActionCreatorWithoutPayload<string>, setCurrentPath: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>;
 declare const _default: import("redux").Reducer<SuggestKeywordState, import("redux").AnyAction>;
 export default _default;
 export declare const selectSuggestKeywordStatus: (state: RootState) => StatusSuggestKeywordCombine;

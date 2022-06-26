@@ -9,6 +9,7 @@ const KEY = 'path';
 export enum PathStatusError {
   ERROR_KEYDOWN = 'ERROR_KEYDOWN',
   KEY_DOWN = 'KEY_DOWN',
+  AUTOCOMPLETE = 'AUTOCOMPLETE',
 }
 export const StatusPathCombine = { ...Status, ...PathStatusError };
 export type StatusPathCombine = Status | PathStatusError;
@@ -87,10 +88,16 @@ const slice = createSlice({
         state.status = StatusPathCombine.KEY_DOWN;
       }
     },
+    setPathAutocomplete(state, action: PayloadAction<string>) {
+      state.errors = undefined;
+      state.data = action.payload;
+      state.status = StatusPathCombine.AUTOCOMPLETE;
+    },
   },
 });
 
-export const { setPathSuccess, setPathFailed, setPathLoading, setPath } = slice.actions;
+export const { setPathSuccess, setPathFailed, setPathLoading, setPath, setPathAutocomplete } =
+  slice.actions;
 export default slice.reducer;
 
 export const selectPathStatus = (state: RootState): StatusPathCombine => state.path.status;
