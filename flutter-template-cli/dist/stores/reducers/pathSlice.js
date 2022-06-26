@@ -1,19 +1,36 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selectPathData = exports.selectRelativePath = exports.selectPathExecuteTimeSuccess = exports.selectPathErrors = exports.selectPathStatus = exports.setPath = exports.setPathLoading = exports.setPathFailed = exports.setPathSuccess = void 0;
+exports.selectPathData = exports.selectRelativePath = exports.selectPathExecuteTimeSuccess = exports.selectPathErrors = exports.selectPathStatus = exports.setPath = exports.setPathLoading = exports.setPathFailed = exports.setPathSuccess = exports.StatusPathCombine = exports.PathStatusError = void 0;
 const toolkit_1 = require("@reduxjs/toolkit");
 const constants_1 = require("../../constants");
 const KEY = 'path';
+var PathStatusError;
+(function (PathStatusError) {
+    PathStatusError["ERROR_KEYDOWN"] = "ERROR_KEYDOWN";
+    PathStatusError["KEY_DOWN"] = "KEY_DOWN";
+})(PathStatusError = exports.PathStatusError || (exports.PathStatusError = {}));
+exports.StatusPathCombine = { ...constants_1.Status, ...PathStatusError };
 const initialState = {
     data: '',
     relativePath: '',
-    status: constants_1.Status.INITIAL,
+    status: exports.StatusPathCombine.INITIAL,
     errors: undefined,
     datedInitial: Date.now(),
     datedSuccess: undefined,
     datedError: undefined,
     datedLoading: undefined,
+    messages: '',
+};
+const LIST_CHARACTER_DENIED = [':', '`'];
+const _validateStringValid = (str) => {
+    const size = str.length;
+    for (let i = 0; i < size; i++) {
+        if (LIST_CHARACTER_DENIED.some(item => item === str.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
 };
 const slice = (0, toolkit_1.createSlice)({
     name: KEY,
@@ -23,7 +40,7 @@ const slice = (0, toolkit_1.createSlice)({
             state.relativePath = action.payload;
             state.data = action.payload;
             state.errors = undefined;
-            state.status = constants_1.Status.SUCCESS;
+            state.status = exports.StatusPathCombine.INITIAL;
             state.datedSuccess = Date.now();
         },
         setPathFailed(state, action) {
@@ -34,12 +51,27 @@ const slice = (0, toolkit_1.createSlice)({
         setPathLoading(state) {
             state.data = '';
             state.errors = undefined;
-            state.status = constants_1.Status.LOADING;
+            state.status = exports.StatusPathCombine.LOADING;
             state.datedLoading = Date.now();
         },
         setPath(state, action) {
-            if (state.status === constants_1.Status.INITIAL || state.status === constants_1.Status.ERROR) {
+            const checkedValid = _validateStringValid(action.payload);
+            if (!checkedValid) {
+                const error = {
+                    type: 'notValid',
+                    field: 'path',
+                    message: "Character valid is not include '`' or ':'",
+                };
+                state.errors = [error];
+                state.status = exports.StatusPathCombine.ERROR_KEYDOWN;
                 state.data = action.payload;
+            }
+            if (state.status === exports.StatusPathCombine.INITIAL ||
+                state.status === exports.StatusPathCombine.ERROR ||
+                checkedValid) {
+                state.errors = undefined;
+                state.data = action.payload;
+                state.status = exports.StatusPathCombine.KEY_DOWN;
             }
         },
     },

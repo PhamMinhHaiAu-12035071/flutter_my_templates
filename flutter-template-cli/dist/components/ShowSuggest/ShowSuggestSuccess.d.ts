@@ -1,2 +1,7 @@
+import { SuggestKeywordData } from '../../stores/reducers/suggestKeywordSlice';
 import React from 'react';
-export declare const ShowSuggestSuccess: () => React.ReactElement;
+interface ShowSuggestSuccessProps {
+    data: Array<SuggestKeywordData>;
+}
+export declare const ShowSuggestSuccess: (props: ShowSuggestSuccessProps) => React.ReactElement;
+export {};

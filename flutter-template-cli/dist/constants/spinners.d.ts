@@ -1,13 +1,7 @@
-declare const checkedSpinner: {
-    interval: number;
-    frames: string[];
-};
-declare const warningSpinner: {
-    interval: number;
-    frames: string[];
-};
-declare const errorSpinner: {
-    interval: number;
-    frames: string[];
-};
-export { checkedSpinner, warningSpinner, errorSpinner };
+import { Spinner } from 'cli-spinners';
+declare const checkedSpinner: Spinner;
+declare const warningSpinner: Spinner;
+declare const errorSpinner: Spinner;
+declare const folderSpinner: Spinner;
+declare const fileSpinner: Spinner;
+export { checkedSpinner, warningSpinner, errorSpinner, folderSpinner, fileSpinner };

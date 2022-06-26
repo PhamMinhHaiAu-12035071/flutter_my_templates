@@ -47,6 +47,15 @@ const InputPathContainer = () => {
     const errors = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathErrors);
     const time = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathExecuteTimeSuccess);
     const path = (0, useAppSelector_1.useAppSelector)(pathSlice_1.selectPathData);
+    // const dataActive = useAppSelector<SuggestKeywordData | undefined>(selectSuggestKeywordActiveData);
+    // React.useMemo(() => {
+    //   console.log(`show data active: ${dataActive}`);
+    //   if (dataActive?.name !== '') {
+    //     const value = `${path}${dataActive?.name}`;
+    //     const action = setPath(value);
+    //     dispatch(action);
+    //   }
+    // }, [dataActive]);
     const _handlePathValid = (value) => {
         const action = (0, pathSlice_1.setPathSuccess)(value);
         dispatch(action);

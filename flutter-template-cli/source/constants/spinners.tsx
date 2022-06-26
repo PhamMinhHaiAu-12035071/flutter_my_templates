@@ -1,14 +1,24 @@
-const checkedSpinner = {
+import { Spinner } from 'cli-spinners';
+
+const checkedSpinner: Spinner = {
   interval: 100,
   frames: ['✅'],
 };
 
-const warningSpinner = {
+const warningSpinner: Spinner = {
   interval: 100,
   frames: ['⚠️'],
 };
-const errorSpinner = {
+const errorSpinner: Spinner = {
   interval: 100,
   frames: ['❗️'],
 };
-export { checkedSpinner, warningSpinner, errorSpinner };
+const folderSpinner: Spinner = {
+  interval: 100,
+  frames: ['📂'],
+};
+const fileSpinner: Spinner = {
+  interval: 100,
+  frames: ['📝'],
+};
+export { checkedSpinner, warningSpinner, errorSpinner, folderSpinner, fileSpinner };

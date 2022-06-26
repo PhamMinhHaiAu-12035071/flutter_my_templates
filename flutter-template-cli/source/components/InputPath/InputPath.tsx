@@ -3,13 +3,13 @@ import TextInput from 'ink-text-input';
 import { ValidationError } from 'fastest-validator';
 import React from 'react';
 import { Styles } from 'ink/build/styles';
-import { checkedSpinner, Colors, SPACE_CHARACTER, Status } from '../../constants';
+import { checkedSpinner, Colors, SPACE_CHARACTER } from '../../constants';
 import _ from 'lodash';
 import { StatusPathCombine } from '../../stores/reducers/pathSlice';
 import { CustomSpinner } from '../CustomSpinner/CustomSpinner';
 import Spinner from 'ink-spinner';
 import { BoxRow } from '../BoxRow/BoxRow';
-import { ShowSuggest } from '../ShowSuggest/ShowSuggest';
+import { ShowSuggestContainer } from '../ShowSuggest/ShowSuggestContainer';
 import { Props } from 'ink/build/components/Text';
 
 /**
@@ -55,16 +55,26 @@ export const InputPath = (props: InputPathProps): React.ReactElement => {
           placeholder={'Enter your path zip of flutter'}
           onSubmit={props.onSubmit}
           onChange={props.onChange}
-          showCursor={props.status === Status.INITIAL || props.status === Status.ERROR}
+          showCursor={props.status !== StatusPathCombine.SUCCESS}
         />
       </Box>
-      <ShowSuggest path={props.path} />
+      <ShowSuggestContainer path={props.path} status={props.status} />
       {/* Handle loading and success */}
       <RenderSpinner status={props.status} time={props.time} />
       {/* Handle error */}
       {!_.isEmpty(props.errors) &&
-        props.status === Status.ERROR &&
+        props.status === StatusPathCombine.ERROR &&
         props.path.length === 0 &&
+        props.errors?.map((error: ValidationError, index: number) => {
+          return (
+            <BoxRow key={index.toString()}>
+              <Text {...styledTextError}>{error.message}</Text>
+            </BoxRow>
+          );
+        })}
+      {/* Handle error key press */}
+      {!_.isEmpty(props.errors) &&
+        props.status === StatusPathCombine.ERROR_KEYDOWN &&
         props.errors?.map((error: ValidationError, index: number) => {
           return (
             <BoxRow key={index.toString()}>
@@ -91,7 +101,7 @@ const styledTime: Props = {
   color: Colors.SYSTEM_GRAY,
 };
 const RenderSpinner = (props: RenderSpinnerProps): React.ReactElement | null => {
-  if (props.status === Status.LOADING) {
+  if (props.status === StatusPathCombine.LOADING) {
     return (
       <BoxRow>
         <Text>
@@ -104,7 +114,7 @@ const RenderSpinner = (props: RenderSpinnerProps): React.ReactElement | null => 
         </Text>
       </BoxRow>
     );
-  } else if (props.status === Status.SUCCESS && props.time !== '') {
+  } else if (props.status === StatusPathCombine.SUCCESS && props.time !== '') {
     return (
       <BoxRow>
         <CustomSpinner

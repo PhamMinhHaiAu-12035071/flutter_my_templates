@@ -6,18 +6,28 @@ import { RootState } from '../index';
 const KEY = 'suggestKeywordSlice';
 
 export interface SuggestKeywordData {
+  id: string;
   type: TYPE_FILE;
   name: string;
+  isActive: boolean;
 }
+export enum SuggestKeywordStatus {
+  CHOOSE_TAB = 'CHOOSE_TAB',
+}
+
+export const StatusSuggestKeywordCombine = { ...Status, ...SuggestKeywordStatus };
+export type StatusSuggestKeywordCombine = Status | SuggestKeywordStatus;
 export interface SuggestKeywordState extends BaseState, PerformanceState {
-  status: Status;
+  status: StatusSuggestKeywordCombine;
   errors: Array<string> | undefined;
   data: Array<SuggestKeywordData>;
   messages: string;
+  currentPath: string | undefined;
+  indexTab: number;
 }
 
 const initialState = {
-  status: Status.INITIAL,
+  status: StatusSuggestKeywordCombine.INITIAL,
   errors: undefined,
   datedInitial: Date.now(),
   datedSuccess: undefined,
@@ -25,34 +35,65 @@ const initialState = {
   datedLoading: undefined,
   messages: '',
   data: [],
+  currentPath: undefined,
+  indexTab: -1,
 } as SuggestKeywordState;
 
 const slice = createSlice({
   name: KEY,
   initialState: initialState,
   reducers: {
-    setSuggestKeywordLoading(state) {
-      state.status = Status.LOADING;
+    setSuggestKeywordLoading(state, action: PayloadAction<string>) {
+      state.status = StatusSuggestKeywordCombine.LOADING;
       state.errors = undefined;
       state.datedLoading = Date.now();
+      state.currentPath = action.payload;
     },
     setSuggestKeywordSuccess(state, action: PayloadAction<Array<SuggestKeywordData>>) {
-      state.status = Status.SUCCESS;
+      state.status = StatusSuggestKeywordCombine.SUCCESS;
       state.errors = undefined;
       state.datedSuccess = Date.now();
       state.data = action.payload.filter(item => item.name !== '');
       state.messages = 'get suggest keyword success';
     },
+    setSuggestKeywordChooseTab(state) {
+      state.status = StatusSuggestKeywordCombine.CHOOSE_TAB;
+      state.errors = undefined;
+      if (state.indexTab === state.data.length - 1) {
+        state.indexTab = 0;
+      } else {
+        state.indexTab = state.indexTab + 1;
+      }
+      state.data = state.data.map((item, index) =>
+        index === state.indexTab
+          ? { ...item, ...{ isActive: true } }
+          : { ...item, ...{ isActive: false } }
+      );
+    },
   },
 });
 
-export const { setSuggestKeywordLoading, setSuggestKeywordSuccess } = slice.actions;
+export const { setSuggestKeywordLoading, setSuggestKeywordSuccess, setSuggestKeywordChooseTab } =
+  slice.actions;
 export default slice.reducer;
 
-export const selectSuggestKeywordStatus = (state: RootState): Status => {
+export const selectSuggestKeywordStatus = (state: RootState): StatusSuggestKeywordCombine => {
   return state.suggestKeyword.status;
 };
 
 export const selectSuggestKeywordData = (state: RootState): Array<SuggestKeywordData> => {
   return state.suggestKeyword.data;
+};
+
+export const selectSuggestKeywordCurrentPath = (state: RootState): string | undefined => {
+  return state.suggestKeyword.currentPath;
+};
+
+export const selectSuggestKeywordActiveData = (
+  state: RootState
+): SuggestKeywordData | undefined => {
+  if (state.suggestKeyword.status === StatusSuggestKeywordCombine.CHOOSE_TAB) {
+    return state.suggestKeyword.data[state.suggestKeyword.indexTab];
+  }
+  return undefined;
 };

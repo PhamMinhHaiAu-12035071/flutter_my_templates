@@ -5,9 +5,8 @@ export declare const PATH_ZIP_EXTENSION = ".zip";
 export * from './colors';
 export * from './spinners';
 export * from './status';
+export * from './delays';
 export declare const SPACE_CHARACTER = " ";
-export declare const ZERO_DELAY = 0;
-export declare const DELAY_QUIT_APP = 150;
 export declare const ABSOLUTE_PATH_FOLDER_BIN: string;
 export declare const ABSOLUTE_PATH_FOLDER_FLUTTER_TEMPLATE: string;
 export declare enum TYPE_FILE {

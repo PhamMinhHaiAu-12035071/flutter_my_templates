@@ -2,7 +2,19 @@ import { RootState } from '../index';
 import { BaseState, PerformanceState } from '../baseState';
 import { Status } from '../../constants';
 import { ValidationError } from 'fastest-validator';
-export declare type StatusPathCombine = Status;
+export declare enum PathStatusError {
+    ERROR_KEYDOWN = "ERROR_KEYDOWN",
+    KEY_DOWN = "KEY_DOWN"
+}
+export declare const StatusPathCombine: {
+    ERROR_KEYDOWN: PathStatusError.ERROR_KEYDOWN;
+    KEY_DOWN: PathStatusError.KEY_DOWN;
+    INITIAL: Status.INITIAL;
+    SUCCESS: Status.SUCCESS;
+    ERROR: Status.ERROR;
+    LOADING: Status.LOADING;
+};
+export declare type StatusPathCombine = Status | PathStatusError;
 export interface PathState extends BaseState, PerformanceState {
     data: string;
     relativePath: string;
