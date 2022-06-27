@@ -4,6 +4,7 @@ import {
   SCRIPT_SHOW_ABSOLUTE_PATH,
   SCRIPT_SHOW_FOLDER_AND_FILE_ZIP,
   TYPE_FILE,
+  ZERO_DELAY,
 } from '../../constants';
 import { execSync } from 'child_process';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,17 +15,23 @@ import {
   selectSuggestKeywordData,
   selectSuggestKeywordStatus,
   setCurrentPath,
+  setInitialData,
   setSuggestKeywordChooseTab,
   setSuggestKeywordLoading,
   setSuggestKeywordSuccess,
   StatusSuggestKeywordCombine,
   SuggestKeywordData,
+  SuggestKeywordStatus,
 } from '../../stores/reducers/suggestKeywordSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ShowSuggest } from './ShowSuggest';
-import { setPathAutocomplete, StatusPathCombine } from '../../stores/reducers/pathSlice';
+import {
+  setPathAutocomplete,
+  setStatusKeyDown,
+  StatusPathCombine,
+} from '../../stores/reducers/pathSlice';
 
 const childProcess = require('child_process');
 
@@ -40,7 +47,6 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
   const dataActive = useAppSelector<SuggestKeywordData | undefined>(selectSuggestKeywordActiveData);
 
   React.useMemo(() => {
-    console.log(`dataActive: ${dataActive}`);
     if (dataActive !== undefined) {
       const backslashCharacter = dataActive.type === TYPE_FILE.FOLDER ? '/' : '';
       const value = `${dataActive.relativePath}${dataActive.name}${backslashCharacter}`;
@@ -49,22 +55,29 @@ export const ShowSuggestContainer = (props: ShowSuggestContainerProps): React.Re
         dispatch(action);
         const actionSuggestCurrentPath = setCurrentPath(value);
         dispatch(actionSuggestCurrentPath);
-      }, 0);
+      }, ZERO_DELAY);
     }
   }, [dataActive]);
-  useInput((_input, key) => {
+  useInput((_, key) => {
+    if (key.return && props.status === StatusPathCombine.AUTOCOMPLETE) {
+      const action = setStatusKeyDown();
+      dispatch(action);
+      const actionInitiatedSuggest = setInitialData();
+      dispatch(actionInitiatedSuggest);
+    }
     if (
       key.tab &&
       props.path.length >= 1 &&
       props.status !== StatusPathCombine.ERROR &&
       props.status !== StatusPathCombine.ERROR_KEYDOWN
     ) {
-      console.log(`show props path: ${props.path} and currentPath: ${currentPath}`);
       if (props.path !== currentPath) {
         _showSuggest();
       } else {
-        const action = setSuggestKeywordChooseTab();
-        dispatch(action);
+        if (status !== SuggestKeywordStatus.EMPTY_DATA) {
+          const action = setSuggestKeywordChooseTab();
+          dispatch(action);
+        }
       }
     }
   });

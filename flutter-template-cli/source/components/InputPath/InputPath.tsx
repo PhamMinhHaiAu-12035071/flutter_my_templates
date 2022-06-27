@@ -11,7 +11,6 @@ import Spinner from 'ink-spinner';
 import { BoxRow } from '../BoxRow/BoxRow';
 import { ShowSuggestContainer } from '../ShowSuggest/ShowSuggestContainer';
 import { Props } from 'ink/build/components/Text';
-import chalk from 'chalk';
 
 /**
  * Define styles
@@ -44,7 +43,6 @@ interface InputPathProps {
 const title = 'Enter your path zip of flutter:';
 
 export const InputPath = (props: InputPathProps): React.ReactElement => {
-  console.log(`InputPath: ${props.path}`);
   return (
     <>
       <Box {...styledContainer}>
@@ -61,12 +59,7 @@ export const InputPath = (props: InputPathProps): React.ReactElement => {
             showCursor={props.status !== StatusPathCombine.SUCCESS}
           />
         )}
-        {props.status === StatusPathCombine.AUTOCOMPLETE && (
-          <Text>
-            {props.path}
-            <Text>{chalk.inverse(' ')}</Text>
-          </Text>
-        )}
+        {props.status === StatusPathCombine.AUTOCOMPLETE && <Text>{props.path}</Text>}
       </Box>
       <ShowSuggestContainer path={props.path} status={props.status} />
       {/* Handle loading and success */}

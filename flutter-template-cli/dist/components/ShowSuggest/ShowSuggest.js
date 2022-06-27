@@ -11,6 +11,7 @@ const BoxRow_1 = require("../BoxRow/BoxRow");
 const ShowSuggestLoading_1 = require("./ShowSuggestLoading");
 const ShowSuggestSuccess_1 = require("./ShowSuggestSuccess");
 const suggestKeywordSlice_1 = require("../../stores/reducers/suggestKeywordSlice");
+const ShowSuggestEmpty_1 = require("./ShowSuggestEmpty");
 const styledWrapperTitleSuggest = {
     paddingLeft: 2,
 };
@@ -23,12 +24,16 @@ const ShowSuggest = (props) => {
             react_1.default.createElement(ink_1.Text, { ...styledTitleSuggest },
                 "Press 'Tab' to show suggest folder or file zip",
                 react_1.default.createElement(ink_1.Newline, null),
-                react_1.default.createElement(ink_1.Text, null, "Press 'Tab' again to choose"))),
+                react_1.default.createElement(ink_1.Text, null, "Press 'Tab' again to move"),
+                react_1.default.createElement(ink_1.Newline, null),
+                react_1.default.createElement(ink_1.Text, null, "Press 'Enter' to choose"))),
         props.status === suggestKeywordSlice_1.StatusSuggestKeywordCombine.LOADING && (react_1.default.createElement(BoxRow_1.BoxRow, null,
             react_1.default.createElement(ShowSuggestLoading_1.ShowSuggestLoading, null))),
         (props.status === suggestKeywordSlice_1.StatusSuggestKeywordCombine.SUCCESS ||
             props.status === suggestKeywordSlice_1.StatusSuggestKeywordCombine.CHOOSE_TAB) && (react_1.default.createElement(BoxRow_1.BoxRow, null,
-            react_1.default.createElement(ShowSuggestSuccess_1.ShowSuggestSuccess, { data: props.data })))));
+            react_1.default.createElement(ShowSuggestSuccess_1.ShowSuggestSuccess, { data: props.data }))),
+        props.status === suggestKeywordSlice_1.SuggestKeywordStatus.EMPTY_DATA && (react_1.default.createElement(BoxRow_1.BoxRow, null,
+            react_1.default.createElement(ShowSuggestEmpty_1.ShowSuggestEmpty, null)))));
 };
 exports.ShowSuggest = ShowSuggest;
 //# sourceMappingURL=ShowSuggest.js.map

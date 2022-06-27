@@ -9,7 +9,9 @@ import { Props } from 'ink/build/components/Text';
 import {
   StatusSuggestKeywordCombine,
   SuggestKeywordData,
+  SuggestKeywordStatus,
 } from '../../stores/reducers/suggestKeywordSlice';
+import { ShowSuggestEmpty } from './ShowSuggestEmpty';
 
 const styledWrapperTitleSuggest: Styles = {
   paddingLeft: 2,
@@ -28,7 +30,9 @@ export const ShowSuggest = (props: ShowSuggestProps): React.ReactElement => {
         <Text {...styledTitleSuggest}>
           Press 'Tab' to show suggest folder or file zip
           <Newline />
-          <Text>Press 'Tab' again to choose</Text>
+          <Text>Press 'Tab' again to move</Text>
+          <Newline />
+          <Text>Press 'Enter' to choose</Text>
         </Text>
       </Box>
       {props.status === StatusSuggestKeywordCombine.LOADING && (
@@ -40,6 +44,11 @@ export const ShowSuggest = (props: ShowSuggestProps): React.ReactElement => {
         props.status === StatusSuggestKeywordCombine.CHOOSE_TAB) && (
         <BoxRow>
           <ShowSuggestSuccess data={props.data} />
+        </BoxRow>
+      )}
+      {props.status === SuggestKeywordStatus.EMPTY_DATA && (
+        <BoxRow>
+          <ShowSuggestEmpty />
         </BoxRow>
       )}
     </>

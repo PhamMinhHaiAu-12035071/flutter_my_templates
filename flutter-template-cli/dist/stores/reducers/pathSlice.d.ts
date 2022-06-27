@@ -23,7 +23,7 @@ export interface PathState extends BaseState, PerformanceState {
     errors: Array<ValidationError> | undefined;
     status: StatusPathCombine;
 }
-export declare const setPathSuccess: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setPathFailed: import("@reduxjs/toolkit").ActionCreatorWithPayload<ValidationError[], string>, setPathLoading: import("@reduxjs/toolkit").ActionCreatorWithoutPayload<string>, setPath: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setPathAutocomplete: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>;
+export declare const setPathSuccess: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setPathFailed: import("@reduxjs/toolkit").ActionCreatorWithPayload<ValidationError[], string>, setPathLoading: import("@reduxjs/toolkit").ActionCreatorWithoutPayload<string>, setPath: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setPathAutocomplete: import("@reduxjs/toolkit").ActionCreatorWithPayload<string, string>, setStatusKeyDown: import("@reduxjs/toolkit").ActionCreatorWithoutPayload<string>;
 declare const _default: import("redux").Reducer<PathState, import("redux").AnyAction>;
 export default _default;
 export declare const selectPathStatus: (state: RootState) => StatusPathCombine;

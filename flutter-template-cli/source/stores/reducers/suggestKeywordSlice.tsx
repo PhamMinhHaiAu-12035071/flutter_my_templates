@@ -15,6 +15,7 @@ export interface SuggestKeywordData {
 }
 export enum SuggestKeywordStatus {
   CHOOSE_TAB = 'CHOOSE_TAB',
+  EMPTY_DATA = 'EMPTY_DATA',
 }
 
 export const StatusSuggestKeywordCombine = { ...Status, ...SuggestKeywordStatus };
@@ -55,10 +56,16 @@ const slice = createSlice({
       state.currentPath = action.payload;
     },
     setSuggestKeywordSuccess(state, action: PayloadAction<Array<SuggestKeywordData>>) {
-      state.status = StatusSuggestKeywordCombine.SUCCESS;
+      const data = action.payload.filter(item => item.name !== '');
+      if (data.length === 0) {
+        state.status = StatusSuggestKeywordCombine.EMPTY_DATA;
+        state.data = [];
+      } else {
+        state.status = StatusSuggestKeywordCombine.SUCCESS;
+        state.data = action.payload.filter(item => item.name !== '');
+      }
       state.errors = undefined;
       state.datedSuccess = Date.now();
-      state.data = action.payload.filter(item => item.name !== '');
       state.messages = 'get suggest keyword success';
     },
     setSuggestKeywordChooseTab(state) {
@@ -75,6 +82,14 @@ const slice = createSlice({
           : { ...item, ...{ isActive: false } }
       );
     },
+    setInitialData(state) {
+      state.status = StatusSuggestKeywordCombine.INITIAL;
+      state.errors = undefined;
+      state.messages = '';
+      state.data = [];
+      state.currentPath = undefined;
+      state.indexTab = -1;
+    },
   },
 });
 
@@ -83,6 +98,7 @@ export const {
   setSuggestKeywordSuccess,
   setSuggestKeywordChooseTab,
   setCurrentPath,
+  setInitialData,
 } = slice.actions;
 export default slice.reducer;
 

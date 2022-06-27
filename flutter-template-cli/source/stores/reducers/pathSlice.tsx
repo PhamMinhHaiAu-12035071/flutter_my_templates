@@ -93,11 +93,20 @@ const slice = createSlice({
       state.data = action.payload;
       state.status = StatusPathCombine.AUTOCOMPLETE;
     },
+    setStatusKeyDown(state) {
+      state.status = StatusPathCombine.KEY_DOWN;
+    },
   },
 });
 
-export const { setPathSuccess, setPathFailed, setPathLoading, setPath, setPathAutocomplete } =
-  slice.actions;
+export const {
+  setPathSuccess,
+  setPathFailed,
+  setPathLoading,
+  setPath,
+  setPathAutocomplete,
+  setStatusKeyDown,
+} = slice.actions;
 export default slice.reducer;
 
 export const selectPathStatus = (state: RootState): StatusPathCombine => state.path.status;

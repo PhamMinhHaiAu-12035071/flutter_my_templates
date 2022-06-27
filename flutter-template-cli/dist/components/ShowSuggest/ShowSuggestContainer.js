@@ -23,7 +23,6 @@ const ShowSuggestContainer = (props) => {
     const currentPath = (0, useAppSelector_1.useAppSelector)(suggestKeywordSlice_1.selectSuggestKeywordCurrentPath);
     const dataActive = (0, useAppSelector_1.useAppSelector)(suggestKeywordSlice_1.selectSuggestKeywordActiveData);
     react_1.default.useMemo(() => {
-        console.log(`dataActive: ${dataActive}`);
         if (dataActive !== undefined) {
             const backslashCharacter = dataActive.type === constants_1.TYPE_FILE.FOLDER ? '/' : '';
             const value = `${dataActive.relativePath}${dataActive.name}${backslashCharacter}`;
@@ -32,21 +31,30 @@ const ShowSuggestContainer = (props) => {
                 dispatch(action);
                 const actionSuggestCurrentPath = (0, suggestKeywordSlice_1.setCurrentPath)(value);
                 dispatch(actionSuggestCurrentPath);
-            }, 0);
+            }, constants_1.ZERO_DELAY);
         }
     }, [dataActive]);
-    (0, ink_1.useInput)((_input, key) => {
+    (0, ink_1.useInput)((_, key) => {
+        if (key.return && props.status === pathSlice_1.StatusPathCombine.AUTOCOMPLETE) {
+            const action = (0, pathSlice_1.setStatusKeyDown)();
+            dispatch(action);
+            const actionInitiatedSuggest = (0, suggestKeywordSlice_1.setInitialData)();
+            dispatch(actionInitiatedSuggest);
+        }
         if (key.tab &&
             props.path.length >= 1 &&
             props.status !== pathSlice_1.StatusPathCombine.ERROR &&
             props.status !== pathSlice_1.StatusPathCombine.ERROR_KEYDOWN) {
-            console.log(`show props path: ${props.path} and currentPath: ${currentPath}`);
             if (props.path !== currentPath) {
+                console.log('show suggest');
                 _showSuggest();
             }
             else {
-                const action = (0, suggestKeywordSlice_1.setSuggestKeywordChooseTab)();
-                dispatch(action);
+                if (status !== suggestKeywordSlice_1.SuggestKeywordStatus.EMPTY_DATA) {
+                    console.log('show active tab');
+                    const action = (0, suggestKeywordSlice_1.setSuggestKeywordChooseTab)();
+                    dispatch(action);
+                }
             }
         }
     });
