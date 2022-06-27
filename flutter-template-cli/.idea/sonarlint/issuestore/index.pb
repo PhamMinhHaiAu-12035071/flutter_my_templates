@@ -68,3 +68,9 @@ K
 	.eslintrc,4/b/4be5f5e3cea171c304090be92469b2f2cb51039a
 a
 1source/components/CustomSpinner/CustomSpinner.tsx,7/9/7956f87e39fd68d33c5caecfed72ba3cfe23dbe4
+h
+8source/components/ShowSuggest/ItemShowSuggestSuccess.tsx,9/5/95f2a31b7088a859f7bcf93a0238684b765a954b
+d
+4source/components/ShowSuggest/ShowSuggestSuccess.tsx,1/f/1fcb06fd26dd1a84cef07fa60269310800a5e63c
+O
+source/hooks/useAppSelector.tsx,0/9/09cfb29b4173d1e98ec60fe346fc2a9dba44bdb7

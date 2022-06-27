@@ -14,6 +14,7 @@ const CustomSpinner_1 = require("../CustomSpinner/CustomSpinner");
 const ink_spinner_1 = __importDefault(require("ink-spinner"));
 const BoxRow_1 = require("../BoxRow/BoxRow");
 const ShowSuggestContainer_1 = require("../ShowSuggest/ShowSuggestContainer");
+const chalk_1 = __importDefault(require("chalk"));
 /**
  * Define styles
  */
@@ -39,7 +40,9 @@ const InputPath = (props) => {
             react_1.default.createElement(ink_1.Box, { ...styledTitle },
                 react_1.default.createElement(ink_1.Text, null, title)),
             props.status !== pathSlice_1.StatusPathCombine.AUTOCOMPLETE && (react_1.default.createElement(ink_text_input_1.default, { highlightPastedText: true, value: props.path, placeholder: 'Enter your path zip of flutter', onSubmit: props.onSubmit, onChange: props.onChange, showCursor: props.status !== pathSlice_1.StatusPathCombine.SUCCESS })),
-            props.status === pathSlice_1.StatusPathCombine.AUTOCOMPLETE && react_1.default.createElement(ink_1.Text, null, props.path)),
+            props.status === pathSlice_1.StatusPathCombine.AUTOCOMPLETE && (react_1.default.createElement(ink_1.Text, null,
+                props.path,
+                react_1.default.createElement(ink_1.Text, null, chalk_1.default.inverse(' '))))),
         react_1.default.createElement(ShowSuggestContainer_1.ShowSuggestContainer, { path: props.path, status: props.status }),
         react_1.default.createElement(RenderSpinner, { status: props.status, time: props.time }),
         !lodash_1.default.isEmpty(props.errors) &&

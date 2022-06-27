@@ -11,6 +11,7 @@ import Spinner from 'ink-spinner';
 import { BoxRow } from '../BoxRow/BoxRow';
 import { ShowSuggestContainer } from '../ShowSuggest/ShowSuggestContainer';
 import { Props } from 'ink/build/components/Text';
+import chalk from 'chalk';
 
 /**
  * Define styles
@@ -60,7 +61,12 @@ export const InputPath = (props: InputPathProps): React.ReactElement => {
             showCursor={props.status !== StatusPathCombine.SUCCESS}
           />
         )}
-        {props.status === StatusPathCombine.AUTOCOMPLETE && <Text>{props.path}</Text>}
+        {props.status === StatusPathCombine.AUTOCOMPLETE && (
+          <Text>
+            {props.path}
+            <Text>{chalk.inverse(' ')}</Text>
+          </Text>
+        )}
       </Box>
       <ShowSuggestContainer path={props.path} status={props.status} />
       {/* Handle loading and success */}
