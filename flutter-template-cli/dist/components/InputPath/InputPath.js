@@ -31,6 +31,9 @@ const styledTitle = {
 const styledTextError = {
     color: constants_1.Colors.SYSTEM_RED,
 };
+const styledMx = {
+    marginLeft: 2,
+};
 const title = 'Enter your path zip of flutter:';
 const InputPath = (props) => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -45,13 +48,13 @@ const InputPath = (props) => {
             props.status === pathSlice_1.StatusPathCombine.ERROR &&
             props.path.length === 0 &&
             props.errors?.map((error, index) => {
-                return (react_1.default.createElement(BoxRow_1.BoxRow, { key: index.toString() },
+                return (react_1.default.createElement(BoxRow_1.BoxRow, { key: index.toString(), ...styledMx },
                     react_1.default.createElement(ink_1.Text, { ...styledTextError }, error.message)));
             }),
         !lodash_1.default.isEmpty(props.errors) &&
             props.status === pathSlice_1.StatusPathCombine.ERROR_KEYDOWN &&
             props.errors?.map((error, index) => {
-                return (react_1.default.createElement(BoxRow_1.BoxRow, { key: index.toString() },
+                return (react_1.default.createElement(BoxRow_1.BoxRow, { key: index.toString(), ...styledMx },
                     react_1.default.createElement(ink_1.Text, { ...styledTextError }, error.message)));
             })));
 };

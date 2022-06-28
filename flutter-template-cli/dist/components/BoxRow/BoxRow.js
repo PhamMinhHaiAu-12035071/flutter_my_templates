@@ -10,7 +10,9 @@ const styledContainer = {
     marginTop: 1,
 };
 const BoxRow = (props) => {
-    return react_1.default.createElement(ink_1.Box, { ...styledContainer }, props.children);
+    const { children, ...rest } = props;
+    const styled = { ...styledContainer, ...rest };
+    return react_1.default.createElement(ink_1.Box, { ...styled }, children);
 };
 exports.BoxRow = BoxRow;
 //# sourceMappingURL=BoxRow.js.map

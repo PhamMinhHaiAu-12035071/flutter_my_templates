@@ -27,10 +27,13 @@ const styledTitle: Styles = {
   marginRight: 1,
 };
 
-const styledTextError = {
+const styledTextError: Props = {
   color: Colors.SYSTEM_RED,
 };
 
+const styledMx: Styles = {
+  marginLeft: 2,
+};
 interface InputPathProps {
   path: string;
   onSubmit: (value: string) => void;
@@ -70,7 +73,7 @@ export const InputPath = (props: InputPathProps): React.ReactElement => {
         props.path.length === 0 &&
         props.errors?.map((error: ValidationError, index: number) => {
           return (
-            <BoxRow key={index.toString()}>
+            <BoxRow key={index.toString()} {...styledMx}>
               <Text {...styledTextError}>{error.message}</Text>
             </BoxRow>
           );
@@ -80,7 +83,7 @@ export const InputPath = (props: InputPathProps): React.ReactElement => {
         props.status === StatusPathCombine.ERROR_KEYDOWN &&
         props.errors?.map((error: ValidationError, index: number) => {
           return (
-            <BoxRow key={index.toString()}>
+            <BoxRow key={index.toString()} {...styledMx}>
               <Text {...styledTextError}>{error.message}</Text>
             </BoxRow>
           );

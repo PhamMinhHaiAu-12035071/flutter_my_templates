@@ -1,4 +1,9 @@
-import { ABSOLUTE_PATH_FOLDER_BIN, SCRIPT_SHOW_ABSOLUTE_PATH, Status } from '../../constants';
+import {
+  ABSOLUTE_PATH_FOLDER_BIN,
+  SCRIPT_SHOW_ABSOLUTE_PATH,
+  Status,
+  ZERO_DELAY,
+} from '../../constants';
 import React from 'react';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { BoxRow } from '../BoxRow/BoxRow';
@@ -16,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores';
 import { CopyFileZipSuccess } from './CopyFileZipSuccess';
 import { CopyFileZipError } from './CopyFileZipError';
+import { setUnzipLoading } from '../../stores/reducers/unzipSlice';
 
 const execSync = require('child_process').execSync;
 
@@ -37,6 +43,10 @@ export const CopyFileZipContainer = (): React.ReactElement | null => {
     if (error === null && code === 0 && cmd !== '' && extra?.destination !== '') {
       const action = setCopyZipFlutterSuccess(extra?.destination as string);
       dispatch(action);
+      setTimeout(() => {
+        const actionUnzipLoading = setUnzipLoading();
+        dispatch(actionUnzipLoading);
+      }, ZERO_DELAY);
     } else {
       const action = setCopyZipFlutterError(error as string);
       dispatch(action);

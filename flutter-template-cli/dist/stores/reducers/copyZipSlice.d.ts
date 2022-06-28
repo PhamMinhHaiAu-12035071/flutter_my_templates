@@ -16,3 +16,4 @@ export declare const selectCopyZipFlutterStatus: (state: RootState) => Status;
 export declare const selectCopyZipFlutterExecuteTimeSuccess: (state: RootState) => string;
 export declare const selectCopyZipFlutterExecuteTimeError: (state: RootState) => string;
 export declare const selectProgressCopyZipFlutter: (state: RootState) => Array<RsyncProgressData>;
+export declare const selectCopyZipFlutterData: (state: RootState) => string;

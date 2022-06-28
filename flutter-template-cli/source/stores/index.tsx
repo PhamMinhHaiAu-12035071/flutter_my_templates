@@ -4,6 +4,7 @@ import sanitizedConfig from '../constants/configs';
 import createFolderReducer from './reducers/createFolderSlice';
 import copyZipFlutterReducer from './reducers/copyZipSlice';
 import suggestKeywordReducer from './reducers/suggestKeywordSlice';
+import unzipReducer from './reducers/unzipSlice';
 const middlewares = [];
 
 if (sanitizedConfig.NODE_ENV === `development`) {
@@ -17,6 +18,7 @@ export const store = configureStore({
     createFolder: createFolderReducer,
     copyZipFlutter: copyZipFlutterReducer,
     suggestKeyword: suggestKeywordReducer,
+    unzip: unzipReducer,
   },
   middleware: middlewares,
 });

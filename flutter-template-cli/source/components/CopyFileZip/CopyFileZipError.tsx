@@ -16,7 +16,6 @@ const styledTime: Props = {
 export const CopyFileZipError = (): React.ReactElement => {
   const time = useAppSelector<string>(selectCopyZipFlutterExecuteTimeError);
   const { exit } = useApp();
-  // Exit the app after 5 seconds
   React.useEffect(() => {
     setTimeout(() => {
       exit();

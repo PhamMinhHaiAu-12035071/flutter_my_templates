@@ -89,3 +89,7 @@ export const selectCopyZipFlutterExecuteTimeError = (state: RootState): string =
 export const selectProgressCopyZipFlutter = (state: RootState): Array<RsyncProgressData> => {
   return state.copyZipFlutter.progress;
 };
+
+export const selectCopyZipFlutterData = (state: RootState): string => {
+  return state.copyZipFlutter.data;
+};

@@ -46,12 +46,10 @@ const ShowSuggestContainer = (props) => {
             props.status !== pathSlice_1.StatusPathCombine.ERROR &&
             props.status !== pathSlice_1.StatusPathCombine.ERROR_KEYDOWN) {
             if (props.path !== currentPath) {
-                console.log('show suggest');
                 _showSuggest();
             }
             else {
                 if (status !== suggestKeywordSlice_1.SuggestKeywordStatus.EMPTY_DATA) {
-                    console.log('show active tab');
                     const action = (0, suggestKeywordSlice_1.setSuggestKeywordChooseTab)();
                     dispatch(action);
                 }

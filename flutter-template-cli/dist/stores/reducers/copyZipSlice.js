@@ -1,7 +1,7 @@
 "use strict";
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selectProgressCopyZipFlutter = exports.selectCopyZipFlutterExecuteTimeError = exports.selectCopyZipFlutterExecuteTimeSuccess = exports.selectCopyZipFlutterStatus = exports.setCopyZipFlutterError = exports.setProgress = exports.setCopyZipFlutterSuccess = exports.setCopyZipFlutterLoading = void 0;
+exports.selectCopyZipFlutterData = exports.selectProgressCopyZipFlutter = exports.selectCopyZipFlutterExecuteTimeError = exports.selectCopyZipFlutterExecuteTimeSuccess = exports.selectCopyZipFlutterStatus = exports.setCopyZipFlutterError = exports.setProgress = exports.setCopyZipFlutterSuccess = exports.setCopyZipFlutterLoading = void 0;
 const toolkit_1 = require("@reduxjs/toolkit");
 const constants_1 = require("../../constants");
 const KEY = 'createZipSlice';
@@ -70,4 +70,8 @@ const selectProgressCopyZipFlutter = (state) => {
     return state.copyZipFlutter.progress;
 };
 exports.selectProgressCopyZipFlutter = selectProgressCopyZipFlutter;
+const selectCopyZipFlutterData = (state) => {
+    return state.copyZipFlutter.data;
+};
+exports.selectCopyZipFlutterData = selectCopyZipFlutterData;
 //# sourceMappingURL=copyZipSlice.js.map
