@@ -1,7 +1,8 @@
 import { BaseState, PerformanceState } from '../baseState';
 import { Status } from '../../constants';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../index';
+import { Progress } from 'progress-stream';
 
 const KEY = 'unzipSlice';
 
@@ -10,6 +11,7 @@ export interface UnzipSliceState extends BaseState, PerformanceState {
   errors: Array<string> | undefined;
   data: string;
   messages: string;
+  progress: Array<Progress>;
 }
 
 const initialState = {
@@ -21,6 +23,7 @@ const initialState = {
   datedLoading: undefined,
   messages: '',
   data: '',
+  progress: [],
 } as UnzipSliceState;
 
 const slice = createSlice({
@@ -32,13 +35,21 @@ const slice = createSlice({
       state.errors = undefined;
       state.datedLoading = Date.now();
     },
+    setProgress(state, action: PayloadAction<Progress>) {
+      state.errors = undefined;
+      state.progress = [...state.progress, action.payload];
+    },
   },
 });
 
-export const { setUnzipLoading } = slice.actions;
+export const { setUnzipLoading, setProgress } = slice.actions;
 
 export default slice.reducer;
 
 export const selectUnzipStatus = (state: RootState): Status => {
   return state.unzip.status;
+};
+
+export const selectUnzipProgress = (state: RootState): Array<Progress> => {
+  return state.unzip.progress;
 };

@@ -52,7 +52,7 @@ const slice = createSlice({
       state.relativePath = action.payload;
       state.data = action.payload;
       state.errors = undefined;
-      state.status = StatusPathCombine.INITIAL;
+      state.status = StatusPathCombine.SUCCESS;
       state.datedSuccess = Date.now();
     },
     setPathFailed(state, action: PayloadAction<Array<ValidationError>>) {

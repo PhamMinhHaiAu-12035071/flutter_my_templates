@@ -6,6 +6,7 @@ import { CreateFolderBinContainer } from './components/CreateFolderBin/CreateFol
 import { CopyFileZipContainer } from './components/CopyFileZip/CopyFileZipContainer';
 import { ShowProgressTable } from './components/CopyFileZip/ShowProgressTable';
 import { UnzipContainer } from './components/Unzip/UnzipContainer';
+import { ShowProgressUnzip } from './components/Unzip/ShowProgressUnzip';
 
 const App = () => (
   <Provider store={store}>
@@ -14,6 +15,7 @@ const App = () => (
     <ShowProgressTable />
     <CopyFileZipContainer />
     <UnzipContainer />
+    <ShowProgressUnzip />
   </Provider>
 );
 
