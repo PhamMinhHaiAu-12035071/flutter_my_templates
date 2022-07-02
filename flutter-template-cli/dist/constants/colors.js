@@ -43,6 +43,18 @@ Object.defineProperty(Colors, "SYSTEM_TEAL", {
     writable: true,
     value: '#64D2FF'
 });
+Object.defineProperty(Colors, "SYSTEM_BLUE", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: '#0A84FF'
+});
+Object.defineProperty(Colors, "SYSTEM_INDIGO", {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: '#3634A3'
+});
 Object.defineProperty(Colors, "WHITE", {
     enumerable: true,
     configurable: true,

@@ -25,6 +25,7 @@
     "dotenv": "^16.0.1",
     "fastest-validator": "^1.12.0",
     "ink": "^3.2.0",
+    "ink-link": "^2.0.0",
     "ink-spinner": "^4.0.3",
     "ink-table": "^3.0.0",
     "ink-task-list": "^2.0.0",
@@ -40,6 +41,7 @@
     "redux-logger": "^3.0.6",
     "rsync": "^0.6.1",
     "shelljs": "^0.8.5",
+    "terminal-link": "^3.0.0",
     "ts-node": "^10.8.1",
     "unzipper": "^0.10.11",
     "uuid": "^8.3.2"

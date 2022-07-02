@@ -31,9 +31,7 @@ const UnzipContainer = () => {
         dispatch(action);
     };
     const _onSuccess = () => {
-        // const action = setSuccess();
-        // dispatch(action);
-        const action = (0, unzipSlice_1.setError)('');
+        const action = (0, unzipSlice_1.setSuccess)();
         dispatch(action);
     };
     const _onError = (error) => {

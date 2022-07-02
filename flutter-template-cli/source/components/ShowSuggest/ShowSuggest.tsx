@@ -12,12 +12,16 @@ import {
   SuggestKeywordStatus,
 } from '../../stores/reducers/suggestKeywordSlice';
 import { ShowSuggestEmpty } from './ShowSuggestEmpty';
+import { LinkDownloadSDKFlutter } from '../LinkDownloadFlutterSDK/LinkDownloadSDKFLutter';
 
 const styledWrapperTitleSuggest: Styles = {
   paddingLeft: 2,
 };
 const styledTitleSuggest: Props = {
   color: Colors.SYSTEM_GRAY_2,
+};
+const styledTextKeySuggest: Props = {
+  color: Colors.SYSTEM_GREEN,
 };
 interface ShowSuggestProps {
   status: StatusSuggestKeywordCombine;
@@ -28,11 +32,17 @@ export const ShowSuggest = (props: ShowSuggestProps): React.ReactElement => {
     <>
       <Box {...styledWrapperTitleSuggest}>
         <Text {...styledTitleSuggest}>
-          Press 'Tab' to show suggest folder or file zip
+          <LinkDownloadSDKFlutter />
           <Newline />
-          <Text>Press 'Tab' again to move</Text>
+          Press <Text {...styledTextKeySuggest}>Tab</Text> to show suggest folder or file zip
           <Newline />
-          <Text>Press 'Enter' to choose</Text>
+          <Text>
+            Press <Text {...styledTextKeySuggest}>Tab</Text> again to move
+          </Text>
+          <Newline />
+          <Text>
+            Press <Text {...styledTextKeySuggest}>Enter</Text> to choose
+          </Text>
         </Text>
       </Box>
       {props.status === StatusSuggestKeywordCombine.LOADING && (

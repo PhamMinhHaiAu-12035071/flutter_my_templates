@@ -28,8 +28,6 @@ M
 source/constants/spinners.tsx,8/6/86141bed31017508aa2dfbce31bf22964cdff00a
 K
 source/constants/status.tsx,8/2/826255540ff2f96eb0a0015ae6163227916e0aa2
-K
-source/constants/colors.tsx,c/a/caabd75e6289b1421a4bda6e3b3f11dca35194be
 a
 1source/components/CustomSpinner/CustomSpinner.tsx,7/9/7956f87e39fd68d33c5caecfed72ba3cfe23dbe4
 h
@@ -38,8 +36,6 @@ d
 4source/components/ShowSuggest/ShowSuggestSuccess.tsx,1/f/1fcb06fd26dd1a84cef07fa60269310800a5e63c
 ^
 .source/stores/reducers/suggestKeywordSlice.tsx,6/8/68e9d4c20c6a81fd871bc6ec469835040f5455bd
-]
--source/components/ShowSuggest/ShowSuggest.tsx,7/e/7e43f4ea06f58a2955bcfe914b248c542d6a6068
 f
 6source/components/ShowSuggest/ShowSuggestContainer.tsx,a/e/ae963bdfd8649158b57551762778c6527c5fa792
 G
@@ -60,15 +56,47 @@ Y
 )source/components/InputPath/InputPath.tsx,e/7/e764ed9010aad115b40fc070ecaeeee7f8018bca
 T
 $source/stores/reducers/pathSlice.tsx,a/d/ad91989bcb2972f4006cfcb7acdd4d962d26429f
-b
-2source/components/InputPath/InputPathContainer.tsx,6/6/66621e2f4f2bdcce73054925dc4a4a9a2b0e3e82
 =
 .editorconfig,6/2/626a747c8694eaae66f2afb3d1a745b045782c70
 Q
 !source/services/rsync.service.tsx,5/4/54f9700b5bbe34950dab9051d334e329a6bf6fda
 f
 6source/components/CopyFileZip/CopyFileZipContainer.tsx,f/f/ff42ccb8e3eac16950f5a6a90e8758c5f5dc1233
-N
-source/services/worker_main.js,8/0/8094ff9e0d3623e47087671bff071b8174cb5d27
-Z
-*source/services/progress_unzip.service.tsx,6/f/6fccd4ef55450b493c6572ec95c758ebb76c5e03
+=
+tsconfig.json,6/1/61ebb9fd6e8cf9082658121d5d81e297791dacd0
+J
+source/constants/index.tsx,b/a/baebba9ad893d3b119dbbde7870f4f47f78509f8
+I
+source/services/index.tsx,3/b/3be740dfab1074239a255447d78af1d025fe91ed
+O
+source/hooks/useAppSelector.tsx,0/9/09cfb29b4173d1e98ec60fe346fc2a9dba44bdb7
+_
+/source/services/progress_unzip_service/index.ts,b/c/bcce41536ab1019b2afbd4211e347f2fd2e3a2c6
+X
+(source/components/Unzip/UnzipLoading.tsx,b/4/b46602a89ee789eb463919174309b71b2cf0a739
+d
+4source/components/CopyFileZip/CopyFileZipSuccess.tsx,a/5/a56225bdc1a859bd81fa079eb61af668a08da958
+J
+source/utilities/index.tsx,a/2/a28c73a5df991f783fbbfe7766ebd60c78f28273
+]
+-source/components/Unzip/ShowProgressUnzip.tsx,f/a/fa587de04fb91e4c9ca37997541d2567c67ccb49
+c
+3source/components/CopyFileZip/ShowProgressTable.tsx,e/9/e9e1cf736d7bce0a74499b82fc8685ff6cb88022
+q
+Asource/services/progress_unzip_service/progress_unzip.service.tsx,1/1/11e63bd18031cebde4b93ec3dcec90db94e5ac5b
+X
+(source/components/Unzip/UnzipSuccess.tsx,8/7/871e869b5392964262f95c6c03174c9884be60b3
+c
+3source/services/progress_unzip_service/unzipFile.ts,7/f/7f639d7fb722aedafd7b57d29a6d1b900d445fa3
+W
+'source/stores/reducers/copyZipSlice.tsx,8/d/8d38edaab769ae38061aa7121cf1dbdcbb9494ec
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
+9
+	.eslintrc,4/b/4be5f5e3cea171c304090be92469b2f2cb51039a
+b
+2source/components/CopyFileZip/CopyFileZipError.tsx,4/e/4e04ff3edcc5e8a562dc4d8a398cff36f50da18f
+K
+source/constants/delays.tsx,4/8/4896081913c3859251bcccc2a17a3dc43c3eeb41
+U
+%source/stores/reducers/unzipSlice.tsx,8/e/8e81d81a2c7b424b5f45a3f437aae3c6a2da7708

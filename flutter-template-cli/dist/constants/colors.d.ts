@@ -8,5 +8,7 @@ export declare abstract class Colors {
     static readonly SYSTEM_GRAY = "#8E8E93";
     static readonly SYSTEM_GRAY_2 = "#636366";
     static readonly SYSTEM_TEAL = "#64D2FF";
+    static readonly SYSTEM_BLUE = "#0A84FF";
+    static readonly SYSTEM_INDIGO = "#3634A3";
     static readonly WHITE = "#FFFFFF";
 }

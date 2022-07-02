@@ -12,21 +12,35 @@ const ShowSuggestLoading_1 = require("./ShowSuggestLoading");
 const ShowSuggestSuccess_1 = require("./ShowSuggestSuccess");
 const suggestKeywordSlice_1 = require("../../stores/reducers/suggestKeywordSlice");
 const ShowSuggestEmpty_1 = require("./ShowSuggestEmpty");
+const LinkDownloadSDKFLutter_1 = require("../LinkDownloadFlutterSDK/LinkDownloadSDKFLutter");
 const styledWrapperTitleSuggest = {
     paddingLeft: 2,
 };
 const styledTitleSuggest = {
     color: constants_1.Colors.SYSTEM_GRAY_2,
 };
+const styledTextKeySuggest = {
+    color: constants_1.Colors.SYSTEM_GREEN,
+};
 const ShowSuggest = (props) => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(ink_1.Box, { ...styledWrapperTitleSuggest },
             react_1.default.createElement(ink_1.Text, { ...styledTitleSuggest },
-                "Press 'Tab' to show suggest folder or file zip",
+                react_1.default.createElement(LinkDownloadSDKFLutter_1.LinkDownloadSDKFlutter, null),
                 react_1.default.createElement(ink_1.Newline, null),
-                react_1.default.createElement(ink_1.Text, null, "Press 'Tab' again to move"),
+                "Press ",
+                react_1.default.createElement(ink_1.Text, { ...styledTextKeySuggest }, "Tab"),
+                " to show suggest folder or file zip",
                 react_1.default.createElement(ink_1.Newline, null),
-                react_1.default.createElement(ink_1.Text, null, "Press 'Enter' to choose"))),
+                react_1.default.createElement(ink_1.Text, null,
+                    "Press ",
+                    react_1.default.createElement(ink_1.Text, { ...styledTextKeySuggest }, "Tab"),
+                    " again to move"),
+                react_1.default.createElement(ink_1.Newline, null),
+                react_1.default.createElement(ink_1.Text, null,
+                    "Press ",
+                    react_1.default.createElement(ink_1.Text, { ...styledTextKeySuggest }, "Enter"),
+                    " to choose"))),
         props.status === suggestKeywordSlice_1.StatusSuggestKeywordCombine.LOADING && (react_1.default.createElement(BoxRow_1.BoxRow, null,
             react_1.default.createElement(ShowSuggestLoading_1.ShowSuggestLoading, null))),
         (props.status === suggestKeywordSlice_1.StatusSuggestKeywordCombine.SUCCESS ||

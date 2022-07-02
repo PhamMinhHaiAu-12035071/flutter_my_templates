@@ -9,5 +9,7 @@ export abstract class Colors {
   public static readonly SYSTEM_GRAY = '#8E8E93';
   public static readonly SYSTEM_GRAY_2 = '#636366';
   public static readonly SYSTEM_TEAL = '#64D2FF';
+  public static readonly SYSTEM_BLUE = '#0A84FF';
+  public static readonly SYSTEM_INDIGO = '#3634A3';
   public static readonly WHITE = '#FFFFFF';
 }
