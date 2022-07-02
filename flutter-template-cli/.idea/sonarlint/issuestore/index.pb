@@ -12,8 +12,6 @@ K
 source/stores/baseState.tsx,5/c/5c608c867b76b667ec7b1732bd570d208b309407
 \
 ,source/stores/reducers/createFolderSlice.tsx,0/b/0ba8637f3d51d1cff44cfed66c424eedb208c9f6
-I
-source/services/index.tsx,3/b/3be740dfab1074239a255447d78af1d025fe91ed
 h
 8source/components/CreateFolderBin/CreateFolderExists.tsx,4/c/4c62487063e65166b83dc6ebebee5cad2698b6c8
 i
@@ -32,12 +30,8 @@ K
 source/constants/status.tsx,8/2/826255540ff2f96eb0a0015ae6163227916e0aa2
 K
 source/constants/colors.tsx,c/a/caabd75e6289b1421a4bda6e3b3f11dca35194be
-9
-	.eslintrc,4/b/4be5f5e3cea171c304090be92469b2f2cb51039a
 a
 1source/components/CustomSpinner/CustomSpinner.tsx,7/9/7956f87e39fd68d33c5caecfed72ba3cfe23dbe4
-O
-source/hooks/useAppSelector.tsx,0/9/09cfb29b4173d1e98ec60fe346fc2a9dba44bdb7
 h
 8source/components/ShowSuggest/ItemShowSuggestSuccess.tsx,9/5/95f2a31b7088a859f7bcf93a0238684b765a954b
 d
@@ -48,10 +42,6 @@ d
 -source/components/ShowSuggest/ShowSuggest.tsx,7/e/7e43f4ea06f58a2955bcfe914b248c542d6a6068
 f
 6source/components/ShowSuggest/ShowSuggestContainer.tsx,a/e/ae963bdfd8649158b57551762778c6527c5fa792
-K
-source/constants/delays.tsx,4/8/4896081913c3859251bcccc2a17a3dc43c3eeb41
-b
-2source/components/CopyFileZip/CopyFileZipError.tsx,4/e/4e04ff3edcc5e8a562dc4d8a398cff36f50da18f
 G
 source/stores/index.tsx,4/b/4b7b7331e004a41de5e4c9541de24e12114ff4cd
 S
@@ -62,19 +52,23 @@ A
 config/config.env,6/9/69eecf2a1e145d736da34f0069375dfc2801880d
 d
 4source/components/CopyFileZip/CopyFileZipLoading.tsx,4/4/44edf092a45d65eb146f3ecb4551fd80022a8345
-d
-4source/components/CopyFileZip/CopyFileZipSuccess.tsx,a/5/a56225bdc1a859bd81fa079eb61af668a08da958
-X
-(source/components/Unzip/UnzipLoading.tsx,b/4/b46602a89ee789eb463919174309b71b2cf0a739
 n
 >source/components/CreateFolderBin/CreateFolderBinContainer.tsx,a/1/a1c41303bf829756eed37bd99433cc397be126df
 b
 2source/components/ShowSuggest/ShowSuggestEmpty.tsx,e/a/ea581e850c2abecb1309f87cf5110959af647063
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 Y
 )source/components/InputPath/InputPath.tsx,e/7/e764ed9010aad115b40fc070ecaeeee7f8018bca
 T
 $source/stores/reducers/pathSlice.tsx,a/d/ad91989bcb2972f4006cfcb7acdd4d962d26429f
 b
 2source/components/InputPath/InputPathContainer.tsx,6/6/66621e2f4f2bdcce73054925dc4a4a9a2b0e3e82
+=
+.editorconfig,6/2/626a747c8694eaae66f2afb3d1a745b045782c70
+Q
+!source/services/rsync.service.tsx,5/4/54f9700b5bbe34950dab9051d334e329a6bf6fda
+f
+6source/components/CopyFileZip/CopyFileZipContainer.tsx,f/f/ff42ccb8e3eac16950f5a6a90e8758c5f5dc1233
+N
+source/services/worker_main.js,8/0/8094ff9e0d3623e47087671bff071b8174cb5d27
+Z
+*source/services/progress_unzip.service.tsx,6/f/6fccd4ef55450b493c6572ec95c758ebb76c5e03

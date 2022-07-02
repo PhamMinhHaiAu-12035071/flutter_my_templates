@@ -3,13 +3,19 @@ import { UnzipLoading } from './UnzipLoading';
 import React from 'react';
 import { ABSOLUTE_PATH_FOLDER_BIN, Status } from '../../constants';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { selectUnzipStatus, setProgress } from '../../stores/reducers/unzipSlice';
+import {
+  selectUnzipStatus,
+  setError,
+  setProgress,
+  setSuccess,
+} from '../../stores/reducers/unzipSlice';
 import { selectCopyZipFlutterData } from '../../stores/reducers/copyZipSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores';
-import { Worker } from 'worker_threads';
-
-const util = require('util');
+import { ProgressUnzipService } from '../../services/progress_unzip_service';
+import { Progress } from 'progress-stream';
+import { UnzipSuccess } from './UnzipSuccess';
+import { UnzipError } from './UnzipError';
 
 export const UnzipContainer = (): React.ReactElement | null => {
   const status = useAppSelector<Status>(selectUnzipStatus);
@@ -17,22 +23,27 @@ export const UnzipContainer = (): React.ReactElement | null => {
   const dispatch = useDispatch<AppDispatch>();
 
   const _unzipFolder = (): void => {
-    console.log('called _unzipFolder');
-    const worker = new Worker('./source/services/worker_main.js', {
-      workerData: {
-        source: pathZip,
-        destination: ABSOLUTE_PATH_FOLDER_BIN,
-        path: './worker_demo.ts',
-      },
-    });
-
-    worker.on('message', result => {
-      console.log(`show result worker`);
-      console.log(util.inspect(result, { showHidden: false, depth: null, colors: true }));
-      const action = setProgress(result);
-      dispatch(action);
+    ProgressUnzipService.getInstance().unzipFile(pathZip, ABSOLUTE_PATH_FOLDER_BIN, {
+      onProgress: _onProgress,
+      onSuccess: _onSuccess,
+      onError: _onError,
     });
   };
+
+  const _onProgress = (progress: Progress): void => {
+    const action = setProgress(progress);
+    dispatch(action);
+  };
+  const _onSuccess = (): void => {
+    const action = setSuccess();
+    dispatch(action);
+  };
+
+  const _onError = (error: never): void => {
+    const action = setError(error);
+    dispatch(action);
+  };
+
   React.useMemo(() => {
     if (status === Status.LOADING) {
       _unzipFolder();
@@ -43,6 +54,18 @@ export const UnzipContainer = (): React.ReactElement | null => {
     return (
       <BoxRow>
         <UnzipLoading />
+      </BoxRow>
+    );
+  } else if (status === Status.SUCCESS) {
+    return (
+      <BoxRow>
+        <UnzipSuccess />
+      </BoxRow>
+    );
+  } else if (status === Status.ERROR) {
+    return (
+      <BoxRow>
+        <UnzipError />
       </BoxRow>
     );
   }

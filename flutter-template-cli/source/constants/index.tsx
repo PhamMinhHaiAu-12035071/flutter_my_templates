@@ -11,8 +11,6 @@ export const SCRIPT_SHOW_FOLDER_AND_FILE_ZIP = path.join(
   '../../scripts/show_folder_and_file_zip.sh'
 );
 
-export const WORKER_JS = './worker_main.js';
-export const WORKER_TS = './worker_demo.ts';
 export const PATH_ZIP_EXTENSION = '.zip';
 export * from './colors';
 export * from './spinners';

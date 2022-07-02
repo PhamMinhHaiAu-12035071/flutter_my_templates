@@ -8,7 +8,7 @@ const KEY = 'unzipSlice';
 
 export interface UnzipSliceState extends BaseState, PerformanceState {
   status: Status;
-  errors: Array<string> | undefined;
+  errors: Array<any> | undefined;
   data: string;
   messages: string;
   progress: Array<Progress>;
@@ -39,10 +39,20 @@ const slice = createSlice({
       state.errors = undefined;
       state.progress = [...state.progress, action.payload];
     },
+    setSuccess(state) {
+      state.status = Status.SUCCESS;
+      state.errors = undefined;
+      state.datedSuccess = Date.now();
+    },
+    setError(state, action: PayloadAction<any>) {
+      state.status = Status.ERROR;
+      state.errors = [].concat(action.payload);
+      state.datedError = Date.now();
+    },
   },
 });
 
-export const { setUnzipLoading, setProgress } = slice.actions;
+export const { setUnzipLoading, setProgress, setSuccess, setError } = slice.actions;
 
 export default slice.reducer;
 
@@ -52,4 +62,20 @@ export const selectUnzipStatus = (state: RootState): Status => {
 
 export const selectUnzipProgress = (state: RootState): Array<Progress> => {
   return state.unzip.progress;
+};
+
+export const selectUnzipExecuteTimeSuccess = (state: RootState): string => {
+  if (state.unzip.datedSuccess !== undefined && state.unzip.datedLoading !== undefined) {
+    const time = (state.unzip.datedSuccess - state.unzip.datedLoading) / 1000;
+    return `${time}s`;
+  }
+  return '';
+};
+
+export const selectUnzipExecuteTimeError = (state: RootState): string => {
+  if (state.unzip.datedError !== undefined && state.unzip.datedLoading !== undefined) {
+    const time = (state.unzip.datedError - state.unzip.datedLoading) / 1000;
+    return `${time}s`;
+  }
+  return '';
 };

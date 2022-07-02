@@ -17,8 +17,8 @@ const App = () => (react_1.default.createElement(react_redux_1.Provider, { store
     react_1.default.createElement(CreateFolderBinContainer_1.CreateFolderBinContainer, null),
     react_1.default.createElement(ShowProgressTable_1.ShowProgressTable, null),
     react_1.default.createElement(CopyFileZipContainer_1.CopyFileZipContainer, null),
-    react_1.default.createElement(UnzipContainer_1.UnzipContainer, null),
-    react_1.default.createElement(ShowProgressUnzip_1.ShowProgressUnzip, null)));
+    react_1.default.createElement(ShowProgressUnzip_1.ShowProgressUnzip, null),
+    react_1.default.createElement(UnzipContainer_1.UnzipContainer, null)));
 module.exports = App;
 exports.default = App;
 //# sourceMappingURL=ui.js.map

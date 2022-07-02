@@ -2,8 +2,13 @@ import { parentPort, workerData } from 'worker_threads';
 import fs from 'fs';
 import progress, { Progress } from 'progress-stream';
 import unzipper from 'unzipper';
+import { Status, UnzipFileState } from './index';
 
 function unzipFile(source: string, destination: string) {
+  const stateInitial: UnzipFileState = {
+    status: Status.INITIAL,
+  };
+  parentPort?.postMessage(stateInitial);
   const stat = fs.statSync(source);
   const _progress = progress(
     {
@@ -11,7 +16,11 @@ function unzipFile(source: string, destination: string) {
       time: 1500 /* ms */,
     },
     function (progress: Progress) {
-      parentPort?.postMessage(progress);
+      const stateProgress: UnzipFileState = {
+        status: Status.PROGRESS,
+        progress: progress,
+      };
+      parentPort?.postMessage(stateProgress);
     }
   );
 
@@ -21,10 +30,18 @@ function unzipFile(source: string, destination: string) {
     .promise()
     .then(
       () => {
-        console.log(`done`);
+        const stateSuccess: UnzipFileState = {
+          status: Status.SUCCESS,
+          message: 'Completed',
+        };
+        parentPort?.postMessage(stateSuccess);
       },
       e => {
-        console.log(`error ${e}`);
+        const stateError: UnzipFileState = {
+          status: Status.ERROR,
+          error: e,
+        };
+        parentPort?.postMessage(stateError);
       }
     );
 }

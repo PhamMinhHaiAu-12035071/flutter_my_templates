@@ -1,8 +1,6 @@
 export declare const SCRIPT_CHECK_FILE_EXISTS: string;
 export declare const SCRIPT_SHOW_ABSOLUTE_PATH: string;
 export declare const SCRIPT_SHOW_FOLDER_AND_FILE_ZIP: string;
-export declare const WORKER_JS = "./worker_main.js";
-export declare const WORKER_TS = "./worker_demo.ts";
 export declare const PATH_ZIP_EXTENSION = ".zip";
 export * from './colors';
 export * from './spinners';

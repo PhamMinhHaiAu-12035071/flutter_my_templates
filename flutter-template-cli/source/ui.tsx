@@ -14,8 +14,8 @@ const App = () => (
     <CreateFolderBinContainer />
     <ShowProgressTable />
     <CopyFileZipContainer />
-    <UnzipContainer />
     <ShowProgressUnzip />
+    <UnzipContainer />
   </Provider>
 );
 

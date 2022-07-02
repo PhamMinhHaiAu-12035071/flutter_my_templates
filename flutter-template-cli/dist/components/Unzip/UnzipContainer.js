@@ -12,47 +12,34 @@ const useAppSelector_1 = require("../../hooks/useAppSelector");
 const unzipSlice_1 = require("../../stores/reducers/unzipSlice");
 const copyZipSlice_1 = require("../../stores/reducers/copyZipSlice");
 const react_redux_1 = require("react-redux");
-const worker_threads_1 = require("worker_threads");
-const util = require('util');
+const progress_unzip_service_1 = require("../../services/progress_unzip_service");
+const UnzipSuccess_1 = require("./UnzipSuccess");
+const UnzipError_1 = require("./UnzipError");
 const UnzipContainer = () => {
     const status = (0, useAppSelector_1.useAppSelector)(unzipSlice_1.selectUnzipStatus);
     const pathZip = (0, useAppSelector_1.useAppSelector)(copyZipSlice_1.selectCopyZipFlutterData);
     const dispatch = (0, react_redux_1.useDispatch)();
     const _unzipFolder = () => {
-        console.log('called _unzipFolder');
-        const worker = new worker_threads_1.Worker('./source/services/worker_main.js', {
-            workerData: {
-                source: pathZip,
-                destination: constants_1.ABSOLUTE_PATH_FOLDER_BIN,
-                path: './worker_demo.ts',
-            },
+        progress_unzip_service_1.ProgressUnzipService.getInstance().unzipFile(pathZip, constants_1.ABSOLUTE_PATH_FOLDER_BIN, {
+            onProgress: _onProgress,
+            onSuccess: _onSuccess,
+            onError: _onError,
         });
-        worker.on('message', result => {
-            console.log(`show result worker`);
-            console.log(util.inspect(result, { showHidden: false, depth: null, colors: true }));
-            const action = (0, unzipSlice_1.setProgress)(result);
-            dispatch(action);
-        });
-        // ProgressUnzipService.getInstance().unzipFile(pathZip, ABSOLUTE_PATH_FOLDER_BIN, {
-        //   onDone: _onDone,
-        //   onProgress: _onProgress,
-        //   onError: _onError,
-        // });
     };
-    // const _onDone = (): void => {
-    //   console.log('done');
-    // };
-    //
-    // const _onError = (e: never): void => {
-    //   console.log(`Error: ${e}`);
-    // };
-    //
-    // const _onProgress = (progress: Progress): void => {
-    //   const action = setProgress(progress);
-    //   dispatch(action);
-    //
-    //   console.log(util.inspect(progress, { showHidden: false, depth: null, colors: true }));
-    // };
+    const _onProgress = (progress) => {
+        const action = (0, unzipSlice_1.setProgress)(progress);
+        dispatch(action);
+    };
+    const _onSuccess = () => {
+        // const action = setSuccess();
+        // dispatch(action);
+        const action = (0, unzipSlice_1.setError)('');
+        dispatch(action);
+    };
+    const _onError = (error) => {
+        const action = (0, unzipSlice_1.setError)(error);
+        dispatch(action);
+    };
     react_1.default.useMemo(() => {
         if (status === constants_1.Status.LOADING) {
             _unzipFolder();
@@ -61,6 +48,14 @@ const UnzipContainer = () => {
     if (status === constants_1.Status.LOADING) {
         return (react_1.default.createElement(BoxRow_1.BoxRow, null,
             react_1.default.createElement(UnzipLoading_1.UnzipLoading, null)));
+    }
+    else if (status === constants_1.Status.SUCCESS) {
+        return (react_1.default.createElement(BoxRow_1.BoxRow, null,
+            react_1.default.createElement(UnzipSuccess_1.UnzipSuccess, null)));
+    }
+    else if (status === constants_1.Status.ERROR) {
+        return (react_1.default.createElement(BoxRow_1.BoxRow, null,
+            react_1.default.createElement(UnzipError_1.UnzipError, null)));
     }
     return null;
 };

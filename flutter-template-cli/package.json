@@ -31,6 +31,7 @@
     "ink-text-input": "^4.0.3",
     "lodash": "^4.17.21",
     "meow": "^9.0.0",
+    "moment": "^2.29.3",
     "ora": "^5.4.1",
     "progress-stream": "^2.0.0",
     "react": "^17.0.2",
