@@ -5,9 +5,6 @@ L
 source/cli.tsx,1/8/1807c6d83636e7e4923a64311684cdd4acddbdf0
 S
 #scripts/show_folder_and_file_zip.sh,6/b/6b5a2ecfa73c2bd0a3d845bec02b4fadba2e062b
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 K
 source/stores/baseState.tsx,5/c/5c608c867b76b667ec7b1732bd570d208b309407
 \
@@ -108,11 +105,3 @@ n
 >source/components/CreateFolderBin/CreateFolderBinContainer.tsx,a/1/a1c41303bf829756eed37bd99433cc397be126df
 c
 3source/components/CopyFileZip/ShowProgressTable.tsx,e/9/e9e1cf736d7bce0a74499b82fc8685ff6cb88022
->
-config/demo.js,d/d/dd2fce39dffbd3eaa779db29f8e0eb29707ba2e8
-=
-tsconfig.json,6/1/61ebb9fd6e8cf9082658121d5d81e297791dacd0
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
-=
-source/ui.tsx,1/3/1350d1704fe159b14101037188980438316f26f4
