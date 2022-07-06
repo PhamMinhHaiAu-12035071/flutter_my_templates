@@ -7,19 +7,21 @@ import { CopyFileZipContainer } from './components/CopyFileZip/CopyFileZipContai
 import { ShowProgressTable } from './components/CopyFileZip/ShowProgressTable';
 import { UnzipContainer } from './components/Unzip/UnzipContainer';
 import { ShowProgressUnzip } from './components/Unzip/ShowProgressUnzip';
+import { Image } from './components/atoms/Image/Image';
 
-(async function () {
-  const { default: terminalImage } = await import('terminal-image');
-  console.log('          ');
-  const result = await terminalImage.file('/Users/phamminhhaiau/Desktop/demo/download.png', {
-    width: '50%',
-    height: '50%',
-  });
-  console.log(`     ${result}`);
-})();
 const App = () => {
   return (
     <Provider store={store}>
+      <Image
+        marginTop={5}
+        marginLeft={5}
+        path={'/Users/phamminhhaiau/Desktop/demo/download.png'}
+        options={{
+          width: '50%',
+          height: '50%',
+          preserveAspectRatio: true,
+        }}
+      />
       <InputPathContainer />
       <CreateFolderBinContainer />
       <ShowProgressTable />
