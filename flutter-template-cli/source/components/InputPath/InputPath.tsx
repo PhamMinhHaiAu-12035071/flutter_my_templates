@@ -34,6 +34,7 @@ const styledTextError: Props = {
 const styledMx: Styles = {
   marginLeft: 2,
 };
+
 interface InputPathProps {
   path: string;
   onSubmit: (value: string) => void;
