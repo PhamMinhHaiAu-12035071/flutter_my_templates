@@ -1,8 +1,6 @@
 
 L
 scripts/check_file_exists.sh,6/0/60c5b876ff2e7bef1dc70864571575b49b956ece
->
-source/cli.tsx,1/8/1807c6d83636e7e4923a64311684cdd4acddbdf0
 S
 #scripts/show_folder_and_file_zip.sh,6/b/6b5a2ecfa73c2bd0a3d845bec02b4fadba2e062b
 K
@@ -39,8 +37,6 @@ G
 source/stores/index.tsx,4/b/4b7b7331e004a41de5e4c9541de24e12114ff4cd
 K
 source/constants/configs.ts,0/a/0aff236c1e1fcbf803894f783e7e47fa7954b329
-A
-config/config.env,6/9/69eecf2a1e145d736da34f0069375dfc2801880d
 d
 4source/components/CopyFileZip/CopyFileZipLoading.tsx,4/4/44edf092a45d65eb146f3ecb4551fd80022a8345
 b
@@ -79,8 +75,6 @@ K
 source/constants/delays.tsx,4/8/4896081913c3859251bcccc2a17a3dc43c3eeb41
 U
 %source/stores/reducers/unzipSlice.tsx,8/e/8e81d81a2c7b424b5f45a3f437aae3c6a2da7708
-K
-source/constants/colors.tsx,c/a/caabd75e6289b1421a4bda6e3b3f11dca35194be
 V
 &source/components/Unzip/UnzipError.tsx,8/2/8263e257b30fb02a5070f659d92506d85bddc4c8
 Y
@@ -112,9 +106,3 @@ c
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 =
 tsconfig.json,6/1/61ebb9fd6e8cf9082658121d5d81e297791dacd0
->
-config/demo.js,d/d/dd2fce39dffbd3eaa779db29f8e0eb29707ba2e8
-W
-'source/components/atoms/Image/Image.tsx,a/5/a5d08554b5153ad255486ee055d4115e372429cb
-=
-source/ui.tsx,1/3/1350d1704fe159b14101037188980438316f26f4

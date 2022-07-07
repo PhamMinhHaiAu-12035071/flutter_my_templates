@@ -48,7 +48,13 @@
 	"ink-testing-library": "^2.1.0",
 	"typescript": "^4.7.4",
 	"xo": "^0.39.1",
-	"@commander/image-cli": "*"
+	"ink-select-input": "^4.2.1",
+	"ink-big-text": "^1.2.0",
+	"ink-gradient": "^2.0.0",
+	"@types/ink-big-text": "^1.2.1",
+	"@types/ink-gradient": "^2.0.1",
+	"@commander/image-cli": "*",
+	"@commander/utilities": "*"
   },
   "nx": {
 	"targets": {

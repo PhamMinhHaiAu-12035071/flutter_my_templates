@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Text } from 'ink';
-import { Styles } from 'ink/build/styles';
+import {Box, Text} from 'ink';
+import {Styles} from 'ink/build/styles';
+import {detectTerminalMacOS, TerminalMacOs} from "@commander/utilities";
 import _ from 'lodash';
 
 const SPACE_CHARACTER = ' ';
-const aspectRatioBetweenSpaceAndPoint = 3;
 /**
  * Render string text from image asset
  * @param imageProps
@@ -13,12 +13,6 @@ const loadStringFromImage = async (imageProps: ImageProps): Promise<string> => {
 	const { default: terminalImage } = await import('terminal-image');
 	const result = await terminalImage.file(imageProps.path, imageProps.options);
 	return Promise.resolve(result);
-};
-
-
-
-const convertSizeToSpace = (point: number): any => {
-	return _.repeat(SPACE_CHARACTER, point * aspectRatioBetweenSpaceAndPoint);
 };
 
 interface Spacing {
@@ -37,6 +31,7 @@ interface ImageProps extends Spacing {
 }
 
 const Image = (props: ImageProps): React.ReactElement | null => {
+	console.log(`render Image`);
 	const [imageStr, setImageStr] = React.useState<string>('');
 
 	React.useEffect(() => {
@@ -44,41 +39,47 @@ const Image = (props: ImageProps): React.ReactElement | null => {
 	}, [props]);
 	if (imageStr) {
 		return (
-			<ImageLayout {...props}>
-				<ImageView str={imageStr} />
-			</ImageLayout>
+			<ImageLayout imageStr={imageStr} {...props} />
 		);
 	}
 	return null;
 };
 
 interface ImageLayoutProps extends Spacing {
-	children: React.ReactElement;
+	imageStr: string;
 }
 const ImageLayout = ({
 						 marginTop = 0,
 						 marginBottom = 0,
 						 marginLeft = 0,
 						 marginRight = 0,
-						 children,
+						 imageStr = '',
 					 }: ImageLayoutProps): React.ReactElement => {
+
+	const renderBoxHorizontal = (x: number): React.ReactElement | null => {
+		if(x > 0 && detectTerminalMacOS() === TerminalMacOs.DEFAULT) {
+			return <Box width={x} />;
+		}
+		return null;
+	}
+
+	const renderBoxHorizontalOnIterm = (x: number): string => {
+		if(x > 0 && detectTerminalMacOS() === TerminalMacOs.ITERM) {
+			return _.repeat(SPACE_CHARACTER, x);
+		}
+		return '';
+	}
 	return (
 		<Box {...displayColumn}>
 			{marginTop > 0 && <Box height={marginTop} />}
 			<Box {...displayRow}>
-				{marginLeft > 0 && convertSizeToSpace(marginLeft)}
-				{children}
-				{marginRight > 0 && convertSizeToSpace(marginRight)}
+				{renderBoxHorizontal(marginLeft)}
+				<Text>{renderBoxHorizontalOnIterm(marginLeft)}{imageStr}{renderBoxHorizontalOnIterm(marginRight)}</Text>
+				{renderBoxHorizontal(marginRight)}
 			</Box>
 			{marginBottom > 0 && <Box height={marginBottom} />}
 		</Box>
 	);
-};
-interface ImageViewProps {
-	str: string;
-}
-const ImageView = (props: ImageViewProps): React.ReactElement => {
-	return <Text>{props.str}</Text>;
 };
 
 /**
