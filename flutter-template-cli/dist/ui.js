@@ -12,14 +12,8 @@ const CopyFileZipContainer_1 = require("./components/CopyFileZip/CopyFileZipCont
 const ShowProgressTable_1 = require("./components/CopyFileZip/ShowProgressTable");
 const UnzipContainer_1 = require("./components/Unzip/UnzipContainer");
 const ShowProgressUnzip_1 = require("./components/Unzip/ShowProgressUnzip");
-const Image_1 = require("./components/atoms/Image/Image");
 const App = () => {
     return (react_1.default.createElement(react_redux_1.Provider, { store: stores_1.store },
-        react_1.default.createElement(Image_1.Image, { marginTop: 5, marginLeft: 5, path: '/Users/phamminhhaiau/Desktop/demo/download.png', options: {
-                width: '50%',
-                height: '50%',
-                preserveAspectRatio: true,
-            } }),
         react_1.default.createElement(InputPathContainer_1.InputPathContainer, null),
         react_1.default.createElement(CreateFolderBinContainer_1.CreateFolderBinContainer, null),
         react_1.default.createElement(ShowProgressTable_1.ShowProgressTable, null),

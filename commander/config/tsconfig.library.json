@@ -1,0 +1,16 @@
+{
+	"extends": "@sindresorhus/tsconfig",
+	"compilerOptions": {
+		"module": "ES2020",
+		"moduleResolution": "Node",
+		"strict": true,
+		"jsx": "react",
+		"declaration": true,
+		"esModuleInterop": true,
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true
+	},
+}

@@ -1,13 +1,13 @@
 {
-  "extends": "@sindresorhus/tsconfig",
+  "extends": "../../config/tsconfig.library.json",
   "compilerOptions": {
-	"module": "commonjs",
-	"declaration": true,
-	"jsx": "react",
-	"esModuleInterop": true,
-	"allowJs": true,
-	"allowSyntheticDefaultImports": true,
-	"outDir": "./dist/esm",
+	"outDir": "./dist/esm"
   },
-  "include": ["source"],
+  "include": [
+	"source/**/*"
+  ],
+  "exclude": [
+	"node_modules",
+	"dist"
+  ]
 }

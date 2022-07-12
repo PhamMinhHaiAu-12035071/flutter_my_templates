@@ -12,7 +12,7 @@ const SPACE_CHARACTER = ' ';
 const loadStringFromImage = async (imageProps: ImageProps): Promise<string> => {
 	const { default: terminalImage } = await import('terminal-image');
 	const result = await terminalImage.file(imageProps.path, imageProps.options);
-	return Promise.resolve(result);
+	return Promise.resolve(result as string);
 };
 
 interface Spacing {
@@ -31,11 +31,10 @@ interface ImageProps extends Spacing {
 }
 
 const Image = (props: ImageProps): React.ReactElement | null => {
-	console.log(`render Image`);
 	const [imageStr, setImageStr] = React.useState<string>('');
 
 	React.useEffect(() => {
-		loadStringFromImage(props).then(str => setImageStr(str));
+		loadStringFromImage(props).then(str => setImageStr(str as string));
 	}, [props]);
 	if (imageStr) {
 		return (
@@ -56,15 +55,15 @@ const ImageLayout = ({
 						 imageStr = '',
 					 }: ImageLayoutProps): React.ReactElement => {
 
-	const renderBoxHorizontal = (x: number): React.ReactElement | null => {
-		if(x > 0 && detectTerminalMacOS() === TerminalMacOs.DEFAULT) {
+	const renderBoxHorizontal = (x?: number): React.ReactElement | null => {
+		if( typeof x === 'number' && x > 0 && detectTerminalMacOS() === TerminalMacOs.DEFAULT) {
 			return <Box width={x} />;
 		}
 		return null;
 	}
 
-	const renderBoxHorizontalOnIterm = (x: number): string => {
-		if(x > 0 && detectTerminalMacOS() === TerminalMacOs.ITERM) {
+	const renderBoxHorizontalOnIterm = (x?: number): string => {
+		if(typeof x === 'number' && x > 0 && detectTerminalMacOS() === TerminalMacOs.ITERM) {
 			return _.repeat(SPACE_CHARACTER, x);
 		}
 		return '';
@@ -92,4 +91,12 @@ const displayRow: Styles = {
 	flexDirection: 'row',
 };
 
-export default Image;
+export {
+	Image,
+}
+
+export type {
+	ImageProps,
+	ImageLayoutProps,
+	Spacing,
+}

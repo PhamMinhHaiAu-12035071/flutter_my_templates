@@ -6,13 +6,13 @@ import App from './ui';
 
 // const cli = meow(`
 // 	Usage
-// 	  $ image-cli-storybook
+// 	  $ ui-kit-storybook
 //
 // 	Options
 // 		--name  Your name
 //
 // 	Examples
-// 	  $ image-cli-storybook --name=Jane
+// 	  $ ui-kit-storybook --name=Jane
 // 	  Hello, Jane
 // `, {
 // 	flags: {

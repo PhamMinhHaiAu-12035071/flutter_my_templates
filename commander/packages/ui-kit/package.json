@@ -1,15 +1,12 @@
 {
-	"name": "@commander/image-cli",
+	"name": "@commander/ui-kit",
 	"version": "0.0.0",
   	"private": true,
 	"license": "MIT",
-	"engines": {
-		"node": ">=10"
-	},
 	"scripts": {
 		"build": "rimraf dist && npm run build:esm && npm run build:cjs",
 		"build:esm": "tsc",
-		"build:cjs": "tsc --module commonjs --outDir dist/cjs",
+		"build:cjs": "tsc --outDir dist/cjs",
 		"pretest": "npm run build",
 		"test": "xo && ava"
 	},
@@ -18,9 +15,15 @@
 	"types": "./dist/esm/index.d.ts",
   	"typings": "./dist/esm/index.d.ts",
 	"files": [
-	  "dist/",
+	  "dist/**/*",
 	  "readme.md"
 	],
+
+	"type": "module",
+	"exports": "./dist/esm/index.js",
+	"engines": {
+	  "node": ">=14.16"
+	},
   	"author": "Pham Minh Hai Au",
 	"keywords": [
 	  "ink-component",
@@ -32,7 +35,10 @@
 		"lodash": "^4.17.21",
 		"rimraf": "^3.0.2",
 		"terminal-image": "^2.0.0",
+	  	"term-size": "^3.0.2",
+	  	"boxen": "^7.0.0",
 	  	"@commander/utilities": "*"
+
 	},
 	"ava": {
 		"typescript": {
@@ -71,6 +77,12 @@
 	  "react": ">=17.0.2",
 	  "lodash": ">=4.17.21",
 	  "terminal-image": ">=2.0.0",
+	  "ink-big-text": ">=1.2.0",
+	  "@types/ink-big-text": ">=1.2.1",
+	  "ink-gradient": ">=2.0.0",
+	  "@types/ink-gradient": ">=2.0.1",
+	  "term-size": ">=3.0.2",
+	  "boxen": ">=7.0.0",
 	  "@commander/utilities": "*"
 	},
 	"nx": {

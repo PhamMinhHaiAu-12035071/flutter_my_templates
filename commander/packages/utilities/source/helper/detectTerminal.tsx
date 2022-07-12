@@ -1,9 +1,10 @@
 const { execSync } = require("child_process");
 
-enum TerminalMacOs {
+const enum TerminalMacOs {
 	DEFAULT = 'DEFAULT',
 	ITERM = 'ITERM'
 }
+
 const detectTerminalMacOS = (): TerminalMacOs => {
 	const stdout = execSync("echo $TERM_PROGRAM");
 	if(stdout.includes('iTerm.app')) {
@@ -13,6 +14,6 @@ const detectTerminalMacOS = (): TerminalMacOs => {
 }
 
 export {
-	TerminalMacOs,
-	detectTerminalMacOS
+	detectTerminalMacOS,
+	TerminalMacOs
 }

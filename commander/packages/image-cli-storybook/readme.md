@@ -6,7 +6,7 @@
 ## Install
 
 ```bash
-$ npm install --global image-cli-storybook
+$ npm install --global ui-kit-storybook
 ```
 
 

@@ -2,18 +2,19 @@
   "name": "image-cli-storybook",
   "version": "0.0.0",
   "license": "MIT",
-  "bin": "dist/cli.js",
+  "bin": "dist/esm/cli.js",
+  "type": "module",
   "engines": {
 	"node": ">=10"
   },
   "scripts": {
-	"build": "tsc && chmod +x dist/cli.js",
-	"start": "npm run build && dist/cli.js",
+	"build": "tsc && chmod +x dist/esm/cli.js",
+	"start": "npm run build && node --es-module-specifier-resolution=node dist/esm/cli.js",
 	"pretest": "npm run build",
 	"test": "xo && ava"
   },
   "files": [
-	"dist/cli.js"
+	"dist/esm/cli.js"
   ],
   "dependencies": {
 	"ink": "^3.2.0",
@@ -53,7 +54,7 @@
 	"ink-gradient": "^2.0.0",
 	"@types/ink-big-text": "^1.2.1",
 	"@types/ink-gradient": "^2.0.1",
-	"@commander/image-cli": "*",
+	"@commander/ui-kit": "*",
 	"@commander/utilities": "*"
   },
   "nx": {

@@ -6,7 +6,7 @@
 ## Install
 
 ```bash
-$ npm install --global image-cli
+$ npm install --global ui-kit
 ```
 
 
