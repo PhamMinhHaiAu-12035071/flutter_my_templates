@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {Box, Text} from 'ink';
 import {Styles} from 'ink/build/styles';
 import {detectTerminalMacOS, TerminalMacOs} from "@commander/utilities";

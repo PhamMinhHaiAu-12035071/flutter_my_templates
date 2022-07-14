@@ -1,4 +1,2 @@
 export * from './components/atoms/Image/Image';
-
-/// hooks
-export * from './hooks/useStdoutDimensions';
+export * from './components/atoms/MenuLayout/MenuLayout';
