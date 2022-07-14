@@ -1,11 +1,8 @@
 import path from 'path';
 import { fileURLToPath } from "url"; // the node package 'url'
 
-const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-console.log(`show dir name: ${__dirname}`)
-console.log(`show file name: ${__filename}`)
 class AssetImage {
 	private readonly _name: string;
 	private readonly _path: string;

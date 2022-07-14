@@ -18,7 +18,6 @@
 	  "dist/**/*",
 	  "readme.md"
 	],
-
 	"type": "module",
 	"exports": "./dist/esm/index.js",
 	"engines": {
@@ -36,7 +35,6 @@
 		"rimraf": "^3.0.2",
 		"terminal-image": "^2.0.0",
 	  	"term-size": "^3.0.2",
-	  	"boxen": "^7.0.0",
 	  	"@commander/utilities": "*"
 
 	},
@@ -77,12 +75,7 @@
 	  "react": ">=17.0.2",
 	  "lodash": ">=4.17.21",
 	  "terminal-image": ">=2.0.0",
-	  "ink-big-text": ">=1.2.0",
-	  "@types/ink-big-text": ">=1.2.1",
-	  "ink-gradient": ">=2.0.0",
-	  "@types/ink-gradient": ">=2.0.1",
 	  "term-size": ">=3.0.2",
-	  "boxen": ">=7.0.0",
 	  "@commander/utilities": "*"
 	},
 	"nx": {

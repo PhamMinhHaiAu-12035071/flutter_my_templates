@@ -1,41 +1,11 @@
 import React from 'react';
-import {Box, useStdout, Text} from 'ink';
-import {BoxResponsive, Image, Title, useStdoutDimensions} from '@commander/ui-kit';
+import {Box} from 'ink';
+import {Image} from '@commander/ui-kit';
 import {Styles} from 'ink/build/styles';
 import {Props} from 'ink/build/components/Text';
-import _ from 'lodash';
 import {ListAssetImage} from "./constants/assetImage";
 
-interface SizeType {
-	width: number;
-	height: number;
-}
-
-function useScreenSize(): SizeType {
-	const { stdout } = useStdout() as any;
-
-	const [size, setSize] = React.useState(() => ({
-		width: stdout.columns,
-		height: stdout.rows,
-	}));
-
-	React.useEffect(() => {
-		const onResize = () =>
-			setSize({
-				width: stdout.columns,
-				height: stdout.rows,
-			});
-
-		stdout.on(`resize`, onResize);
-		return () => void stdout.off(`resize`, onResize);
-	}, [stdout]);
-
-	return size;
-}
 const App = (): React.ReactElement => {
-	useStdoutDimensions();
-	const { width, height } = useScreenSize();
-	console.log(width, height)
 	return (
 		<Box {...styles.container}>
 			<Box {...styles.previewContainer}>
@@ -50,22 +20,18 @@ const App = (): React.ReactElement => {
 					}}
 				/>
 			</Box>
-			<Box {..._.merge(styles.wrapperControl, {})}>
+			<Box {...styles.wrapperControl}>
 				<Box {...styles.wrapperTitle}>
-					<Title title={'hello'}/>
 				</Box>
 			</Box>
-			<BoxResponsive>
-				<Text>demo</Text>
-			</BoxResponsive>
 		</Box>
 	)
 };
 
 const styles = {
 	container: {
-		flexDirection: 'column',
 		width: 138,
+		flexDirection: 'column',
 	} as Styles,
 	previewContainer: {
 		flexDirection: 'row',
@@ -91,4 +57,5 @@ const styles = {
 		flexDirection: 'row',
 	} as Styles,
 }
-export default App;
+export {App};
+

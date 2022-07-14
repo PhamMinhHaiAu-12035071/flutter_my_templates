@@ -3,9 +3,6 @@
 	"version": "0.0.0",
   	"private": true,
 	"license": "MIT",
-	"engines": {
-		"node": ">=10"
-	},
 	"scripts": {
 		"build": "rimraf dist && npm run build:esm && npm run build:cjs",
 		"build:esm": "tsc",
@@ -21,6 +18,11 @@
 	  "dist/**/*",
 	  "readme.md"
 	],
+	"type": "module",
+	"exports": "./dist/esm/index.js",
+	"engines": {
+	  "node": ">=14.16"
+	},
 	"author": "Pham Minh Hai Au",
 	"keywords": [
 	  "ink-helper",
