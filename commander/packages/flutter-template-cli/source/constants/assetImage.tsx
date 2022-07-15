@@ -21,7 +21,7 @@ class AssetImage {
 	}
 }
 abstract class ListAssetImage {
-	public static readonly logoFlutter = new AssetImage('Logo Flutter', path.resolve(__dirname, "../../../assets/images/logo-flutter.png"));
+	public static readonly logoFlutter = new AssetImage('Logo Flutter', path.resolve(__dirname, "../../../assets/images/flutter-logo.png"));
 }
 
 export {

@@ -3,8 +3,6 @@ L
 scripts/check_file_exists.sh,6/0/60c5b876ff2e7bef1dc70864571575b49b956ece
 S
 #scripts/show_folder_and_file_zip.sh,6/b/6b5a2ecfa73c2bd0a3d845bec02b4fadba2e062b
-K
-source/stores/baseState.tsx,5/c/5c608c867b76b667ec7b1732bd570d208b309407
 \
 ,source/stores/reducers/createFolderSlice.tsx,0/b/0ba8637f3d51d1cff44cfed66c424eedb208c9f6
 h
@@ -33,22 +31,14 @@ d
 .source/stores/reducers/suggestKeywordSlice.tsx,6/8/68e9d4c20c6a81fd871bc6ec469835040f5455bd
 f
 6source/components/ShowSuggest/ShowSuggestContainer.tsx,a/e/ae963bdfd8649158b57551762778c6527c5fa792
-G
-source/stores/index.tsx,4/b/4b7b7331e004a41de5e4c9541de24e12114ff4cd
-K
-source/constants/configs.ts,0/a/0aff236c1e1fcbf803894f783e7e47fa7954b329
 d
 4source/components/CopyFileZip/CopyFileZipLoading.tsx,4/4/44edf092a45d65eb146f3ecb4551fd80022a8345
 b
 2source/components/ShowSuggest/ShowSuggestEmpty.tsx,e/a/ea581e850c2abecb1309f87cf5110959af647063
-T
-$source/stores/reducers/pathSlice.tsx,a/d/ad91989bcb2972f4006cfcb7acdd4d962d26429f
 =
 .editorconfig,6/2/626a747c8694eaae66f2afb3d1a745b045782c70
 Q
 !source/services/rsync.service.tsx,5/4/54f9700b5bbe34950dab9051d334e329a6bf6fda
-J
-source/constants/index.tsx,b/a/baebba9ad893d3b119dbbde7870f4f47f78509f8
 I
 source/services/index.tsx,3/b/3be740dfab1074239a255447d78af1d025fe91ed
 _
@@ -65,8 +55,6 @@ q
 Asource/services/progress_unzip_service/progress_unzip.service.tsx,1/1/11e63bd18031cebde4b93ec3dcec90db94e5ac5b
 X
 (source/components/Unzip/UnzipSuccess.tsx,8/7/871e869b5392964262f95c6c03174c9884be60b3
-c
-3source/services/progress_unzip_service/unzipFile.ts,7/f/7f639d7fb722aedafd7b57d29a6d1b900d445fa3
 9
 	.eslintrc,4/b/4be5f5e3cea171c304090be92469b2f2cb51039a
 b
@@ -77,24 +65,16 @@ U
 %source/stores/reducers/unzipSlice.tsx,8/e/8e81d81a2c7b424b5f45a3f437aae3c6a2da7708
 V
 &source/components/Unzip/UnzipError.tsx,8/2/8263e257b30fb02a5070f659d92506d85bddc4c8
-Y
-)source/components/InputPath/InputPath.tsx,e/7/e764ed9010aad115b40fc070ecaeeee7f8018bca
 ]
 -source/components/ShowSuggest/ShowSuggest.tsx,7/e/7e43f4ea06f58a2955bcfe914b248c542d6a6068
 s
 Csource/components/LinkDownloadFlutterSDK/LinkDownloadSDKFLutter.tsx,b/c/bc3b70cfe623ca86d0dd7c25b9fa35ce64bc2f14
 S
 #source/components/BoxRow/BoxRow.tsx,b/b/bb0e120c89719dae48380b506ec819b6a21e1613
-O
-source/hooks/useAppSelector.tsx,0/9/09cfb29b4173d1e98ec60fe346fc2a9dba44bdb7
-b
-2source/components/InputPath/InputPathContainer.tsx,6/6/66621e2f4f2bdcce73054925dc4a4a9a2b0e3e82
 Z
 *source/components/Unzip/UnzipContainer.tsx,d/e/dea73bd5720097262564935b4925c5acc85d1954
 f
 6source/components/CopyFileZip/CopyFileZipContainer.tsx,f/f/ff42ccb8e3eac16950f5a6a90e8758c5f5dc1233
-W
-'source/stores/reducers/copyZipSlice.tsx,8/d/8d38edaab769ae38061aa7121cf1dbdcbb9494ec
 n
 >source/components/CreateFolderBin/CreateFolderBinContainer.tsx,a/1/a1c41303bf829756eed37bd99433cc397be126df
 c
@@ -102,17 +82,5 @@ c
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-<
-package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 =
 tsconfig.json,6/1/61ebb9fd6e8cf9082658121d5d81e297791dacd0
->
-source/cli.tsx,1/8/1807c6d83636e7e4923a64311684cdd4acddbdf0
-W
-'source/components/atoms/Image/Image.tsx,a/5/a5d08554b5153ad255486ee055d4115e372429cb
->
-config/demo.js,d/d/dd2fce39dffbd3eaa779db29f8e0eb29707ba2e8
-K
-source/constants/colors.tsx,c/a/caabd75e6289b1421a4bda6e3b3f11dca35194be
-=
-source/ui.tsx,1/3/1350d1704fe159b14101037188980438316f26f4
