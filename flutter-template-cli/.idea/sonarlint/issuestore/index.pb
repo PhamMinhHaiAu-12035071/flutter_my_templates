@@ -11,18 +11,10 @@ i
 9source/components/CreateFolderBin/CreateFolderLoading.tsx,2/d/2d4e0b5333407a02ab498a35bdf99058f5928829
 d
 4source/components/ShowSuggest/ShowSuggestLoading.tsx,a/5/a512294dce649b185d9c9c46148f036e2d204a14
-a
-1source/components/RenderSpinner/RenderSpinner.tsx,d/d/dd991f72992a087e92f7cdeb0fc3e7cf219d66b9
-i
-9source/components/CreateFolderBin/CreateFolderSuccess.tsx,2/c/2ca2d9f5227032adb387770f482689aa9f3b3241
 M
 scripts/show_absolute_path.sh,c/b/cb52ec5616cf0592cdebd39eda2144c6af011da8
-M
-source/constants/spinners.tsx,8/6/86141bed31017508aa2dfbce31bf22964cdff00a
 K
 source/constants/status.tsx,8/2/826255540ff2f96eb0a0015ae6163227916e0aa2
-a
-1source/components/CustomSpinner/CustomSpinner.tsx,7/9/7956f87e39fd68d33c5caecfed72ba3cfe23dbe4
 h
 8source/components/ShowSuggest/ItemShowSuggestSuccess.tsx,9/5/95f2a31b7088a859f7bcf93a0238684b765a954b
 d

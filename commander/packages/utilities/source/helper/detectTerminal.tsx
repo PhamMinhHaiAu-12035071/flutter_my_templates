@@ -1,19 +1,16 @@
-import { execSync } from "child_process";
+import { execSync } from 'child_process';
 
 const enum TerminalMacOs {
-	DEFAULT = 'DEFAULT',
-	ITERM = 'ITERM'
+  DEFAULT = 'DEFAULT',
+  ITERM = 'ITERM',
 }
 
 const detectTerminalMacOS = (): TerminalMacOs => {
-	const stdout = execSync("echo $TERM_PROGRAM");
-	if(stdout.includes('iTerm.app')) {
-		return TerminalMacOs.ITERM;
-	}
-	return TerminalMacOs.DEFAULT;
-}
+  const stdout = execSync('echo $TERM_PROGRAM');
+  if (stdout.includes('iTerm.app')) {
+    return TerminalMacOs.ITERM;
+  }
+  return TerminalMacOs.DEFAULT;
+};
 
-export {
-	detectTerminalMacOS,
-	TerminalMacOs
-}
+export { detectTerminalMacOS, TerminalMacOs };

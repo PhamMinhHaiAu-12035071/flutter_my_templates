@@ -6,3 +6,6 @@ dist
 packages/remixapp/build
 packages/remixapp/public/build
 .env
+packages/flutter-template-cli/.idea/
+packages/ui-kit/.idea/
+packages/utilities/.idea/

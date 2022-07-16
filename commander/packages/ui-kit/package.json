@@ -1,91 +1,95 @@
 {
-	"name": "@commander/ui-kit",
-	"version": "0.0.0",
-  	"private": true,
-	"license": "MIT",
-	"scripts": {
-		"build": "rimraf dist && npm run build:esm && npm run build:cjs",
-		"build:esm": "tsc",
-		"build:cjs": "tsc --outDir dist/cjs",
-		"pretest": "npm run build",
-		"test": "xo && ava"
-	},
-	"main": "./dist/cjs/index.js",
-	"module": "./dist/esm/index.js",
-	"types": "./dist/esm/index.d.ts",
-  	"typings": "./dist/esm/index.d.ts",
-	"files": [
-	  "dist/**/*",
-	  "readme.md"
-	],
-	"type": "module",
-	"exports": "./dist/esm/index.js",
-	"engines": {
-	  "node": ">=14.16"
-	},
-  	"author": "Pham Minh Hai Au",
-	"keywords": [
-	  "ink-component",
-	  "ink",
-	  "component",
-	  "image"
-	],
-	"dependencies": {
-		"lodash": "^4.17.21",
-		"rimraf": "^3.0.2",
-		"terminal-image": "^2.0.0",
-	  	"term-size": "^3.0.2",
-	  	"@commander/utilities": "*"
-
-	},
-	"ava": {
-		"typescript": {
-			"extensions": [
-				"tsx"
-			],
-			"rewritePaths": {
-				"source/": "dist/"
-			}
-		}
-	},
-	"xo": {
-		"extends": "xo-react",
-		"rules": {
-			"react/prop-types": "off"
-		}
-	},
-	"devDependencies": {
-		"@ava/typescript": "^3.0.1",
-		"@sindresorhus/tsconfig": "^3.0.1",
-		"@types/lodash": "^4.14.182",
-		"@types/react": "^18.0.15",
-		"ava": "^4.3.0",
-		"chalk": "^4.1.2",
-		"eslint-config-xo-react": "^0.27.0",
-		"eslint-plugin-react": "^7.30.1",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"ink-testing-library": "^2.1.0",
-		"typescript": "^4.7.4",
-		"xo": "^0.50.0",
-	  	"ink": "^3.2.0",
-	  	"react": "^17.0.2"
-	},
-	"peerDependencies": {
-	  "ink": ">=3.2.0",
-	  "react": ">=17.0.2",
-	  "lodash": ">=4.17.21",
-	  "terminal-image": ">=2.0.0",
-	  "term-size": ">=3.0.2",
-	  "@commander/utilities": "*"
-	},
-	"nx": {
-	  "targets": {
-		"build": {
-		  "outputs": [
-			"{projectRoot}/build",
-			"{projectRoot}/public/build"
-		  ]
-		}
-	  }
-	}
+  "name": "@commander/ui-kit",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --outDir dist/cjs",
+    "pretest": "npm run build",
+    "test": "xo && ava",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|ts|tsx|json)\""
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "typings": "./dist/esm/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "readme.md"
+  ],
+  "type": "module",
+  "exports": "./dist/esm/index.js",
+  "engines": {
+    "node": ">=14.16"
+  },
+  "author": "Pham Minh Hai Au",
+  "keywords": [
+    "ink-component",
+    "ink",
+    "component",
+    "image"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "rimraf": "^3.0.2",
+    "terminal-image": "^2.0.0",
+    "term-size": "^3.0.2",
+	"chalk-animation": "^2.0.2",
+    "@commander/utilities": "*"
+  },
+  "ava": {
+    "typescript": {
+      "extensions": [
+        "tsx"
+      ],
+      "rewritePaths": {
+        "source/": "dist/"
+      }
+    }
+  },
+  "xo": {
+    "extends": "xo-react",
+    "rules": {
+      "react/prop-types": "off"
+    }
+  },
+  "devDependencies": {
+    "@ava/typescript": "^3.0.1",
+    "@sindresorhus/tsconfig": "^3.0.1",
+    "@types/lodash": "^4.14.182",
+    "@types/react": "^18.0.15",
+    "ava": "^4.3.0",
+    "chalk": "^4.1.2",
+    "eslint-config-xo-react": "^0.27.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "ink-testing-library": "^2.1.0",
+    "typescript": "^4.7.4",
+    "prettier": "^2.7.1",
+    "xo": "^0.50.0",
+    "ink": "^3.2.0",
+    "react": "^17.0.2",
+	"@types/chalk-animation": "^1.6.1"
+  },
+  "peerDependencies": {
+    "ink": ">=3.2.0",
+    "react": ">=17.0.2",
+    "lodash": ">=4.17.21",
+    "terminal-image": ">=2.0.0",
+    "term-size": ">=3.0.2",
+	"chalk-animation": ">=2.0.2",
+    "@commander/utilities": "*"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": [
+          "{projectRoot}/build",
+          "{projectRoot}/public/build"
+        ]
+      }
+    }
+  }
 }

@@ -22,6 +22,12 @@
         "^build"
       ]
     },
+    "format": {
+      "inputs": ["prod", "^prod"],
+      "dependsOn": [
+        "^format"
+      ]
+    },
     "dev": {
       "dependsOn": [
         "^build"
