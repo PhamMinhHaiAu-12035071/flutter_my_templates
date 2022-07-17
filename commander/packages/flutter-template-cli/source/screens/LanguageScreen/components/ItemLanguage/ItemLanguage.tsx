@@ -1,34 +1,44 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import { styles } from './styles';
-import { CustomSpinner, fingerPointingRight, TextKaraokeAnimation } from '@commander/ui-kit';
+import {
+  CustomSpinner,
+  fingerPointingRight,
+  TextKaraokeAnimation,
+} from '@commander/ui-kit';
 import { Language } from '../../../../constants/language';
 
 interface ItemLanguageProps extends Language {
-	isSelected?: boolean;
+  isSelected?: boolean;
 }
 
-const ItemLanguage = ({ name, isSelected }: ItemLanguageProps): React.ReactElement => {
-	return (
-		<Box {...styles.container}>
-			<Box {...styles.wrapperPointer}>
-					{
-						isSelected && <CustomSpinner spinner={fingerPointingRight} colorSpinner={'yellow'} />
-					}
-			</Box>
-			<Box {...styles.wrapperDivider} />
-			<Box {...styles.wrapperContent}>
-				{
-					!isSelected && <Text>{' '}</Text>
-				}
-				<TextKaraokeAnimation text={name} isRunning={isSelected ?? false}
-															styleOrigin={styles.textDefaultColor}
-															styleAnimation={styles.textActiveColor}
-															fps={45}
-				/>
-			</Box>
-		</Box>
-	);
+const ItemLanguage = ({
+  name,
+  isSelected,
+}: ItemLanguageProps): React.ReactElement => {
+  return (
+    <Box {...styles.container}>
+      <Box {...styles.wrapperPointer}>
+        {isSelected && (
+          <CustomSpinner
+            spinner={fingerPointingRight}
+            colorSpinner={'yellow'}
+          />
+        )}
+      </Box>
+      <Box {...styles.wrapperDivider} />
+      <Box {...styles.wrapperContent}>
+        {!isSelected && <Text> </Text>}
+        <TextKaraokeAnimation
+          text={name}
+          isRunning={isSelected ?? false}
+          styleOrigin={styles.textDefaultColor}
+          styleAnimation={styles.textActiveColor}
+        />
+      </Box>
+    </Box>
+  );
 };
 
-export { ItemLanguage, ItemLanguageProps };
+export { ItemLanguage };
+export type { ItemLanguageProps };
