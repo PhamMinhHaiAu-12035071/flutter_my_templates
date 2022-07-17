@@ -2,17 +2,26 @@ import React from 'react';
 import { Box, Text } from 'ink';
 import { styles } from './styles';
 import { ItemLanguage, ItemLanguageProps } from '../ItemLanguage/ItemLanguage';
+import { useTranslation } from 'react-i18next';
+import { checkedSpinner, CustomSpinner, Snackbar } from '@commander/ui-kit';
 
 interface ListLanguageProps {
   arr?: Array<ItemLanguageProps>;
+  count: number;
+  resetCount: () => void;
 }
 
-const ListLanguage = ({ arr = [] }: ListLanguageProps): React.ReactElement => {
+const ListLanguage = ({
+  arr = [],
+  count,
+  resetCount,
+}: ListLanguageProps): React.ReactElement => {
+  const { t } = useTranslation();
   return (
     <Box {...styles.container}>
       <Box {...styles.wrapperContent}>
         <Box {...styles.wrapperContent_Title}>
-          <Text>Languages</Text>
+          <Text {...styles.wrapperContent_TextTitle}>{t('language')}</Text>
         </Box>
         {arr?.map((item) => {
           return (
@@ -21,6 +30,25 @@ const ListLanguage = ({ arr = [] }: ListLanguageProps): React.ReactElement => {
             </React.Fragment>
           );
         })}
+
+        <Box {...styles.wrapperNotify}>
+          {count > 0 && (
+            <Snackbar onComplete={resetCount}>
+              <Box>
+                <CustomSpinner
+                  spinner={checkedSpinner}
+                  colorSpinner={'green'}
+                />
+              </Box>
+              <Box>
+                <Text>{t('notifyChangeLanguageSuccess')}</Text>
+              </Box>
+            </Snackbar>
+          )}
+					{
+						count === 0 && <Text>{' '}</Text>
+					}
+        </Box>
       </Box>
     </Box>
   );

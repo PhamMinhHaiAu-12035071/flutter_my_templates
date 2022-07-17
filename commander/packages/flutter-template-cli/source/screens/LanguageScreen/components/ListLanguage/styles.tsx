@@ -1,4 +1,5 @@
 import { Styles } from 'ink/build/styles';
+import { Props } from 'ink/build/components/Text';
 
 const styles = {
   container: {
@@ -19,6 +20,15 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     marginY: 1,
+  } as Styles,
+  wrapperContent_TextTitle: {
+    backgroundColor: 'blue',
+  } as Props,
+  wrapperNotify: {
+    marginTop: 2,
+    marginBottom: 1,
+    display: 'flex',
+    flexDirection: 'row',
   } as Styles,
 };
 

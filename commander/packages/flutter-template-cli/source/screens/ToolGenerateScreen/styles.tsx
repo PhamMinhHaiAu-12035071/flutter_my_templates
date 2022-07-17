@@ -5,38 +5,30 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
+    borderStyle: 'round',
+    borderColor: 'green',
+    paddingY: 1,
   } as Styles,
+  wrapperTitle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  } as Styles,
+  wrapperTextTitle: {
+    backgroundColor: 'blue',
+  } as Props,
   wrapperContent: {
     display: 'flex',
     flexDirection: 'column',
-    borderStyle: 'round',
-    borderColor: 'green',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 1,
   } as Styles,
-  wrapperContent_Title: {
+  wrapperContent_Question: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginY: 1,
   } as Styles,
-  wrapperContent_TextTitle: {
-    backgroundColor: 'blue',
-  } as Props,
-  wrapperControl: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: 2,
-  } as Styles,
-  wrapperControl_TextEnter: {
-    color: 'green',
-    bold: true,
-  } as Props,
-  wrapperContent_TextQuit: {
-    color: 'yellow',
-    bold: true,
-  } as Props,
 };
 
 export { styles };

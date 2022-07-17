@@ -4,6 +4,7 @@ import React from 'react';
 import { styles } from './styles';
 import _ from 'lodash';
 import { PATH } from '../../../../router/RouterContext';
+import { useTranslation } from 'react-i18next';
 
 interface ItemMenuProps {
   id: string;
@@ -12,13 +13,15 @@ interface ItemMenuProps {
   style?: Styles;
 }
 const ItemMenu = ({ id, name, style }: ItemMenuProps): React.ReactElement => {
+  const { t } = useTranslation();
+
   return (
     <Box {..._.merge(styles.container, style)}>
       <Box {...styles.wrapperId}>
         <Text>[{id}]</Text>
       </Box>
       <Box {...styles.wrapperText}>
-        <Text>{name}</Text>
+        <Text>{t(`${name}`)}</Text>
       </Box>
     </Box>
   );

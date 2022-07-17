@@ -26,6 +26,17 @@ const fingerPointingRight: Spinner = {
   interval: 100,
   frames: ['👉'],
 };
+
+const circleChecked: Spinner = {
+  interval: 100,
+  frames: ['◉'],
+};
+
+const circleUnchecked: Spinner = {
+  interval: 100,
+  frames: ['○'],
+};
+
 export {
   checkedSpinner,
   warningSpinner,
@@ -33,4 +44,6 @@ export {
   folderSpinner,
   fileSpinner,
   fingerPointingRight,
+  circleChecked,
+  circleUnchecked,
 };

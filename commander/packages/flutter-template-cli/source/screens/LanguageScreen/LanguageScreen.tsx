@@ -5,35 +5,53 @@ import { ListLanguage } from './components/ListLanguage/ListLanguage';
 import { PATH, RouterContext } from '../../router/RouterContext';
 import { languages } from '../../constants/language';
 import { ItemLanguageProps } from './components/ItemLanguage/ItemLanguage';
+import { useTranslation } from 'react-i18next';
+import { firstUppercaseCharacter } from '@commander/utilities';
 
-const arrLanguages: Array<ItemLanguageProps> = languages.map(
-  (item, index): ItemLanguageProps => {
-    if (index === 0) {
-      return {
-        ...item,
-        ...{
-          isSelected: true,
-        },
-      };
-    }
-    return {
-      ...item,
-      ...{
-        isSelected: false,
-      },
-    };
-  },
-);
+
 const LanguageScreen = (): React.ReactElement => {
   const { exit } = useApp();
   const router = React.useContext(RouterContext);
-  const [arr, setArr] = React.useState<Array<ItemLanguageProps>>(arrLanguages);
-
+  const [arr, setArr] = React.useState<Array<ItemLanguageProps>>([]);
+  const [count, setCount] = React.useState<number>(0);
+  const { i18n, t } = useTranslation();
+	React.useEffect(() => {
+		setArr(() => {
+			return languages.map(
+				(item): ItemLanguageProps => {
+					if (item.locale === i18n.language) {
+						return {
+							...item,
+							...{
+								isSelected: true,
+							},
+						};
+					}
+					return {
+						...item,
+						...{
+							isSelected: false,
+						},
+					};
+				},
+			)
+		})
+	}, [i18n]);
+  const resetCount = () => {
+    setCount(0);
+  };
   useInput((input, key) => {
     if (input === 'q') {
       exit();
-    } else if (input === 'b' || key.return) {
+    } else if (input === 'b') {
       router.changeScreen(PATH.MENU_SCREEN);
+    }
+    if (key.return) {
+      const itemSelected = arr.find((item) => item.isSelected === true);
+      if (itemSelected) {
+        i18n.changeLanguage(itemSelected.locale);
+        setCount((count) => count + 1);
+      }
     }
     if (key['upArrow'] || input === 'w') {
       const findIndex = arr.findIndex((item) => item.isSelected === true);
@@ -122,18 +140,18 @@ const LanguageScreen = (): React.ReactElement => {
 
   return (
     <Box {...styles.container}>
-      <ListLanguage arr={arr} />
+      <ListLanguage arr={arr} count={count} resetCount={resetCount} />
       <Box {...styles.wrapperControl}>
         <Text>
-          Use the arrow keys or WSAD to move the settings and Press{' '}
+					{t('guideArrowKey')}{' '}
           <Text {...styles.wrapperControl_TextGreen}>Enter</Text>
         </Text>
         <Text>
-          Press <Text {...styles.wrapperControl_TextGreen}>b</Text> to Back
+					{firstUppercaseCharacter(t('press'))}{' '}<Text {...styles.wrapperControl_TextGreen}>b</Text>{' '}{t('toBack')}
         </Text>
         <Spacer />
         <Text>
-          Press <Text {...styles.wrapperControl_TextQuit}>q</Text> to Quit
+					{firstUppercaseCharacter(t('press'))}{' '}<Text {...styles.wrapperControl_TextQuit}>q</Text>{' '}{t('toQuit')}
         </Text>
         <Spacer />
       </Box>

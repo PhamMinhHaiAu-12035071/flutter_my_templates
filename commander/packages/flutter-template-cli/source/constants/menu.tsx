@@ -4,12 +4,12 @@ import { PATH } from '../router/RouterContext';
 const menus: Array<ItemMenuProps> = [
   {
     id: '1',
-    name: 'Languages',
+    name: 'language',
     screen: PATH.LANGUAGE_SCREEN,
   },
   {
     id: '2',
-    name: 'Create template flutter_bloc_navigator_2',
+    name: 'createTemplateFlutterBlocNavigator2',
     screen: PATH.TOOL_GENERATE_SCREEN,
   },
 ];
