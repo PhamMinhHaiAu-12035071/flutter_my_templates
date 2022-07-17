@@ -9,7 +9,11 @@ const jp = {
 		press: '押す',
 		toQuit: 'やめること.',
 		guideArrowKey: '矢印キーまたはWASDを使用して設定を移動し、を押します',
-		toBack: '戻る.'
+		toBack: '戻る.',
+		questionInstallFlutter: 'Flutterはもうインストールしましたか ?',
+		yes: 'はい',
+		no: '番号',
+		guide: 'ガイド',
   },
 };
 

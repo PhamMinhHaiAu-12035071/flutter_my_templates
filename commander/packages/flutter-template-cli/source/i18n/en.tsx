@@ -9,7 +9,11 @@ const en = {
 		press: 'press',
 		toQuit: 'to Quit.',
 		guideArrowKey: 'Use the arrow keys or WSAD to move the settings and press',
-		toBack: 'to Back.'
+		toBack: 'to Back.',
+		questionInstallFlutter: 'Have you installed Flutter yet ?',
+		yes: 'yes',
+		no: 'no',
+		guide: 'guide',
   },
 };
 

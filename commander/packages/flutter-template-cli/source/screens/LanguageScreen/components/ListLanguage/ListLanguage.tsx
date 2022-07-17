@@ -4,6 +4,7 @@ import { styles } from './styles';
 import { ItemLanguage, ItemLanguageProps } from '../ItemLanguage/ItemLanguage';
 import { useTranslation } from 'react-i18next';
 import { checkedSpinner, CustomSpinner, Snackbar } from '@commander/ui-kit';
+import _ from 'lodash';
 
 interface ListLanguageProps {
   arr?: Array<ItemLanguageProps>;
@@ -21,7 +22,10 @@ const ListLanguage = ({
     <Box {...styles.container}>
       <Box {...styles.wrapperContent}>
         <Box {...styles.wrapperContent_Title}>
-          <Text {...styles.wrapperContent_TextTitle}>{t('language')}</Text>
+          <Text {...styles.wrapperContent_TextTitle}>{t('language')
+						.split(' ')
+						.map(_.capitalize)
+						.join(' ')}</Text>
         </Box>
         {arr?.map((item) => {
           return (
@@ -45,9 +49,6 @@ const ListLanguage = ({
               </Box>
             </Snackbar>
           )}
-					{
-						count === 0 && <Text>{' '}</Text>
-					}
         </Box>
       </Box>
     </Box>

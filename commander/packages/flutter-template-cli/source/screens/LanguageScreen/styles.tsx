@@ -11,6 +11,11 @@ const styles = {
     flexDirection: 'column',
     marginLeft: 2,
   } as Styles,
+	wrapperControl_TextGuide: {
+		bold: true,
+		underline: true,
+		color: 'yellow',
+	} as Props,
   wrapperControl_TextGreen: {
     color: 'green',
     bold: true,

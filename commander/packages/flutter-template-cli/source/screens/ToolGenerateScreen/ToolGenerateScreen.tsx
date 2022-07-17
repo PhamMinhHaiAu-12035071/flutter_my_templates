@@ -7,18 +7,23 @@ import { QuestionInstallFlutter } from './components/QuestionInstallFlutter/Ques
 const ToolGenerateScreen = (): React.ReactElement => {
   const { t } = useTranslation();
   return (
-    <Box {...styles.container}>
-      <Box {...styles.wrapperTitle}>
-        <Text {...styles.wrapperTextTitle}>
-          {t('createTemplateFlutterBlocNavigator2')}
-        </Text>
-      </Box>
-      <Box {...styles.wrapperContent}>
-        <Box {...styles.wrapperContent_Question}>
-          <QuestionInstallFlutter />
-        </Box>
-      </Box>
-    </Box>
+    <React.Fragment>
+			<Box {...styles.container}>
+				<Box {...styles.wrapperTitle}>
+					<Text {...styles.wrapperTextTitle}>
+						{t('createTemplateFlutterBlocNavigator2')}
+					</Text>
+				</Box>
+				<Box {...styles.wrapperContent}>
+					<Box {...styles.wrapperContent_Question}>
+						<QuestionInstallFlutter />
+					</Box>
+				</Box>
+			</Box>
+			<Box>
+				<Text>Press Y or N to choose</Text>
+			</Box>
+		</React.Fragment>
   );
 };
 

@@ -8,7 +8,11 @@ const vi = {
 		press: 'nhấn',
 		toQuit: 'để Thoát.',
 		guideArrowKey: 'Sử dụng các phím mũi tên hoặc WASD để di chuyển cài đặt và nhấn',
-		toBack: 'để Quay lại.'
+		toBack: 'để Quay lại.',
+		questionInstallFlutter: 'Bạn đã cài đặt Flutter chưa ?',
+		yes: 'có',
+		no: 'không',
+		guide: 'hướng dẫn',
   },
 };
 

@@ -23,10 +23,12 @@ const styles = {
   } as Styles,
   wrapperContent_TextTitle: {
     backgroundColor: 'blue',
+		bold: true,
   } as Props,
   wrapperNotify: {
     marginTop: 2,
     marginBottom: 1,
+		height: 1,
     display: 'flex',
     flexDirection: 'row',
   } as Styles,

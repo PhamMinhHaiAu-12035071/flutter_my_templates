@@ -1,4 +1,4 @@
-import { Box, Spacer, Text, useApp, useInput } from 'ink';
+import { Box, Spacer, Text, useApp, useInput, Newline } from 'ink';
 import React from 'react';
 import { ItemMenu, ItemMenuProps } from '../ItemMenu/ItemMenu';
 import { styles } from './styles';
@@ -6,7 +6,6 @@ import chalk from 'chalk';
 import { RouterContext } from '../../../../router/RouterContext';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
-import { firstUppercaseCharacter } from '@commander/utilities';
 
 interface ListItemMenuProps {
   arr?: Array<ItemMenuProps>;
@@ -60,7 +59,7 @@ const ListItemMenuView = ({
     <Box {...styles.container}>
       <Box {...styles.wrapperContent}>
         <Box {...styles.wrapperContent_Title}>
-          <Text {...styles.wrapperContent_TextTitle}>{t('dashboard')}</Text>
+          <Text {...styles.wrapperContent_TextTitle}>{_.startCase(_.toLower(t('dashboard')))}</Text>
         </Box>
         {arr.map((item, _index) => {
           return (
@@ -72,14 +71,19 @@ const ListItemMenuView = ({
         })}
       </Box>
       <Box {...styles.wrapperControl}>
-        <Text>
-					{_.template(t('enterSelection'))({'arr': arr.map((item) => item.id).toString()})}
-					<Text {...styles.wrapperControl_TextEnter}>{' '}Enter</Text>:{' '}
-          {renderTextSelection}
-        </Text>
+				<Text>
+					<Text {...styles.wrapperControl_TextGuide}>{_.upperFirst(t('guide'))}{':'}</Text>
+					<Newline count={2} />
+					<Text>
+						{_.template(t('enterSelection'))({'arr': arr.map((item) => item.id).toString()})}
+						<Text {...styles.wrapperControl_TextEnter}>{' '}Enter</Text>:{' '}
+						{renderTextSelection}
+					</Text>
+				</Text>
+
         <Spacer />
         <Text>
-					{firstUppercaseCharacter(t('press'))} <Text {...styles.wrapperContent_TextQuit}>q</Text>{' '}{t('toQuit')}
+					{_.upperFirst(t('press'))} <Text {...styles.wrapperContent_TextQuit}>q</Text>{' '}{t('toQuit')}
         </Text>
       </Box>
     </Box>

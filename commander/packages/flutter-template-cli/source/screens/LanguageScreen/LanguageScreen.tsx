@@ -1,13 +1,12 @@
 import React from 'react';
-import { Box, Spacer, Text, useApp, useInput } from 'ink';
+import { Box, Spacer, Text, useApp, useInput, Newline } from 'ink';
 import { styles } from './styles';
 import { ListLanguage } from './components/ListLanguage/ListLanguage';
 import { PATH, RouterContext } from '../../router/RouterContext';
 import { languages } from '../../constants/language';
 import { ItemLanguageProps } from './components/ItemLanguage/ItemLanguage';
 import { useTranslation } from 'react-i18next';
-import { firstUppercaseCharacter } from '@commander/utilities';
-
+import _ from 'lodash';
 
 const LanguageScreen = (): React.ReactElement => {
   const { exit } = useApp();
@@ -142,18 +141,22 @@ const LanguageScreen = (): React.ReactElement => {
     <Box {...styles.container}>
       <ListLanguage arr={arr} count={count} resetCount={resetCount} />
       <Box {...styles.wrapperControl}>
-        <Text>
-					{t('guideArrowKey')}{' '}
-          <Text {...styles.wrapperControl_TextGreen}>Enter</Text>
-        </Text>
-        <Text>
-					{firstUppercaseCharacter(t('press'))}{' '}<Text {...styles.wrapperControl_TextGreen}>b</Text>{' '}{t('toBack')}
-        </Text>
-        <Spacer />
-        <Text>
-					{firstUppercaseCharacter(t('press'))}{' '}<Text {...styles.wrapperControl_TextQuit}>q</Text>{' '}{t('toQuit')}
-        </Text>
-        <Spacer />
+				<Text>
+					<Text {...styles.wrapperControl_TextGuide}>{_.upperFirst(t('guide'))}{':'}</Text>
+					<Newline count={2} />
+					<Text>
+						{t('guideArrowKey')}{' '}
+						<Text {...styles.wrapperControl_TextGreen}>Enter</Text>
+					</Text>
+				</Text>
+				<Text>
+					{_.upperFirst(t('press'))}{' '}<Text {...styles.wrapperControl_TextGreen}>b</Text>{' '}{t('toBack')}
+				</Text>
+				<Spacer />
+				<Text>
+					{_.upperFirst(t('press'))}{' '}<Text {...styles.wrapperControl_TextQuit}>q</Text>{' '}{t('toQuit')}
+				</Text>
+				<Spacer />
       </Box>
     </Box>
   );
