@@ -13,6 +13,7 @@ const vi = {
 		yes: 'có',
 		no: 'không',
 		guide: 'hướng dẫn',
+		guideQuestionInstallFlutter: 'Sử dụng các phím mũi tên hoặc WSAD để chọn và nhấn',
   },
 };
 

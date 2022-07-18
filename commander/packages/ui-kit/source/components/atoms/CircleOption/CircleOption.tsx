@@ -9,11 +9,14 @@ interface CircleOptionProps {
 const CircleOption = ({
   isChecked = false,
 }: CircleOptionProps): React.ReactElement => {
-  const spinner = spinners['toggle9'];
+  const spinnerChecked = spinners['toggle9'].frames[0];
+	const spinnerUnchecked = spinners['toggle6'].frames[0];
+
   if (isChecked) {
-    return <Text>{spinner.frames[1]}</Text>;
+		return <Text>{spinnerChecked}</Text>;
   }
-  return <Text>{spinner.frames[0]}</Text>;
+	return <Text>{spinnerUnchecked}</Text>;
+
 };
 
 export { CircleOption };

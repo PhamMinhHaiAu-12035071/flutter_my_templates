@@ -14,6 +14,7 @@ const jp = {
 		yes: 'はい',
 		no: '番号',
 		guide: 'ガイド',
+		guideQuestionInstallFlutter: '矢印キーまたはWSADを使用して選択し、を押します',
   },
 };
 

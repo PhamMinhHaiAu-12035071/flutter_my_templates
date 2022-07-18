@@ -29,6 +29,24 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   } as Styles,
+	wrapperControl: {
+		display: 'flex',
+		flexDirection: 'column',
+		marginLeft: 2,
+	} as Styles,
+	wrapperControl_TextGuide: {
+		bold: true,
+		underline: true,
+		color: 'yellow',
+	} as Props,
+	wrapperControl_TextGreen: {
+		bold: true,
+		color: 'green',
+	} as Props,
+	wrapperControl_TextQuit: {
+		color: 'yellow',
+		bold: true,
+	} as Props,
 };
 
 export { styles };

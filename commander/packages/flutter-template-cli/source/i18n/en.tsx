@@ -14,6 +14,7 @@ const en = {
 		yes: 'yes',
 		no: 'no',
 		guide: 'guide',
+		guideQuestionInstallFlutter: 'Use the arrow keys or WSAD to choose and press',
   },
 };
 

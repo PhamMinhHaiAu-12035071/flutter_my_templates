@@ -6,13 +6,26 @@ import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 const QuestionInstallFlutter = (): React.ReactElement => {
-	useInput((_input, _key) => {
+	const [isYes, setIsYes] = React.useState<boolean>(true);
 
+	useInput((input, key) => {
+		if(key['leftArrow'] || input === 'a') {
+			if(!isYes) {
+				setIsYes(true);
+			}
+		} else if (key['rightArrow'] || input === 'd') {
+			if(isYes) {
+				setIsYes(false);
+			}
+		}
 	});
-  return <QuestionInstallFlutterView />;
+  return <QuestionInstallFlutterView isYes={isYes}/>;
 };
 
-const QuestionInstallFlutterView = (): React.ReactElement => {
+interface QuestionInstallFlutterViewProps {
+	isYes?: boolean;
+}
+const QuestionInstallFlutterView = ({isYes = true}: QuestionInstallFlutterViewProps): React.ReactElement => {
 	const {t} = useTranslation();
 
 	return (
@@ -23,22 +36,22 @@ const QuestionInstallFlutterView = (): React.ReactElement => {
 				<Box {...styles.wrapperConfirm}>
 					<Box {...styles.wrapperConfirm_Action}>
 						<Box {...styles.wrapperConfirm_ActionCircle}>
-							<Text color={'green'}>
-								<CircleOption />
+							<Text color={isYes ? 'green' : 'white'}>
+								<CircleOption isChecked={isYes} />
 							</Text>
 						</Box>
 						<Box>
-							<Text>{_.upperFirst(t('yes'))}</Text>
+							<Text color={isYes ? 'green' : 'white'}>{_.upperFirst(t('yes'))}</Text>
 						</Box>
 					</Box>
 					<Box {...styles.wrapperConfirm_Action}>
 						<Box {...styles.wrapperConfirm_ActionCircle}>
-							<Text color={'green'}>
-								<CircleOption />
+							<Text color={isYes ? 'white' : 'green'}>
+								<CircleOption isChecked={!isYes} />
 							</Text>
 						</Box>
 						<Box>
-							<Text>{_.upperFirst(t('no'))}</Text>
+							<Text color={isYes ? 'white' : 'green'}>{_.upperFirst(t('no'))}</Text>
 						</Box>
 					</Box>
 				</Box>

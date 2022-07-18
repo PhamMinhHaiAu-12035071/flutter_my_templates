@@ -146,7 +146,7 @@ const LanguageScreen = (): React.ReactElement => {
 					<Newline count={2} />
 					<Text>
 						{t('guideArrowKey')}{' '}
-						<Text {...styles.wrapperControl_TextGreen}>Enter</Text>
+						<Text {...styles.wrapperControl_TextGreen}>Enter.</Text>
 					</Text>
 				</Text>
 				<Text>
