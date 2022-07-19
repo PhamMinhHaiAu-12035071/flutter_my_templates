@@ -15,6 +15,8 @@ const jp = {
 		no: '番号',
 		guide: 'ガイド',
 		guideQuestionInstallFlutter: '矢印キーまたはWSADを使用して選択し、を押します',
+		detectOperatingSystem: '使用されているオペレーティングシステムの検出は:',
+		detectChipSystem: '使用される検出チップシステムは次のとおりです:',
   },
 };
 

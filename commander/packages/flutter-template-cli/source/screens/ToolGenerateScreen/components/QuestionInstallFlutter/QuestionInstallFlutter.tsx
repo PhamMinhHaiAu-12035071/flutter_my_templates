@@ -4,10 +4,19 @@ import { CircleOption, TypingAnimation } from '@commander/ui-kit';
 import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
+import { TOOL_GENERATE_PATH, ToolGenerateRouterContext } from '../../ToolGenerateRouterContext';
 
 const QuestionInstallFlutter = (): React.ReactElement => {
 	const [isYes, setIsYes] = React.useState<boolean>(true);
+	const router = React.useContext(ToolGenerateRouterContext);
 
+	const _handlePressYes = (): void => {
+		console.log('you press yes');
+	}
+
+	const _handlePressNo = (): void => {
+		router.changeScreen(TOOL_GENERATE_PATH.QUESTION_INSTALL_FLUTTER_SCREEN_NO_CONFIRM);
+	}
 	useInput((input, key) => {
 		if(key['leftArrow'] || input === 'a') {
 			if(!isYes) {
@@ -18,7 +27,15 @@ const QuestionInstallFlutter = (): React.ReactElement => {
 				setIsYes(false);
 			}
 		}
-		
+
+		if(key.return) {
+			if(isYes) {
+				_handlePressYes();
+			} else {
+				_handlePressNo();
+			}
+		}
+
 	});
   return <QuestionInstallFlutterView isYes={isYes}/>;
 };

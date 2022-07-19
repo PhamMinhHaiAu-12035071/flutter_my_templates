@@ -14,6 +14,8 @@ const vi = {
 		no: 'không',
 		guide: 'hướng dẫn',
 		guideQuestionInstallFlutter: 'Sử dụng các phím mũi tên hoặc WSAD để chọn và nhấn',
+		detectOperatingSystem: 'Phát hiện hệ điều hành được sử dụng là:',
+		detectChipSystem: 'Hệ thống phát hiện chip được sử dụng là:',
   },
 };
 

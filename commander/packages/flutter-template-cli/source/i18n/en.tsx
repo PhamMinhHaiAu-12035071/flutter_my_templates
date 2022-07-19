@@ -15,6 +15,8 @@ const en = {
 		no: 'no',
 		guide: 'guide',
 		guideQuestionInstallFlutter: 'Use the arrow keys or WSAD to choose and press',
+		detectOperatingSystem: 'Detect operating system used is:',
+		detectChipSystem: 'Detect chip system used is:',
   },
 };
 
