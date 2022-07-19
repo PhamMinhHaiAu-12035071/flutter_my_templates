@@ -18,6 +18,7 @@ const QuestionInstallFlutter = (): React.ReactElement => {
 				setIsYes(false);
 			}
 		}
+		
 	});
   return <QuestionInstallFlutterView isYes={isYes}/>;
 };

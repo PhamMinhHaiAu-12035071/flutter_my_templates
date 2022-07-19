@@ -2,9 +2,9 @@ import React from 'react';
 import { Box } from 'ink';
 
 interface SnackbarProps {
-  duration?: number;
-  children: React.ReactElement | Array<React.ReactElement>;
-  onComplete?: () => void;
+  readonly duration?: number;
+  readonly children: React.ReactElement | Array<React.ReactElement>;
+  readonly onComplete?: () => void;
 }
 
 const Snackbar = ({

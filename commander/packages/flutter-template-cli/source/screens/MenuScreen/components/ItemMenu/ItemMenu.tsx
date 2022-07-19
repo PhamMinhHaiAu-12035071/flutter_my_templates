@@ -7,10 +7,10 @@ import { PATH } from '../../../../router/RouterContext';
 import { useTranslation } from 'react-i18next';
 
 interface ItemMenuProps {
-  id: string;
-  name: string;
-  screen: PATH;
-  style?: Styles;
+  readonly id: string;
+  readonly name: string;
+  readonly screen: PATH;
+  readonly style?: Styles;
 }
 const ItemMenu = ({ id, name, style }: ItemMenuProps): React.ReactElement => {
   const { t } = useTranslation();

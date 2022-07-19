@@ -23,8 +23,8 @@ function ArrayPlusDelay(
 }
 
 interface TypingAnimationProps {
-  text: string;
-  fps?: number;
+  readonly text: string;
+  readonly fps?: number;
 }
 const TypingAnimation = ({
   text,

@@ -3,7 +3,7 @@ import React from 'react';
 import { Text } from 'ink';
 
 interface CircleOptionProps {
-  isChecked?: boolean;
+  readonly isChecked?: boolean;
 }
 
 const CircleOption = ({

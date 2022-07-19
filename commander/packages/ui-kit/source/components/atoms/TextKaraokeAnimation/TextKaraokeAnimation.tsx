@@ -3,11 +3,11 @@ import { Text } from 'ink';
 import { Props } from 'ink/build/components/Text';
 
 interface TextKaraokeAnimationProps {
-	text: string;
-	isRunning?: boolean;
-	styleOrigin?: Props;
-	styleAnimation?: Props;
-	fps?: number;
+	readonly text: string;
+	readonly isRunning?: boolean;
+	readonly styleOrigin?: Props;
+	readonly styleAnimation?: Props;
+	readonly fps?: number;
 }
 
 let timeout: NodeJS.Timeout;

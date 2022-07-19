@@ -8,8 +8,8 @@ type Spinner = {
 };
 
 interface CustomSpinnerProps {
-  spinner: Spinner;
-  colorSpinner?: string;
+  readonly spinner: Spinner;
+  readonly colorSpinner?: string;
 }
 
 const CustomSpinner = ({

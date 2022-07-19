@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 interface ListItemMenuProps {
-  arr?: Array<ItemMenuProps>;
+  readonly arr?: Array<ItemMenuProps>;
 }
 
 const ListItemMenu = (props: ListItemMenuProps): React.ReactElement | null => {

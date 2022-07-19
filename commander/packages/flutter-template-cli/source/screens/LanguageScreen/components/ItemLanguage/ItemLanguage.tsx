@@ -9,7 +9,7 @@ import {
 import { Language } from '../../../../constants/language';
 
 interface ItemLanguageProps extends Language {
-  isSelected?: boolean;
+  readonly isSelected?: boolean;
 }
 
 const ItemLanguage = ({

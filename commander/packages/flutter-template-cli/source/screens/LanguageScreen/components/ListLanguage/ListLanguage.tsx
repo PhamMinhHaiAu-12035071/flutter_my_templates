@@ -7,9 +7,9 @@ import { checkedSpinner, CustomSpinner, Snackbar } from '@commander/ui-kit';
 import _ from 'lodash';
 
 interface ListLanguageProps {
-  arr?: Array<ItemLanguageProps>;
-  count: number;
-  resetCount: () => void;
+  readonly arr?: Array<ItemLanguageProps>;
+  readonly count: number;
+  readonly resetCount: () => void;
 }
 
 const ListLanguage = ({
