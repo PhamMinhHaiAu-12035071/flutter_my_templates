@@ -3,10 +3,10 @@ import { Box, Spacer, Text, useApp, useInput, Newline } from 'ink';
 import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
-import { PATH, RouterContext } from '../../../router/RouterContext';
-import { ItemLanguageProps } from '../components/ItemLanguage/ItemLanguage';
-import { languages } from '../../../constants/language';
-import { ListLanguage } from '../components/ListLanguage/ListLanguage';
+import { PATH, RouterContext } from '../../../../../router/RouterContext';
+import { ItemLanguageProps } from '../../../components/ItemLanguage/ItemLanguage';
+import { languages } from '../../../../../constants/language';
+import { ListLanguage } from '../../../components/ListLanguage/ListLanguage';
 
 const LanguageScreen = (): React.ReactElement => {
   const { exit } = useApp();
