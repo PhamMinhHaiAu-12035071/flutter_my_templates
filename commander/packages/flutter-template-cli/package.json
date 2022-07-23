@@ -29,8 +29,7 @@
 	"reflect-metadata": "^0.1.13",
 	"typedi": "^0.10.0",
 	"fp-ts": "^2.12.1",
-	"@felangel/bloc": "^0.3.0",
-	"@felangel/react-bloc": "^0.3.0"
+	"blac": "^0.4.1"
   },
   "ava": {
     "typescript": {

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import { styles } from './styles';
-import { ItemLanguage, ItemLanguageProps } from '../ItemLanguage/ItemLanguage';
 import { useTranslation } from 'react-i18next';
 import { checkedSpinner, CustomSpinner, Snackbar } from '@commander/ui-kit';
 import _ from 'lodash';
+import { ItemLanguage } from '../ItemLanguage/ItemLanguage';
+import { LanguageModel } from '../../../infrastructure/models/LanguageModel';
 
 interface ListLanguageProps {
-  readonly arr?: Array<ItemLanguageProps>;
+  readonly arr?: Array<LanguageModel>;
   readonly count: number;
   readonly resetCount: () => void;
 }
@@ -22,15 +23,14 @@ const ListLanguage = ({
     <Box {...styles.container}>
       <Box {...styles.wrapperContent}>
         <Box {...styles.wrapperContent_Title}>
-          <Text {...styles.wrapperContent_TextTitle}>{t('language')
-						.split(' ')
-						.map(_.capitalize)
-						.join(' ')}</Text>
+          <Text {...styles.wrapperContent_TextTitle}>
+            {t('language').split(' ').map(_.capitalize).join(' ')}
+          </Text>
         </Box>
         {arr?.map((item) => {
           return (
             <React.Fragment key={item.id}>
-              <ItemLanguage {...item} />
+              <ItemLanguage item={item} />
             </React.Fragment>
           );
         })}

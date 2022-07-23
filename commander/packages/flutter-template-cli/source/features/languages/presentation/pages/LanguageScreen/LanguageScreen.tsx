@@ -1,41 +1,58 @@
+// @ts-nocheck
+
 import React from 'react';
-import { Box, Spacer, Text, useApp, useInput, Newline } from 'ink';
+import { Box, Newline, Spacer, Text, useApp, useInput } from 'ink';
+import 'reflect-metadata';
 import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { PATH, RouterContext } from '../../../../../router/RouterContext';
-import { ItemLanguageProps } from '../../../components/ItemLanguage/ItemLanguage';
-import { languages } from '../../../../../constants/language';
-import { ListLanguage } from '../../../components/ListLanguage/ListLanguage';
+import {
+  LanguageEventFetchAll,
+  LanguageEventMoveDown,
+  LanguageEventMoveUp,
+} from './bloc/LanguageEvent';
+import {
+  LanguageStateChanged,
+  LanguageStateLoaded,
+} from './bloc/LanguageState';
+import { ListLanguage } from '../../components/ListLanguage/ListLanguage';
+import { ItemLanguageProps } from '../../components/ItemLanguage/ItemLanguage';
+import { useBloc } from '../../../../core/state';
+import { LanguageBloc } from './bloc/LanguageBloc';
 
 const LanguageScreen = (): React.ReactElement => {
+  const [state, bloc] = useBloc<LanguageBloc>(LanguageBloc);
+
+  React.useEffect(() => {
+    bloc.add(new LanguageEventFetchAll());
+  }, []);
   const { exit } = useApp();
   const router = React.useContext(RouterContext);
   const [arr, setArr] = React.useState<Array<ItemLanguageProps>>([]);
   const [count, setCount] = React.useState<number>(0);
   const { i18n, t } = useTranslation();
-	React.useEffect(() => {
-		setArr(() => {
-			return languages.map(
-				(item): ItemLanguageProps => {
-					if (item.locale === i18n.language) {
-						return {
-							...item,
-							...{
-								isSelected: true,
-							},
-						};
-					}
-					return {
-						...item,
-						...{
-							isSelected: false,
-						},
-					};
-				},
-			)
-		})
-	}, [i18n]);
+
+  // React.useEffect(() => {
+  //   setArr(() => {
+  //     return languages.map((item): ItemLanguageProps => {
+  //       if (item.locale === i18n.language) {
+  //         return {
+  //           ...item,
+  //           ...{
+  //             isSelected: true,
+  //           },
+  //         };
+  //       }
+  //       return {
+  //         ...item,
+  //         ...{
+  //           isSelected: false,
+  //         },
+  //       };
+  //     });
+  //   });
+  // }, [i18n]);
   const resetCount = () => {
     setCount(0);
   };
@@ -48,115 +65,46 @@ const LanguageScreen = (): React.ReactElement => {
     if (key.return) {
       const itemSelected = arr.find((item) => item.isSelected === true);
       if (itemSelected) {
-				i18n['changeLanguage'](itemSelected.locale);
+        i18n['changeLanguage'](itemSelected.locale);
         setCount((_count) => _count + 1);
       }
     }
     if (key['upArrow'] || input === 'w') {
-      const findIndex = arr.findIndex((item) => item.isSelected === true);
-      if (findIndex === 0) {
-        setArr((prevState) => {
-          return prevState.map((item, index): ItemLanguageProps => {
-            if (index === arr.length - 1) {
-              return {
-                ...item,
-                ...{
-                  isSelected: true,
-                },
-              };
-            }
-            return {
-              ...item,
-              ...{
-                isSelected: false,
-              },
-            };
-          });
-        });
-      } else if (findIndex > 0) {
-        setArr((prevState) => {
-          return prevState.map((item, index): ItemLanguageProps => {
-            if (index === findIndex - 1) {
-              return {
-                ...item,
-                ...{
-                  isSelected: true,
-                },
-              };
-            }
-            return {
-              ...item,
-              ...{
-                isSelected: false,
-              },
-            };
-          });
-        });
-      }
+      bloc.add(new LanguageEventMoveUp());
     } else if (key['downArrow'] || input === 's') {
-      const findIndex = arr.findIndex((item) => item.isSelected === true);
-      if (findIndex === arr.length - 1) {
-        setArr((prevState) => {
-          return prevState.map((item, index): ItemLanguageProps => {
-            if (index === 0) {
-              return {
-                ...item,
-                ...{
-                  isSelected: true,
-                },
-              };
-            }
-            return {
-              ...item,
-              ...{
-                isSelected: false,
-              },
-            };
-          });
-        });
-      } else if (findIndex >= 0) {
-        setArr((prevState) => {
-          return prevState.map((item, index): ItemLanguageProps => {
-            if (index === findIndex + 1) {
-              return {
-                ...item,
-                ...{
-                  isSelected: true,
-                },
-              };
-            }
-            return {
-              ...item,
-              ...{
-                isSelected: false,
-              },
-            };
-          });
-        });
-      }
+      bloc.add(new LanguageEventMoveDown());
     }
   });
 
   return (
     <Box {...styles.container}>
-      <ListLanguage arr={arr} count={count} resetCount={resetCount} />
+      {[LanguageStateLoaded, LanguageStateChanged].some(
+        (item) => state instanceof item,
+      ) && (
+        <ListLanguage arr={state.items} count={count} resetCount={resetCount} />
+      )}
       <Box {...styles.wrapperControl}>
-				<Text>
-					<Text {...styles.wrapperControl_TextGuide}>{_.upperFirst(t('guide'))}{':'}</Text>
-					<Newline count={2} />
-					<Text>
-						{t('guideArrowKey')}{' '}
-						<Text {...styles.wrapperControl_TextGreen}>Enter.</Text>
-					</Text>
-				</Text>
-				<Text>
-					{_.upperFirst(t('press'))}{' '}<Text {...styles.wrapperControl_TextGreen}>b</Text>{' '}{t('toBack')}
-				</Text>
-				<Spacer />
-				<Text>
-					{_.upperFirst(t('press'))}{' '}<Text {...styles.wrapperControl_TextQuit}>q</Text>{' '}{t('toQuit')}
-				</Text>
-				<Spacer />
+        <Text>
+          <Text {...styles.wrapperControl_TextGuide}>
+            {_.upperFirst(t('guide'))}
+            {':'}
+          </Text>
+          <Newline count={2} />
+          <Text>
+            {t('guideArrowKey')}{' '}
+            <Text {...styles.wrapperControl_TextGreen}>Enter.</Text>
+          </Text>
+        </Text>
+        <Text>
+          {_.upperFirst(t('press'))}{' '}
+          <Text {...styles.wrapperControl_TextGreen}>b</Text> {t('toBack')}
+        </Text>
+        <Spacer />
+        <Text>
+          {_.upperFirst(t('press'))}{' '}
+          <Text {...styles.wrapperControl_TextQuit}>q</Text> {t('toQuit')}
+        </Text>
+        <Spacer />
       </Box>
     </Box>
   );

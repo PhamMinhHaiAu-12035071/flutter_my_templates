@@ -1,7 +1,34 @@
-enum LanguageEvent {
-	GET_ALL_LANGUAGES = 'GET_ALL_LANGUAGES'
+class LanguageEvent {}
+
+class LanguageEventFetchAll extends LanguageEvent {
+  readonly kind: string;
+
+  constructor() {
+    super();
+    this.kind = 'LanguageEventFetchAll';
+  }
 }
 
-export {
-	LanguageEvent,
+class LanguageEventMoveUp extends LanguageEvent {
+  readonly kind: string;
+
+  constructor() {
+    super();
+    this.kind = 'LanguageEventMoveUp';
+  }
 }
+
+class LanguageEventMoveDown extends LanguageEvent {
+  readonly kind: string;
+
+  constructor() {
+    super();
+    this.kind = 'LanguageEventMoveDown';
+  }
+}
+export {
+  LanguageEvent,
+  LanguageEventFetchAll,
+  LanguageEventMoveUp,
+  LanguageEventMoveDown,
+};

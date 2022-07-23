@@ -6,20 +6,17 @@ import {
   fingerPointingRight,
   TextKaraokeAnimation,
 } from '@commander/ui-kit';
-import { Language } from '../../../../constants/language';
+import { LanguageModel } from '../../../infrastructure/models/LanguageModel';
 
-interface ItemLanguageProps extends Language {
-  readonly isSelected?: boolean;
+interface ItemLanguageProps {
+  item: LanguageModel;
 }
 
-const ItemLanguage = ({
-  name,
-  isSelected,
-}: ItemLanguageProps): React.ReactElement => {
+const ItemLanguage = ({ item }: ItemLanguageProps): React.ReactElement => {
   return (
     <Box {...styles.container}>
       <Box {...styles.wrapperPointer}>
-        {isSelected && (
+        {item.isSelected && (
           <CustomSpinner
             spinner={fingerPointingRight}
             colorSpinner={'yellow'}
@@ -28,10 +25,10 @@ const ItemLanguage = ({
       </Box>
       <Box {...styles.wrapperDivider} />
       <Box {...styles.wrapperContent}>
-        {!isSelected && <Text> </Text>}
+        {!item.isSelected && <Text> </Text>}
         <TextKaraokeAnimation
-          text={name}
-          isRunning={isSelected ?? false}
+          text={item.name}
+          isRunning={item.isSelected ?? false}
           styleOrigin={styles.textDefaultColor}
           styleAnimation={styles.textActiveColor}
         />
