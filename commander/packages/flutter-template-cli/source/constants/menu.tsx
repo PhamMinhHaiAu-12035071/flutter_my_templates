@@ -1,4 +1,4 @@
-import { ItemMenuProps } from '../screens/MenuScreen/components/ItemMenu/ItemMenu';
+import { ItemMenuProps } from '../features/menu/components/ItemMenu/ItemMenu';
 import { PATH } from '../router/RouterContext';
 
 const menus: Array<ItemMenuProps> = [

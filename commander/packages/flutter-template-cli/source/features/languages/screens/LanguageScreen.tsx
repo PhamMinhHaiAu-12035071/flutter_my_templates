@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Spacer, Text, useApp, useInput, Newline } from 'ink';
 import { styles } from './styles';
-import { ListLanguage } from './components/ListLanguage/ListLanguage';
-import { PATH, RouterContext } from '../../router/RouterContext';
-import { languages } from '../../constants/language';
-import { ItemLanguageProps } from './components/ItemLanguage/ItemLanguage';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
+import { PATH, RouterContext } from '../../../router/RouterContext';
+import { ItemLanguageProps } from '../components/ItemLanguage/ItemLanguage';
+import { languages } from '../../../constants/language';
+import { ListLanguage } from '../components/ListLanguage/ListLanguage';
 
 const LanguageScreen = (): React.ReactElement => {
   const { exit } = useApp();
@@ -48,8 +48,8 @@ const LanguageScreen = (): React.ReactElement => {
     if (key.return) {
       const itemSelected = arr.find((item) => item.isSelected === true);
       if (itemSelected) {
-        i18n.changeLanguage(itemSelected.locale);
-        setCount((count) => count + 1);
+				i18n['changeLanguage'](itemSelected.locale);
+        setCount((_count) => _count + 1);
       }
     }
     if (key['upArrow'] || input === 'w') {
