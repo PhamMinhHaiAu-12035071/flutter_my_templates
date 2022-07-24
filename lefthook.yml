@@ -3,4 +3,6 @@ pre-commit:
   commands:
     commander-lint:
       glob: "*.{js,ts,jsx,tsx,json}"
-      run: cd commander && npm run lint
+      run: |
+        cd commander
+        npm run lint
