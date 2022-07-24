@@ -1,6 +1,5 @@
 pre-commit:
-  parallel: true
   commands:
-    linter:
-      files: git diff --name-only @{push}
-      run: cd commander && npx lerna run lint
+    frontend-linter:
+      glob: "*.*"
+      run: cd commander && npm run lint
