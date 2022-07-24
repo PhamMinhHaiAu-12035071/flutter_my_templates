@@ -1,5 +1,5 @@
 pre-commit:
   commands:
-    frontend-linter:
-      glob: "*.*"
+    commander-lint:
+      glob: "*"
       run: cd commander && npm run lint
