@@ -2,5 +2,5 @@ pre-commit:
   parallel: true
   commands:
     commander-lint:
-      glob: "*.{js,ts,jsx,tsx}"
+      glob: "*.{js,ts,jsx,tsx,json}"
       run: cd commander && npm run lint
