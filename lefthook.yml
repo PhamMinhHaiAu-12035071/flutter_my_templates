@@ -6,3 +6,8 @@ pre-commit:
       run: |
         cd commander
         npm run lint
+    commander-format:
+      glob: "*.*"
+      run: |
+        cd commander
+        npm run format
