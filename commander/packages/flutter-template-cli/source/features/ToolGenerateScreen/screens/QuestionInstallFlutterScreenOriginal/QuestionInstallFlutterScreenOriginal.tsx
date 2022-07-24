@@ -12,7 +12,7 @@ const QuestionInstallFlutterScreenOriginal = (): React.ReactElement => {
   const router = React.useContext(RouterContext);
   const { exit } = useApp();
 
-  useInput((input, _key) => {
+  useInput((input) => {
     if (input === 'q') {
       exit();
     } else if (input === 'b') {

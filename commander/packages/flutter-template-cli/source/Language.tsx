@@ -9,7 +9,7 @@ interface LanguageProps {
 const Language: React.FC<LanguageProps> = ({
   children,
 }: LanguageProps): React.ReactElement => {
-  const [_, bloc] = useBloc(LanguageBloc);
+  const [, bloc] = useBloc(LanguageBloc);
 
   React.useEffect(() => {
     bloc.add(new LanguageEventFetchAll());

@@ -63,7 +63,7 @@ const ListItemMenuView = ({
             {_.startCase(_.toLower(t('dashboard')))}
           </Text>
         </Box>
-        {arr.map((item, _index) => {
+        {arr.map((item) => {
           return (
             <React.Fragment key={item.id}>
               <ItemMenu {...item} />

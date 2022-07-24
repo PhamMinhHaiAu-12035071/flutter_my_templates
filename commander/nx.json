@@ -28,6 +28,12 @@
         "^format"
       ]
     },
+    "lint": {
+      "inputs": ["prod", "^prod"],
+      "dependsOn": [
+        "^lint"
+      ]
+    },
     "dev": {
       "dependsOn": [
         "^build"
