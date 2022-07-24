@@ -34,8 +34,8 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "rimraf": "^3.0.2",
-	"os-name": "^5.0.1",
-	"shelljs": "^0.8.5"
+    "os-name": "^5.0.1",
+    "shelljs": "^0.8.5"
   },
   "ava": {
     "typescript": {
@@ -68,13 +68,13 @@
     "xo": "^0.39.1",
     "ink": "^3.2.0",
     "react": "^17.0.2",
-	"@types/shelljs": "^0.8.11"
+    "@types/shelljs": "^0.8.11"
   },
   "peerDependencies": {
     "ink": ">=3.2.0",
     "react": ">=17.0.2",
     "lodash": ">=4.17.21",
-	"os-name": ">=5.0.1",
-	"shelljs": ">=0.8.5"
+    "os-name": ">=5.0.1",
+    "shelljs": ">=0.8.5"
   }
 }

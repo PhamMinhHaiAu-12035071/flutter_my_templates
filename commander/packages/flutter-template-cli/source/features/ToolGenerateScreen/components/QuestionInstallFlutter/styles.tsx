@@ -20,7 +20,7 @@ const styles = {
     flexDirection: 'row',
   } as Styles,
   wrapperConfirm_ActionCircle: {
-   marginRight: 1,
+    marginRight: 1,
   } as Styles,
 };
 

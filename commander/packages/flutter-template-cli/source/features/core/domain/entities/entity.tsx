@@ -1,7 +1,5 @@
 interface Entity {
-	get itemId(): string;
+  get itemId(): string;
 }
 
-export {
-	Entity,
-}
+export { Entity };

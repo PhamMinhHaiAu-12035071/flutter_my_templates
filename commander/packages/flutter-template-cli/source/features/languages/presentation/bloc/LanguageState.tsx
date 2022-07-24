@@ -1,40 +1,30 @@
-import { LanguageModel } from '../../../../infrastructure/models/LanguageModel';
-import _ from 'lodash';
+import { LanguageModel } from '../../infrastructure/models/LanguageModel';
+import { ListLanguageModel } from '../../infrastructure/models/ListLanguageModel';
 
 class LanguageState {
+  readonly items!: ListLanguageModel;
   readonly kind!: string;
-  readonly items!: Array<LanguageModel>;
 }
 
 class LanguageStateInitial extends LanguageState {
   override readonly kind: string;
-  override readonly items: Array<LanguageModel>;
+  override readonly items: ListLanguageModel;
 
   constructor() {
     super();
     this.kind = 'LanguageStateInitial';
-    this.items = [];
+    this.items = new ListLanguageModel([]);
   }
 }
 
 class LanguageStateLoaded extends LanguageState {
   override readonly kind: string;
-  override readonly items: Array<LanguageModel>;
+  override readonly items: ListLanguageModel;
 
   constructor(arr: Array<LanguageModel>) {
     super();
     this.kind = 'LanguageStateLoaded';
-    let newArr = [...arr];
-    if (newArr.length >= 1) {
-      _.set(_.first(newArr)!, 'isSelected', true);
-    }
-
-    this.items = arr.map((item, index) => {
-      if (index === 0) {
-        return new LanguageModel(item.id, item.name, item.locale, true);
-      }
-      return item;
-    });
+    this.items = new ListLanguageModel(arr);
   }
 }
 
@@ -49,14 +39,25 @@ class LanguageStateError extends LanguageState {
   }
 }
 
-class LanguageStateChanged extends LanguageState {
+class LanguageStateFocusChanged extends LanguageState {
   override readonly kind: string;
-  override readonly items: Array<LanguageModel>;
+  override readonly items: ListLanguageModel;
 
   constructor(arr: Array<LanguageModel>) {
     super();
-    this.kind = 'LanguageStateChanged';
-    this.items = arr;
+    this.kind = 'LanguageStateFocusChanged';
+    this.items = new ListLanguageModel(arr);
+  }
+}
+
+class LanguageStateChangedSuccess extends LanguageState {
+  override readonly kind: string;
+  override readonly items: ListLanguageModel;
+
+  constructor(items: ListLanguageModel) {
+    super();
+    this.kind = 'LanguageStateChangedSuccess';
+    this.items = items;
   }
 }
 
@@ -67,7 +68,8 @@ export {
   LanguageStateInitial,
   LanguageStateLoaded,
   LanguageStateError,
-  LanguageStateChanged,
+  LanguageStateFocusChanged,
+  LanguageStateChangedSuccess,
 };
 
 export type { LanguageState };

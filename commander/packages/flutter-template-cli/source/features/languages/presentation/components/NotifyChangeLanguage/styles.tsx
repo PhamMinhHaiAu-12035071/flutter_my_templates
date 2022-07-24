@@ -1,9 +1,13 @@
 import { Styles } from 'ink/build/styles';
 
 const styles = {
-  container: {
+  wrapperNotify: {
+    marginTop: 2,
+    marginBottom: 1,
+    height: 1,
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
   } as Styles,
 };
+
 export { styles };

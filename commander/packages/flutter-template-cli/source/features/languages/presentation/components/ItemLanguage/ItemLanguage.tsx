@@ -12,7 +12,9 @@ interface ItemLanguageProps {
   item: LanguageModel;
 }
 
-const ItemLanguage = ({ item }: ItemLanguageProps): React.ReactElement => {
+const ItemLanguage: React.FC<ItemLanguageProps> = ({
+  item,
+}: ItemLanguageProps): React.ReactElement => {
   return (
     <Box {...styles.container}>
       <Box {...styles.wrapperPointer}>

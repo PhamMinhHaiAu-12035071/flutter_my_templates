@@ -14,20 +14,20 @@ const Snackbar = ({
 }: SnackbarProps): React.ReactElement | null => {
   const [isVisible, setIsVisible] = React.useState<boolean>(true);
   React.useEffect(() => {
-		const timeDuration = duration ?? 1200;
-		let isMounted = true;
-		const timeout = setTimeout(() => {
-			if (isMounted){
-				setIsVisible(false);
-				if (onComplete) {
-					onComplete();
-				}
-			}
+    const timeDuration = duration ?? 1200;
+    let isMounted = true;
+    const timeout = setTimeout(() => {
+      if (isMounted) {
+        setIsVisible(false);
+        if (onComplete) {
+          onComplete();
+        }
+      }
     }, timeDuration);
-		return () => {
-			isMounted = false;
-			clearTimeout(timeout);
-		}
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout);
+    };
   }, []);
   if (isVisible) {
     return <Box>{children}</Box>;

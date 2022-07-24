@@ -4,9 +4,7 @@ import { either as E } from 'fp-ts';
 import Either = E.Either;
 
 interface LanguageMemoryDataProvider {
-	getAll(): Promise<Either<GetAllLanguageException, Array<LanguageModel>>>;
+  getAll(): Promise<Either<GetAllLanguageException, Array<LanguageModel>>>;
 }
 
-export {
-	LanguageMemoryDataProvider,
-}
+export { LanguageMemoryDataProvider };

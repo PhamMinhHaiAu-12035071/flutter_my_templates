@@ -10,13 +10,12 @@ const CircleOption = ({
   isChecked = false,
 }: CircleOptionProps): React.ReactElement => {
   const spinnerChecked = spinners['toggle9'].frames[0];
-	const spinnerUnchecked = spinners['toggle6'].frames[0];
+  const spinnerUnchecked = spinners['toggle6'].frames[0];
 
   if (isChecked) {
-		return <Text>{spinnerChecked}</Text>;
+    return <Text>{spinnerChecked}</Text>;
   }
-	return <Text>{spinnerUnchecked}</Text>;
-
+  return <Text>{spinnerUnchecked}</Text>;
 };
 
 export { CircleOption };

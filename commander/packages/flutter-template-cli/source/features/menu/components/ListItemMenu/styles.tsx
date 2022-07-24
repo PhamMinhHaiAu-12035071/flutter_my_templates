@@ -23,18 +23,18 @@ const styles = {
   } as Styles,
   wrapperContent_TextTitle: {
     backgroundColor: 'blue',
-		bold: true,
+    bold: true,
   } as Props,
   wrapperControl: {
     display: 'flex',
     flexDirection: 'column',
     marginLeft: 2,
   } as Styles,
-	wrapperControl_TextGuide: {
-		bold: true,
-		underline: true,
-		color: 'yellow',
-	} as Props,
+  wrapperControl_TextGuide: {
+    bold: true,
+    underline: true,
+    color: 'yellow',
+  } as Props,
   wrapperControl_TextEnter: {
     color: 'green',
     bold: true,

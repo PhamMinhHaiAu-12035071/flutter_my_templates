@@ -59,7 +59,9 @@ const ListItemMenuView = ({
     <Box {...styles.container}>
       <Box {...styles.wrapperContent}>
         <Box {...styles.wrapperContent_Title}>
-          <Text {...styles.wrapperContent_TextTitle}>{_.startCase(_.toLower(t('dashboard')))}</Text>
+          <Text {...styles.wrapperContent_TextTitle}>
+            {_.startCase(_.toLower(t('dashboard')))}
+          </Text>
         </Box>
         {arr.map((item, _index) => {
           return (
@@ -71,19 +73,25 @@ const ListItemMenuView = ({
         })}
       </Box>
       <Box {...styles.wrapperControl}>
-				<Text>
-					<Text {...styles.wrapperControl_TextGuide}>{_.upperFirst(t('guide'))}{':'}</Text>
-					<Newline count={2} />
-					<Text>
-						{_.template(t('enterSelection'))({'arr': arr.map((item) => item.id).toString()})}
-						<Text {...styles.wrapperControl_TextEnter}>{' '}Enter</Text>:{' '}
-						{renderTextSelection}
-					</Text>
-				</Text>
+        <Text>
+          <Text {...styles.wrapperControl_TextGuide}>
+            {_.upperFirst(t('guide'))}
+            {':'}
+          </Text>
+          <Newline count={2} />
+          <Text>
+            {_.template(t('enterSelection'))({
+              arr: arr.map((item) => item.id).toString(),
+            })}
+            <Text {...styles.wrapperControl_TextEnter}> Enter</Text>:{' '}
+            {renderTextSelection}
+          </Text>
+        </Text>
 
         <Spacer />
         <Text>
-					{_.upperFirst(t('press'))} <Text {...styles.wrapperContent_TextQuit}>q</Text>{' '}{t('toQuit')}
+          {_.upperFirst(t('press'))}{' '}
+          <Text {...styles.wrapperContent_TextQuit}>q</Text> {t('toQuit')}
         </Text>
       </Box>
     </Box>

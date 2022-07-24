@@ -2,9 +2,9 @@
   "extends": "../../config/tsconfig.library.json",
   "compilerOptions": {
     "outDir": "./dist/esm",
-	"types": ["reflect-metadata"],
-	"experimentalDecorators": true,
-	"emitDecoratorMetadata": true
+    "types": ["reflect-metadata"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["source/**/*"],
   "exclude": ["node_modules", "dist"]

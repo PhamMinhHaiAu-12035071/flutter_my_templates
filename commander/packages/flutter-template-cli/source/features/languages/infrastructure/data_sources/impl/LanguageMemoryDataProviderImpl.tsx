@@ -8,16 +8,16 @@ import Either = E.Either;
 
 @Service()
 class LanguageMemoryDataProviderImpl implements LanguageMemoryDataProvider {
-	async getAll(): Promise<Either<GetAllLanguageException, Array<LanguageModel>>> {
-		const languages: Array<LanguageModel> = [
-			new LanguageModel('0', 'English', Locale.en),
-			new LanguageModel('1', 'Vietnamese', Locale.vi),
-			new LanguageModel('2', 'Japanese', Locale.jp),
-		];
-		return Promise.resolve(E.right(languages));
-	}
+  async getAll(): Promise<
+    Either<GetAllLanguageException, Array<LanguageModel>>
+  > {
+    const languages: Array<LanguageModel> = [
+      new LanguageModel('0', 'English', Locale.en),
+      new LanguageModel('1', 'Vietnamese', Locale.vi),
+      new LanguageModel('2', 'Japanese', Locale.jp),
+    ];
+    return Promise.resolve(E.right(languages));
+  }
 }
 
-export {
-	LanguageMemoryDataProviderImpl,
-}
+export { LanguageMemoryDataProviderImpl };

@@ -1,6 +1,7 @@
 import { Container } from 'typedi';
-import { LanguageBloc } from '../presentation/pages/LanguageScreen/bloc/LanguageBloc';
 import { FetchAllLanguageUseCase } from '../domain/usecase/FetchAllLanguageUseCase';
+import { LanguageBloc } from '../presentation/bloc/LanguageBloc';
+import { NotifyChangeBloc } from '../presentation/bloc/NotifyChangeBloc';
 
 function provideLanguageBloc(): LanguageBloc {
   const fetchAllLanguageUseCase = Container.get<FetchAllLanguageUseCase>(
@@ -10,4 +11,8 @@ function provideLanguageBloc(): LanguageBloc {
   return new LanguageBloc(fetchAllLanguageUseCase);
 }
 
-export { provideLanguageBloc };
+function provideNotifyChangeLanguageBloc(): NotifyChangeBloc {
+  return new NotifyChangeBloc();
+}
+
+export { provideLanguageBloc, provideNotifyChangeLanguageBloc };

@@ -4,9 +4,7 @@ import { either as E } from 'fp-ts';
 import Either = E.Either;
 
 interface LanguageRepository {
-	getAll(): Promise<Either<AppException, Array<LanguageEntity>>>;
+  getAll(): Promise<Either<AppException, Array<LanguageEntity>>>;
 }
 
-export {
-	LanguageRepository,
-}
+export { LanguageRepository };
