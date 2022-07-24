@@ -14,7 +14,7 @@
     "pretest": "npm run build",
     "test": "xo && ava",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|ts|tsx|json)\"",
-	"lint": "eslint ./source --ext .js,.jsx,ts,tsx"
+    "lint": "eslint ./source --ext .js,.jsx,ts,tsx"
   },
   "files": [
     "dist/esm/cli.js"
@@ -63,9 +63,9 @@
     "xo": "^0.39.1",
     "@types/react-dom": "^18.0.5",
     "prettier": "^2.7.1",
-	"eslint": "^8.20.0",
-	"@typescript-eslint/eslint-plugin": "^5.30.7",
-	"@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
     "@commander/ui-kit": "*",
     "@commander/utilities": "*"
   },
