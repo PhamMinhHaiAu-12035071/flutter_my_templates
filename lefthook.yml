@@ -3,5 +3,4 @@ pre-commit:
   commands:
     linter:
       files: git diff --name-only @{push}
-      glob: "*.{js,ts,jsx,tsx}"
-      run: npx lerna run lint
+      run: cd commander && npx lerna run lint

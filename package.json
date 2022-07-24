@@ -1,0 +1,23 @@
+{
+  "name": "flutter_my_templates",
+  "version": "1.0.0",
+  "description": "* [1. Guide used](#1-guide-used) * [2. Create template with feature](#2-create-template-with-feature)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhamMinhHaiAu-12035071/flutter_my_templates.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhamMinhHaiAu-12035071/flutter_my_templates/issues"
+  },
+  "homepage": "https://github.com/PhamMinhHaiAu-12035071/flutter_my_templates#readme",
+  "devDependencies": {
+    "lefthook": "^1.0.5"
+  }
+}
