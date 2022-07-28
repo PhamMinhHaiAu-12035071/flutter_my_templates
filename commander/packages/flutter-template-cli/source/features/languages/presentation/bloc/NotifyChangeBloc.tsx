@@ -12,7 +12,10 @@ import {
 } from './NotifyChangeState';
 import state from '../../../core/state';
 import { LanguageBloc } from './LanguageBloc';
-import { LanguageStateChangedSuccess } from './LanguageState';
+import {
+  LanguageStateChangedSuccess,
+  LanguageStateFocusChanged,
+} from './LanguageState';
 
 class NotifyChangeBloc extends Bloc<NotifyChangeEvent, NotifyChangeState> {
   constructor() {
@@ -36,8 +39,19 @@ class NotifyChangeBloc extends Bloc<NotifyChangeEvent, NotifyChangeState> {
         ) {
           this.add(new NotifyChangeEventSuccess());
         }
+
+        if (
+          bloc instanceof LanguageBloc &&
+          event.nextState instanceof LanguageStateFocusChanged
+        ) {
+          this.add(new NotifyChangeEventReset());
+        }
       },
     });
+  }
+
+  public dispose(): void {
+    this.add(new NotifyChangeEventReset());
   }
 
   private static async _onReset(

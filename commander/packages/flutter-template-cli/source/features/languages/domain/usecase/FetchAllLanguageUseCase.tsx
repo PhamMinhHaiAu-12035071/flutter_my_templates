@@ -8,16 +8,16 @@ import { LanguageRepositoryImpl } from '../../infrastructure/repositories/impl/L
 
 @Service()
 class FetchAllLanguageUseCase {
-  languageRepository: LanguageRepository;
+  private _languageRepository: LanguageRepository;
 
   constructor(@Inject() languageRepository: LanguageRepositoryImpl) {
-    this.languageRepository = languageRepository;
+    this._languageRepository = languageRepository;
   }
 
   async call(): Promise<
     Either<GetAllLanguageException, Array<LanguageEntity>>
   > {
-    return this.languageRepository.getAll();
+    return this._languageRepository.getAll();
   }
 }
 

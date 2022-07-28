@@ -1,0 +1,3 @@
+class RouterEvent {}
+
+export { RouterEvent };

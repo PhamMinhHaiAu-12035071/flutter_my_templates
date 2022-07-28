@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, useApp, useInput } from 'ink';
-import 'reflect-metadata';
 import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
 import { PATH, RouterContext } from '../../../../../router/RouterContext';

@@ -12,10 +12,6 @@ const NotifyChangeLanguage: React.FC = (): React.ReactElement => {
   const { t } = useTranslation();
   const [state, bloc] = useBloc(NotifyChangeBloc);
 
-  React.useEffect(() => {
-    bloc.initState();
-  }, []);
-
   const _resetNotify = (): void => {
     bloc.add(new NotifyChangeEventReset());
   };

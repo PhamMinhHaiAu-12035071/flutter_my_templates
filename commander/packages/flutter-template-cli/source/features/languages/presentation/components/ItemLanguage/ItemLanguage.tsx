@@ -9,7 +9,7 @@ import {
 import { LanguageModel } from '../../../infrastructure/models/LanguageModel';
 
 interface ItemLanguageProps {
-  item: LanguageModel;
+  readonly item: LanguageModel;
 }
 
 const ItemLanguage: React.FC<ItemLanguageProps> = ({

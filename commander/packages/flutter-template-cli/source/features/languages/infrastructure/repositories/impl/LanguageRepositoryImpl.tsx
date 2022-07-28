@@ -9,18 +9,18 @@ import Either = E.Either;
 
 @Service()
 class LanguageRepositoryImpl implements LanguageRepository {
-  languageMemoryDataProvider: LanguageMemoryDataProvider;
+  private _languageMemoryDataProvider: LanguageMemoryDataProvider;
 
   constructor(
     @Inject() languageMemoryDataProvider: LanguageMemoryDataProviderImpl,
   ) {
-    this.languageMemoryDataProvider = languageMemoryDataProvider;
+    this._languageMemoryDataProvider = languageMemoryDataProvider;
   }
 
   async getAll(): Promise<
     Either<GetAllLanguageException, Array<LanguageEntity>>
   > {
-    return this.languageMemoryDataProvider.getAll();
+    return this._languageMemoryDataProvider.getAll();
   }
 }
 

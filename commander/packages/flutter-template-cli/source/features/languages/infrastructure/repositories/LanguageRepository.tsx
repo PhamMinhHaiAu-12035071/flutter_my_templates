@@ -1,10 +1,10 @@
 import { LanguageEntity } from '../../domain/entities/LanguageEntity';
-import { AppException } from '../../../core/exceptions/AppException';
 import { either as E } from 'fp-ts';
 import Either = E.Either;
+import { GetAllLanguageException } from '../../exceptions';
 
 interface LanguageRepository {
-  getAll(): Promise<Either<AppException, Array<LanguageEntity>>>;
+  getAll(): Promise<Either<GetAllLanguageException, Array<LanguageEntity>>>;
 }
 
 export { LanguageRepository };

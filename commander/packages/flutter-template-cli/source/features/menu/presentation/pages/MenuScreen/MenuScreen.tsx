@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box } from 'ink';
 import { styles } from './styles';
-import { ListItemMenu } from '../components/ListItemMenu/ListItemMenu';
-import { menus } from '../../../constants/menu';
+import { ListItemMenu } from '../../components/ListItemMenu/ListItemMenu';
 
 const MenuScreen = (): React.ReactElement => {
   return (
     <Box {...styles.container}>
-      <ListItemMenu arr={menus} />
+      <ListItemMenu />
     </Box>
   );
 };

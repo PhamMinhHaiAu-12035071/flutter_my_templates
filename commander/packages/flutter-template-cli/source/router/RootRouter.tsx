@@ -1,8 +1,8 @@
 import React from 'react';
 import { PATH, RouterContext } from './RouterContext';
 import { ToolGenerateScreen } from '../features/ToolGenerateScreen/ToolGenerateScreen';
-import { MenuScreen } from '../features/menu/screens/MenuScreen';
 import { LanguageScreen } from '../features/languages/presentation/pages/LanguageScreen/LanguageScreen';
+import { MenuScreen } from '../features/menu/presentation/pages/MenuScreen/MenuScreen';
 
 const RootRouter = (): React.ReactElement | null => {
   const router = React.useContext(RouterContext);
