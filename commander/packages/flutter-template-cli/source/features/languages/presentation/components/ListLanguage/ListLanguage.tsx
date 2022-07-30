@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { ItemLanguage } from '../ItemLanguage/ItemLanguage';
 import { ListLanguageModel } from '../../../infrastructure/models/ListLanguageModel';
 import { LanguageModel } from '../../../infrastructure/models/LanguageModel';
-import { NotifyChangeLanguage } from '../NotifyChangeLanguage/NotifyChangeLanguage';
+import { NotifyChangeLanguageController } from '../NotifyChangeLanguage/NotifyChangeLanguage.controller';
 
 interface ListLanguageProps {
   readonly list?: ListLanguageModel;
@@ -32,7 +32,7 @@ const ListLanguage: React.FC<ListLanguageProps> = ({
             </React.Fragment>
           );
         })}
-        <NotifyChangeLanguage />
+        <NotifyChangeLanguageController />
       </Box>
     </Box>
   );
