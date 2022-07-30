@@ -1,36 +1,29 @@
 import React from 'react';
-import { Box, useApp, useInput } from 'ink';
-import { styles } from './styles';
+import { useApp, useInput } from 'ink';
 import { useTranslation } from 'react-i18next';
-import { PATH, RouterContext } from '../../../../../router/RouterContext';
-
-import { ListLanguage } from '../../components/ListLanguage/ListLanguage';
 import {
   LanguageEventChanged,
   LanguageEventMoveDown,
   LanguageEventMoveUp,
 } from '../../bloc/LanguageEvent';
-import {
-  LanguageStateChangedSuccess,
-  LanguageStateFocusChanged,
-  LanguageStateLoaded,
-} from '../../bloc/LanguageState';
+import { LanguageStateChangedSuccess } from '../../bloc/LanguageState';
 import { LanguageBloc } from '../../bloc/LanguageBloc';
 import { useBloc } from '../../../../core/state';
-import { LanguageControl } from '../../components/LanguageControl/LanguageControl';
+import { LanguageScreenView } from './LanguageScreen.view';
+import { RouterBloc } from '../../../../../router/bloc/RouterBloc';
+import { RouterEventNavigateToMenuScreen } from '../../../../../router/bloc/RouterEvent';
 
-const LanguageScreen = (): React.ReactElement => {
+const LanguageScreenController = (): React.ReactElement => {
   const [state, bloc] = useBloc(LanguageBloc);
-
+  const [, blocRouter] = useBloc(RouterBloc);
   const { exit } = useApp();
-  const router = React.useContext(RouterContext);
   const { i18n } = useTranslation();
 
   useInput((input, key) => {
     if (input === 'q') {
       exit();
     } else if (input === 'b') {
-      router.changeScreen(PATH.MENU_SCREEN);
+      blocRouter.add(new RouterEventNavigateToMenuScreen());
     }
     if (key.return) {
       bloc.add(new LanguageEventChanged());
@@ -50,18 +43,7 @@ const LanguageScreen = (): React.ReactElement => {
     }
   }, [state]);
 
-  return (
-    <Box {...styles.container}>
-      {[
-        LanguageStateLoaded,
-        LanguageStateFocusChanged,
-        LanguageStateChangedSuccess,
-      ].some((item) => state instanceof item) && (
-        <ListLanguage list={state.items} />
-      )}
-      <LanguageControl />
-    </Box>
-  );
+  return <LanguageScreenView state={state} />;
 };
 
-export { LanguageScreen };
+export { LanguageScreenController };

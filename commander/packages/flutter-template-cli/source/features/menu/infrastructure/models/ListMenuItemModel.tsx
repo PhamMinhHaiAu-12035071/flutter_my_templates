@@ -4,7 +4,7 @@ class ListMenuItemModel {
   private _arr!: Array<MenuItemModel>;
 
   constructor(arr: Array<MenuItemModel>);
-  constructor(arr: Array<MenuItemModel>, selectedId?: string);
+  constructor(arr: Array<MenuItemModel>, selectedId: string | undefined);
   constructor(...myArray: Array<any>) {
     if (myArray.length === 1) {
       const [arr] = myArray;
@@ -29,8 +29,7 @@ class ListMenuItemModel {
 
   private _initialWithOneParameter(arr: Array<MenuItemModel>): void {
     const findIndex = arr.findIndex((item: MenuItemModel) => item.isSelected);
-    const selectedIndex = findIndex !== -1 ? findIndex : 0;
-    this._handleArrWithSelectedIndex(arr, selectedIndex);
+    this._handleArrWithSelectedIndex(arr, findIndex);
   }
 
   private _initialWithTwoParameter(
@@ -40,8 +39,7 @@ class ListMenuItemModel {
     const findIndex = arr.findIndex(
       (item: MenuItemModel) => item.id === selectedId,
     );
-    const selectedIndex = findIndex !== -1 ? findIndex : 0;
-    this._handleArrWithSelectedIndex(arr, selectedIndex);
+    this._handleArrWithSelectedIndex(arr, findIndex);
   }
 
   get arr(): Array<MenuItemModel> {
@@ -50,6 +48,10 @@ class ListMenuItemModel {
 
   get size(): number {
     return this._arr.length;
+  }
+
+  get selectedIndex(): number {
+    return this._arr.findIndex((item) => item.isSelected);
   }
 }
 

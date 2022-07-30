@@ -1,12 +1,20 @@
 import { Bloc } from 'blac';
-import { MenuEvent, MenuEventFetchAll, MenuEventOnChange } from './MenuEvent';
+import {
+  MenuEvent,
+  MenuEventFetchAll,
+  MenuEventLeave,
+  MenuEventOnChange,
+  MenuEventOnSubmit,
+} from './MenuEvent';
 import {
   MenuState,
   MenuStateChanging,
+  MenuStateChangingError,
   MenuStateConfirmChanged,
   MenuStateFetchAllError,
   MenuStateFetchAllLoaded,
   menuStateInitial,
+  MenuStateLeaved,
 } from './MenuState';
 import { FetchAllMenuItemUseCase } from '../../domain/usecase/FetchAllMenuItemUseCase';
 import { fold } from 'fp-ts/Either';
@@ -14,7 +22,6 @@ import { GetAllMenuException } from '../../exceptions';
 import { MenuItemEntity } from '../../domain/entities/MenuItemEntity';
 import { MenuItemModel } from '../../infrastructure/models/MenuItemModel';
 import { validate } from 'class-validator';
-import _ from 'lodash';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   private readonly _fetchAllMenuItemUseCase: FetchAllMenuItemUseCase;
@@ -27,6 +34,8 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     this.on(MenuEventOnChange, (event, emit) =>
       this._onChange(event as MenuEventOnChange, emit),
     );
+    this.on(MenuEventOnSubmit, (_, emit) => this._onSubmit(_, emit));
+    this.on(MenuEventLeave, (_, emit) => this._onLeave(_, emit));
   }
 
   private async _onFetchAll(
@@ -49,16 +58,28 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     event: MenuEventOnChange,
     emit: (arg0: MenuState) => void,
   ): Promise<void> {
-    if (event.key.return && this.state.id) {
-      emit(new MenuStateConfirmChanged(this.state.id, this.state.items));
-    }
     const errors = await validate(event);
     if (errors.length > 0) {
-      emit(new MenuStateChanging('', this.state.items));
+      emit(new MenuStateChangingError(this.state.items));
     } else {
-      const input = `${_.defaultTo(this.state.id, '')}${event.input}`;
-      emit(new MenuStateChanging(input, this.state.items));
+      emit(new MenuStateChanging(event.input, this.state.items));
     }
+  }
+
+  private async _onSubmit(
+    _: any,
+    emit: (args0: MenuState) => void,
+  ): Promise<void> {
+    if (this.state.id) {
+      emit(new MenuStateConfirmChanged(this.state.id, this.state.items));
+    }
+  }
+
+  private async _onLeave(
+    _: any,
+    emit: (args0: MenuState) => void,
+  ): Promise<void> {
+    emit(new MenuStateLeaved(this.state.id, this.state.items));
   }
 }
 

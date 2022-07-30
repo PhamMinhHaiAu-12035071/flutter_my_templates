@@ -1,5 +1,4 @@
-import { IsNumberString } from 'class-validator';
-import { Key } from 'ink/build/hooks/use-input';
+import { IsNotEmpty, IsNumberString } from 'class-validator';
 
 class MenuEvent {}
 
@@ -10,15 +9,32 @@ class MenuEventFetchAll extends MenuEvent {
 }
 
 class MenuEventOnChange extends MenuEvent {
+  @IsNotEmpty()
   @IsNumberString()
   public readonly input: string;
 
-  public readonly key: Key;
-  constructor(input: string, key: Key) {
+  constructor(input: string) {
     super();
     this.input = input;
-    this.key = key;
   }
 }
 
-export { MenuEvent, MenuEventFetchAll, MenuEventOnChange };
+class MenuEventOnSubmit extends MenuEvent {
+  constructor() {
+    super();
+  }
+}
+
+class MenuEventLeave extends MenuEvent {
+  constructor() {
+    super();
+  }
+}
+
+export {
+  MenuEvent,
+  MenuEventFetchAll,
+  MenuEventOnChange,
+  MenuEventOnSubmit,
+  MenuEventLeave,
+};

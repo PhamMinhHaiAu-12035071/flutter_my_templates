@@ -51,16 +51,28 @@ class MenuStateFetchAllError extends MenuState {
 class MenuStateChanging extends MenuState {
   override readonly kind: string;
   override readonly items: ListMenuItemModel;
-  override readonly id: string | undefined;
+  override readonly id: string;
 
   constructor(id: string, items: ListMenuItemModel) {
     super();
     this.kind = 'MenuStateChanging';
     this.id = id;
-    this.items = items;
+    this.items = new ListMenuItemModel(items.arr, id);
   }
 }
 
+class MenuStateChangingError extends MenuState {
+  override readonly kind: string;
+  override readonly items: ListMenuItemModel;
+  override readonly id: string | undefined;
+
+  constructor(items: ListMenuItemModel) {
+    super();
+    this.kind = 'MenuStateChangingError';
+    this.id = undefined;
+    this.items = new ListMenuItemModel(items.arr, this.id);
+  }
+}
 class MenuStateConfirmChanged extends MenuState {
   override readonly kind: string;
   override readonly items: ListMenuItemModel;
@@ -69,6 +81,19 @@ class MenuStateConfirmChanged extends MenuState {
   constructor(id: string, items: ListMenuItemModel) {
     super();
     this.kind = 'MenuStateConfirmChanged';
+    this.id = id;
+    this.items = new ListMenuItemModel(items.arr, id);
+  }
+}
+
+class MenuStateLeaved extends MenuState {
+  override readonly kind: string;
+  override readonly items: ListMenuItemModel;
+  override readonly id: string | undefined;
+
+  constructor(id: string | undefined, items: ListMenuItemModel) {
+    super();
+    this.kind = 'MenuStateLeaved';
     this.id = id;
     this.items = new ListMenuItemModel(items.arr, id);
   }
@@ -83,4 +108,6 @@ export {
   MenuStateFetchAllError,
   MenuStateConfirmChanged,
   MenuStateChanging,
+  MenuStateChangingError,
+  MenuStateLeaved,
 };

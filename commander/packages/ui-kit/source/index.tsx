@@ -4,5 +4,6 @@ export * from './components/atoms/TextKaraokeAnimation/TextKaraokeAnimation';
 export * from './components/atoms/Snackbar/Snackbar';
 export * from './components/atoms/TypingAnimation/TypingAnimation';
 export * from './components/atoms/CircleOption/CircleOption';
+export * from './components/atoms/TextInput/TextInput';
 
 export * from './components/constants/spinners';
