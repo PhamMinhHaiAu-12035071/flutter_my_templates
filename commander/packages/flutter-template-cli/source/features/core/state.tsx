@@ -7,8 +7,8 @@ import {
 import { provideMenuBloc } from '../menu/di/DependenciesProvider';
 
 const state = new BlacReact([
-  provideMenuBloc(),
   provideRouterBloc(),
+  provideMenuBloc(),
   provideLanguageBloc(),
   provideNotifyChangeLanguageBloc(),
 ]);

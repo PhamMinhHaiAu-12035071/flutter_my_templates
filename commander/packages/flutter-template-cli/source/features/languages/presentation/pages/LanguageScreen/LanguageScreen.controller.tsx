@@ -10,20 +10,16 @@ import { LanguageStateChangedSuccess } from '../../bloc/LanguageState';
 import { LanguageBloc } from '../../bloc/LanguageBloc';
 import { useBloc } from '../../../../core/state';
 import { LanguageScreenView } from './LanguageScreen.view';
-import { RouterBloc } from '../../../../../router/bloc/RouterBloc';
-import { RouterEventNavigateToMenuScreen } from '../../../../../router/bloc/RouterEvent';
+import { BackWrapper } from '../../../../../common/components/BackWrapper/BackWrapper';
 
 const LanguageScreenController = (): React.ReactElement => {
   const [state, bloc] = useBloc(LanguageBloc);
-  const [, blocRouter] = useBloc(RouterBloc);
   const { exit } = useApp();
   const { i18n } = useTranslation();
 
   useInput((input, key) => {
     if (input === 'q') {
       exit();
-    } else if (input === 'b') {
-      blocRouter.add(new RouterEventNavigateToMenuScreen());
     }
     if (key.return) {
       bloc.add(new LanguageEventChanged());
@@ -43,7 +39,11 @@ const LanguageScreenController = (): React.ReactElement => {
     }
   }, [state]);
 
-  return <LanguageScreenView state={state} />;
+  return (
+    <BackWrapper keyBack={'b'}>
+      <LanguageScreenView state={state} />
+    </BackWrapper>
+  );
 };
 
 export { LanguageScreenController };

@@ -8,7 +8,7 @@ import { LanguageRepositoryImpl } from '../../infrastructure/repositories/impl/L
 
 @Service()
 class FetchAllLanguageUseCase {
-  private _languageRepository: LanguageRepository;
+  private readonly _languageRepository: LanguageRepository;
 
   constructor(@Inject() languageRepository: LanguageRepositoryImpl) {
     this._languageRepository = languageRepository;

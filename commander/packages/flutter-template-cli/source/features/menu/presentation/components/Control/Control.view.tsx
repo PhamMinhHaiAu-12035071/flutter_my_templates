@@ -7,10 +7,10 @@ import { styles } from './styles';
 import { TextInput } from '@commander/ui-kit';
 
 interface ControlViewProps {
-  id: string | undefined;
-  arr: Array<MenuItemModel>;
-  query: string;
-  setQuery: Dispatch<SetStateAction<string>>;
+  readonly id: string | undefined;
+  readonly arr: Array<MenuItemModel>;
+  readonly query: string;
+  readonly setQuery: Dispatch<SetStateAction<string>>;
 }
 const ControlView: React.FC<ControlViewProps> = (
   props: ControlViewProps,

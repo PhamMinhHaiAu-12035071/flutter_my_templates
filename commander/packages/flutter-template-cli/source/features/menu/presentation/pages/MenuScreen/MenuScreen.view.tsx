@@ -6,9 +6,10 @@ import _ from 'lodash';
 import { MenuState } from '../../bloc/MenuState';
 import { useTranslation } from 'react-i18next';
 import { ControlController } from '../../components/Control/Control.controller';
+import { ExitApplication } from '../../../../../common/components/ExitApplication/ExitApplication';
 
 interface MenuScreenViewProps {
-  state: MenuState;
+  readonly state: MenuState;
 }
 const MenuScreenView: React.FC<MenuScreenViewProps> = (
   props: MenuScreenViewProps,
@@ -16,17 +17,19 @@ const MenuScreenView: React.FC<MenuScreenViewProps> = (
   const { t } = useTranslation();
 
   return (
-    <Box {...styles.container}>
-      <Box {...styles.wrapperContent}>
-        <Box {...styles.wrapperContent_Title}>
-          <Text {...styles.wrapperContent_TextTitle}>
-            {_.startCase(_.toLower(t('dashboard')))}
-          </Text>
+    <ExitApplication keyExit={'q'}>
+      <Box {...styles.container}>
+        <Box {...styles.wrapperContent}>
+          <Box {...styles.wrapperContent_Title}>
+            <Text {...styles.wrapperContent_TextTitle}>
+              {_.startCase(_.toLower(t('dashboard')))}
+            </Text>
+          </Box>
+          <ListItemMenu list={props.state.items} />
         </Box>
-        <ListItemMenu list={props.state.items} />
+        <ControlController />
       </Box>
-      <ControlController />
-    </Box>
+    </ExitApplication>
   );
 };
 

@@ -7,7 +7,7 @@ import {
   MenuEventOnChange,
   MenuEventOnSubmit,
 } from '../../bloc/MenuEvent';
-import { useApp, useInput } from 'ink';
+import { useInput } from 'ink';
 import { MenuStateConfirmChanged } from '../../bloc/MenuState';
 import { RouterBloc } from '../../../../../router/bloc/RouterBloc';
 import { RouterEventNavigateToLanguageScreen } from '../../../../../router/bloc/RouterEvent';
@@ -15,7 +15,6 @@ import { RouterEventNavigateToLanguageScreen } from '../../../../../router/bloc/
 const ControlController: React.FC = (): React.ReactElement => {
   const [state, bloc] = useBloc(MenuBloc);
   const [, blocRouter] = useBloc(RouterBloc);
-  const { exit } = useApp();
   const [query, setQuery] = React.useState<string>('');
 
   React.useEffect(() => {
@@ -35,10 +34,7 @@ const ControlController: React.FC = (): React.ReactElement => {
     }
   }, [state]);
 
-  useInput((input, key) => {
-    if (input === 'q') {
-      exit();
-    }
+  useInput((_, key) => {
     if (key.return) {
       bloc.add(new MenuEventOnSubmit());
     }

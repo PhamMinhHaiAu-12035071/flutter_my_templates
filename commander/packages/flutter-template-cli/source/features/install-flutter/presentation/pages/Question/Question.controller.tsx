@@ -4,19 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { Styles } from 'ink/build/styles';
 import { Props } from 'ink/build/components/Text';
 import _ from 'lodash';
-import { PATH, RouterContext } from '../../../../router/RouterContext';
-import { QuestionInstallFlutter } from '../../../install-flutter/components/QuestionInstallFlutter/QuestionInstallFlutter';
+import { QuestionInstallFlutter } from '../../../components/QuestionInstallFlutter/QuestionInstallFlutter';
 
-const QuestionInstallFlutterScreenOriginal = (): React.ReactElement => {
+const QuestionController: React.FC = (): React.ReactElement => {
   const { t } = useTranslation();
-  const router = React.useContext(RouterContext);
   const { exit } = useApp();
 
   useInput((input) => {
     if (input === 'q') {
       exit();
-    } else if (input === 'b') {
-      router.changeScreen(PATH.MENU_SCREEN);
     }
   });
 
@@ -109,4 +105,4 @@ const styles = {
   } as Props,
 };
 
-export { QuestionInstallFlutterScreenOriginal };
+export { QuestionController };

@@ -9,7 +9,7 @@ import Either = E.Either;
 
 @Service()
 class LanguageRepositoryImpl implements LanguageRepository {
-  private _languageMemoryDataProvider: LanguageMemoryDataProvider;
+  private readonly _languageMemoryDataProvider: LanguageMemoryDataProvider;
 
   constructor(
     @Inject() languageMemoryDataProvider: LanguageMemoryDataProviderImpl,

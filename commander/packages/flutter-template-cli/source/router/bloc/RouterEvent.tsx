@@ -10,8 +10,16 @@ class RouterEventNavigateToLanguageScreen extends RouterEvent {
     super();
   }
 }
+
+class RouterEventBack extends RouterEvent {
+  constructor() {
+    super();
+  }
+}
+
 export {
   RouterEvent,
   RouterEventNavigateToMenuScreen,
   RouterEventNavigateToLanguageScreen,
+  RouterEventBack,
 };

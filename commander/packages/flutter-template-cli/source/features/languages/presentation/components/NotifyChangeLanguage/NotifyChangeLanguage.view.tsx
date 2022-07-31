@@ -9,8 +9,8 @@ import {
 } from '../../bloc/NotifyChangeState';
 
 interface NotifyChangeLanguageViewProps {
-  state: NotifyChangeState;
-  resetNotify: () => void;
+  readonly state: NotifyChangeState;
+  readonly resetNotify: () => void;
 }
 const NotifyChangeLanguageView: React.FC<NotifyChangeLanguageViewProps> = (
   props: NotifyChangeLanguageViewProps,

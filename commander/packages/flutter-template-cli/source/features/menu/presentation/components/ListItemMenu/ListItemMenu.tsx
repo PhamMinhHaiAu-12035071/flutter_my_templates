@@ -5,7 +5,7 @@ import { MenuItemModel } from '../../../infrastructure/models/MenuItemModel';
 import { ListMenuItemModel } from '../../../infrastructure/models/ListMenuItemModel';
 
 interface ListItemMenuProps {
-  list: ListMenuItemModel;
+  readonly list: ListMenuItemModel;
 }
 
 const ListItemMenu: React.FC<ListItemMenuProps> = (

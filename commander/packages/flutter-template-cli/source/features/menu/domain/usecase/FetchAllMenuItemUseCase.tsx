@@ -8,7 +8,7 @@ import { MenuItemEntity } from '../entities/MenuItemEntity';
 
 @Service()
 class FetchAllMenuItemUseCase {
-  private _menuRepository: MenuRepository;
+  private readonly _menuRepository: MenuRepository;
 
   constructor(@Inject() menuRepository: MenuRepositoryImpl) {
     this._menuRepository = menuRepository;

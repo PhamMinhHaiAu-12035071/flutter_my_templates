@@ -9,7 +9,7 @@ import { MenuMemoryDataProviderImpl } from '../../data_sources/impl/MenuMemoryDa
 
 @Service()
 class MenuRepositoryImpl implements MenuRepository {
-  private _menuMemoryDataProvider: MenuMemoryDataProvider;
+  private readonly _menuMemoryDataProvider: MenuMemoryDataProvider;
 
   constructor(@Inject() menuMemoryDataProvider: MenuMemoryDataProviderImpl) {
     this._menuMemoryDataProvider = menuMemoryDataProvider;

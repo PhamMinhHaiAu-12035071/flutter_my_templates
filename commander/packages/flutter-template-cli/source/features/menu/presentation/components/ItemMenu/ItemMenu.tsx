@@ -8,8 +8,8 @@ import { MenuItemModel } from '../../../infrastructure/models/MenuItemModel';
 import { TextKaraokeAnimation } from '@commander/ui-kit';
 
 interface ItemMenuProps {
-  item: MenuItemModel;
-  style?: Styles;
+  readonly item: MenuItemModel;
+  readonly style?: Styles;
 }
 
 const ItemMenu = ({ item, style }: ItemMenuProps): React.ReactElement => {

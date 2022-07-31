@@ -11,7 +11,7 @@ import {
 import { LanguageControl } from '../../components/LanguageControl/LanguageControl';
 
 interface LanguageScreenViewProps {
-  state: LanguageState;
+  readonly state: LanguageState;
 }
 const LanguageScreenView: React.FC<LanguageScreenViewProps> = (
   props: LanguageScreenViewProps,
