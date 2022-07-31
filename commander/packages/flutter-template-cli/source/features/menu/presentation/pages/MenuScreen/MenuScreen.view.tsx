@@ -23,7 +23,7 @@ const MenuScreenView: React.FC<MenuScreenViewProps> = (
             {_.startCase(_.toLower(t('dashboard')))}
           </Text>
         </Box>
-        <ListItemMenu arr={props.state.items.arr} />
+        <ListItemMenu list={props.state.items} />
       </Box>
       <ControlController />
     </Box>
